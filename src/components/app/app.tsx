@@ -6,13 +6,15 @@ type FlatInfo = {
     price: number,
     previewImage: string,
     desc: string
-  }
+};
 
 type TAppProps = {
-    offersCount: number,
-    offers: FlatInfo[]
-}
+    offers: FlatInfo[],
+    cities: string[]
+};
 
-export default function App({ offersCount ,offers }: TAppProps) {
-    return <MainPage offersCount={offersCount} offers={offers}/>
-}
+export default function App({ offers, cities }: TAppProps) {
+    return <MainPage 
+        offers={offers}
+        cities={cities} />
+};

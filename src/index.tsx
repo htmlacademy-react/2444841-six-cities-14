@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 
 import App from './components/app/app';
 
-const OFFERS_COUNT: number = 5;
-
 type FlatInfo = {
   id: number,
   title: string,
@@ -13,14 +11,7 @@ type FlatInfo = {
   desc: string
 }
 
-const enum Cities {
-  Paris = "Paris",
-  Cologne = "Cologne",
-  Brussels = "Brussels",
-  Amstaerdam = "Amstaerdam",
-  Hamburg = "Hamburg",
-  Dusseldorf = "Dusseldorf"
-}
+const cities: string[] = ["Paris", "Cologne", "Brussels", "Amstardam", "Hamburg", "Dusseldorf"]
 
 const flatsArray: FlatInfo[] = [
   {
@@ -66,6 +57,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offersCount={OFFERS_COUNT} offers={flatsArray} />
+    <App offers={flatsArray} cities ={cities}/>
   </React.StrictMode>
 );

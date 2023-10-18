@@ -1,37 +1,36 @@
 import Card from "../../components/card/card.tsx";
 import MainHeader from "../../components/main-header/main-header.tsx";
 import LocationsHeader from "../../components/locations-header/locations-header.tsx";
+//import CardList from "../../components/card-list/card-list.tsx";
 
 type FlatInfo = {
-  id: number,
-  title: string,
-  price: number,
-  previewImage: string,
-  desc: string
-}
+  id: number;
+  title: string;
+  price: number;
+  previewImage: string;
+  desc: string;
+};
 
 type TAppProps = {
-    offersCount: number,
-    offers: FlatInfo[]
-}
+  offers: FlatInfo[];
+  cities: string[];
+};
 
-export default function MainPage({ offersCount, offers }: TAppProps): JSX.Element {
-
-
-  return <>
+export default function MainPage({offers, cities}: TAppProps): JSX.Element {
+  console.log(cities.length, cities)
+  return (
     <div className="page page--gray page--main">
       <MainHeader />
-
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader />
+          
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -48,11 +47,17 @@ export default function MainPage({ offersCount, offers }: TAppProps): JSX.Elemen
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((item: FlatInfo) => 
+                {offers.map((item) => 
                   <Card 
                     key={item.id} 
-                    offer={item} />
+                    id={item.id}
+                    title={item.title}
+                    price={item.price}
+                    previewImage={item.previewImage}
+                    desc={item.desc}
+                  />
                 )}
+                
               </div>
             </section>
             <div className="cities__right-section">
@@ -61,6 +66,9 @@ export default function MainPage({ offersCount, offers }: TAppProps): JSX.Elemen
           </div>
         </div>
       </main>
-  </div>
-  </>
+    </div>
+  )
 };
+
+//<CardList offers={offers} />
+//<LocationsHeader cities={cities}/>

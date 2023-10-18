@@ -4,12 +4,12 @@ type FlatInfo = {
   price: number,
   previewImage: string,
   desc: string
-}
+};
 
-export default function Card(offer: FlatInfo): JSX.Element {
-  const {id, title, price, previewImage, desc} = offer;
+export default function Card({id, title, price, previewImage, desc}: FlatInfo): JSX.Element {
 
   return <>
+    {/* Сравнить в будущем классы в карточках избранного */}
     <article className="cities__card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
