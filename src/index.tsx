@@ -13,6 +13,15 @@ type FlatInfo = {
   desc: string
 }
 
+const enum Cities {
+  Paris = "Paris",
+  Cologne = "Cologne",
+  Brussels = "Brussels",
+  Amstaerdam = "Amstaerdam",
+  Hamburg = "Hamburg",
+  Dusseldorf = "Dusseldorf"
+}
+
 const flatsArray: FlatInfo[] = [
   {
     id: 1,
