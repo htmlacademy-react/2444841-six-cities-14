@@ -1,7 +1,6 @@
-import Card from "../../components/card/card.tsx";
-import MainHeader from "../../components/main-header/main-header.tsx";
-import LocationsHeader from "../../components/locations-header/locations-header.tsx";
-//import CardList from "../../components/card-list/card-list.tsx";
+import MainHeader from '../../components/main-header/main-header.tsx';
+import LocationsHeader from '../../components/locations-header/locations-header.tsx';
+import CardList from '../../components/card-list/card-list.tsx';
 
 type FlatInfo = {
   id: number;
@@ -11,15 +10,16 @@ type FlatInfo = {
   desc: string;
 };
 
-type TCities = string[]
+type TCities = string[];
+type TOffers = FlatInfo[];
 
 type TAppProps = {
-  offers: FlatInfo[];
+  offers: TOffers;
   cities: TCities;
 };
 
 export default function MainPage({offers, cities}: TAppProps): JSX.Element {
-  console.log(cities.length, cities)
+
   return (
     <div className="page page--gray page--main">
       <MainHeader />
@@ -49,17 +49,7 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((item) => 
-                  <Card 
-                    key={item.id} 
-                    id={item.id}
-                    title={item.title}
-                    price={item.price}
-                    previewImage={item.previewImage}
-                    desc={item.desc}
-                  />
-                )}
-                
+                <CardList offers={offers} />
               </div>
             </section>
             <div className="cities__right-section">
@@ -71,6 +61,3 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
     </div>
   )
 };
-
-//<CardList offers={offers} />
-//<LocationsHeader cities={cities}/>

@@ -1,6 +1,8 @@
-type TCities = string[]
+type TCities =  {
+  cities: string[];
+};
 
-export default function LocationsHeader(cities: TCities): JSX.Element {
+export default function LocationsHeader({cities}: TCities): JSX.Element {
   return <>
     <section className="locations container">
       <ul className="locations__list tabs__list">

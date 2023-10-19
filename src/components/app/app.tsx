@@ -1,11 +1,11 @@
-import MainPage from "../../pages/main-page/main-page.tsx";
+import MainPage from '../../pages/main-page/main-page.tsx';
 
 type FlatInfo = {
-    id: number;
-    title: string;
-    price: number;
-    previewImage: string;
-    desc: string;
+  id: number;
+  title: string;
+  price: number;
+  previewImage: string;
+  desc: string;
 };
 
 type TCities = string[]
@@ -17,7 +17,10 @@ type TAppProps = {
 
 export default function App({ offers, cities }: TAppProps) {
 
-    return <MainPage 
-        offers={offers}
-        cities={cities} />
+  return (
+    <MainPage
+    offers={offers}
+    cities={cities} 
+    />
+  );
 };
