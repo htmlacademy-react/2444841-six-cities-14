@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './components/app/app';
+import App from './components/app/app.tsx';
 
 type FlatInfo = {
-  id: number,
-  title: string,
-  price: number,
-  previewImage: string,
-  desc: string
-}
+  id: number;
+  title: string;
+  price: number;
+  previewImage: string;
+  desc: string;
+};
 
-const cities: string[] = ["Paris", "Cologne", "Brussels", "Amstardam", "Hamburg", "Dusseldorf"]
+const cities: string[] = ["Paris", "Cologne", "Brussels", "Amstardam", "Hamburg", "Dusseldorf"];
 
 const flatsArray: FlatInfo[] = [
   {

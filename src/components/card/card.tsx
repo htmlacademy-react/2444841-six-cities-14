@@ -1,9 +1,9 @@
 type FlatInfo = {
-  id: number,
-  title: string,
-  price: number,
-  previewImage: string,
-  desc: string
+  id: number;
+  title: string;
+  price: number;
+  previewImage: string;
+  desc: string;
 };
 
 export default function Card({id, title, price, previewImage, desc}: FlatInfo): JSX.Element {

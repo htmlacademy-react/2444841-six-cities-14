@@ -11,9 +11,11 @@ type FlatInfo = {
   desc: string;
 };
 
+type TCities = string[]
+
 type TAppProps = {
   offers: FlatInfo[];
-  cities: string[];
+  cities: TCities;
 };
 
 export default function MainPage({offers, cities}: TAppProps): JSX.Element {
@@ -24,7 +26,7 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          
+          <LocationsHeader cities={cities}/>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
