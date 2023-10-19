@@ -59,5 +59,5 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
         </div>
       </main>
     </div>
-  )
-};
+  );
+}

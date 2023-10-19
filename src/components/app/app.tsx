@@ -19,8 +19,8 @@ export default function App({ offers, cities }: TAppProps) {
 
   return (
     <MainPage
-    offers={offers}
-    cities={cities} 
+      offers={offers}
+      cities={cities}
     />
   );
-};
+}
