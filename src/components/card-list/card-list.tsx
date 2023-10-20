@@ -1,6 +1,6 @@
 import Card from '../card/card.tsx';
 
-type FlatInfo = {
+type TFlatInfo = {
     id: number;
     title: string;
     price: number;
@@ -9,14 +9,14 @@ type FlatInfo = {
 };
 
 type TCardList = {
-  offers: FlatInfo[];
+  offers: TFlatInfo[];
 };
 
 export default function CardList({offers}: TCardList): JSX.Element {
 
   return (
     <>
-      {offers.map((item: FlatInfo) => (
+      {offers.map((item: TFlatInfo) => (
         <Card
           key={item.id}
           id={item.id}

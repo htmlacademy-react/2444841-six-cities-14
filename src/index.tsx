@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './components/app/app.tsx';
 
-type FlatInfo = {
+type TFlatInfo = {
   id: number;
   title: string;
   price: number;
@@ -13,7 +13,7 @@ type FlatInfo = {
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amstardam', 'Hamburg', 'Dusseldorf'];
 
-const flatsArray: FlatInfo[] = [
+const flatsArray: TFlatInfo[] = [
   {
     id: 1,
     title: 'title 1',

@@ -1,4 +1,4 @@
-type FlatInfo = {
+type TFlatInfo = {
   id: number;
   title: string;
   price: number;
@@ -6,7 +6,7 @@ type FlatInfo = {
   desc: string;
 };
 
-export default function Card({id, title, price, previewImage, desc}: FlatInfo): JSX.Element {
+export default function Card({id, title, price, previewImage, desc}: TFlatInfo): JSX.Element {
 
   return (
     <>

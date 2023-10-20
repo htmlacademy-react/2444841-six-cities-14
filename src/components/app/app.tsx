@@ -1,6 +1,6 @@
 import MainPage from '../../pages/main-page/main-page.tsx';
 
-type FlatInfo = {
+type TFlatInfo = {
   id: number;
   title: string;
   price: number;
@@ -11,7 +11,7 @@ type FlatInfo = {
 type TCities = string[]
 
 type TAppProps = {
-  offers: FlatInfo[];
+  offers: TFlatInfo[];
   cities: TCities;
 };
 
