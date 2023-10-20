@@ -1,8 +1,8 @@
-import MainHeader from "../../components/main-header/main-header.tsx";
-import OfferGallery from "../../components/offer-components/offer-gallery/offer-gallery.tsx";
-import OfferInfo from "../../components/offer-components/offer-info/offer-info.tsx";
-import OfferHostInfo from "../../components/offer-components/offer-host-info/offer-host-info.tsx";
-import PlacesNear from "../../components/offer-components/places-near/places-near.tsx";
+import MainHeader from '../../components/main-header/main-header.tsx';
+import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
+import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
+import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
+import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 
 export default function OfferPage(): JSX.Element {
 

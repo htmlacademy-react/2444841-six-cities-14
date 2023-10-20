@@ -104,6 +104,6 @@ export default function PlacesNear(): JSX.Element {
           </article>
         </div>
       </section>
-      </div>
+    </div>
   );
 }
