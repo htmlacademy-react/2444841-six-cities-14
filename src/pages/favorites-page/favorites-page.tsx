@@ -1,6 +1,56 @@
 import MainHeader from '../../components/main-header/main-header.tsx';
+import CardList from '../../components/card-list/card-list.tsx';
+import { TFlatInfo } from '../../types/index.ts';
 
 export default function FavoritesPage(): JSX.Element {
+
+  const amsterdamFavorites: TFlatInfo[] = [
+    {
+      id: 6,
+      title: 'title 6',
+      price: 600,
+      previewImage: 'img/room.jpg',
+      desc: 'desc6'
+    },
+    {
+      id: 7,
+      title: 'title 7',
+      price: 700,
+      previewImage: 'img/room.jpg',
+      desc: 'desc7'
+    },
+    {
+      id: 8,
+      title: 'title 8',
+      price: 800,
+      previewImage: 'img/room.jpg',
+      desc: 'desc8'
+    }
+  ];
+
+  const cologneFavorites: TFlatInfo[] = [
+    {
+      id: 9,
+      title: 'title 9',
+      price: 900,
+      previewImage: 'img/room.jpg',
+      desc: 'desc9'
+    },
+    {
+      id: 10,
+      title: 'title 10',
+      price: 1000,
+      previewImage: 'img/room.jpg',
+      desc: 'desc10'
+    },
+    {
+      id: 11,
+      title: 'title 11',
+      price: 1100,
+      previewImage: 'img/room.jpg',
+      desc: 'desc11'
+    }
+  ];
 
   return (
     <div className="page">
@@ -20,72 +70,7 @@ export default function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <article className="favorites__card place-card">
-                    <div className="place-card__mark">
-                      <span>Premium</span>
-                    </div>
-                    <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
-                        <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110" alt="Place image" />
-                      </a>
-                    </div>
-                    <div className="favorites__card-info place-card__info">
-                      <div className="place-card__price-wrapper">
-                        <div className="place-card__price">
-                          <b className="place-card__price-value">&euro;180</b>
-                          <span className="place-card__price-text">&#47;&nbsp;night</span>
-                        </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark"></use>
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
-                      </div>
-                      <div className="place-card__rating rating">
-                        <div className="place-card__stars rating__stars">
-                          <span style={{width: '100%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <h2 className="place-card__name">
-                        <a href="#">Nice, cozy, warm big bed apartment</a>
-                      </h2>
-                      <p className="place-card__type">Apartment</p>
-                    </div>
-                  </article>
-
-                  <article className="favorites__card place-card">
-                    <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
-                        <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image" />
-                      </a>
-                    </div>
-                    <div className="favorites__card-info place-card__info">
-                      <div className="place-card__price-wrapper">
-                        <div className="place-card__price">
-                          <b className="place-card__price-value">&euro;80</b>
-                          <span className="place-card__price-text">&#47;&nbsp;night</span>
-                        </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark"></use>
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
-                      </div>
-                      <div className="place-card__rating rating">
-                        <div className="place-card__stars rating__stars">
-                          <span style={{width: '80%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <h2 className="place-card__name">
-                        <a href="#">Wood and stone place</a>
-                      </h2>
-                      <p className="place-card__type">Room</p>
-                    </div>
-                  </article>
+                  <CardList offers={amsterdamFavorites} page={'favorites'} />
                 </div>
               </li>
 
@@ -98,37 +83,7 @@ export default function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <article className="favorites__card place-card">
-                    <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
-                        <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
-                      </a>
-                    </div>
-                    <div className="favorites__card-info place-card__info">
-                      <div className="place-card__price-wrapper">
-                        <div className="place-card__price">
-                          <b className="place-card__price-value">&euro;180</b>
-                          <span className="place-card__price-text">&#47;&nbsp;night</span>
-                        </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark"></use>
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
-                      </div>
-                      <div className="place-card__rating rating">
-                        <div className="place-card__stars rating__stars">
-                          <span style={{width: '100%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <h2 className="place-card__name">
-                        <a href="#">White castle</a>
-                      </h2>
-                      <p className="place-card__type">Apartment</p>
-                    </div>
-                  </article>
+                  <CardList offers={cologneFavorites} page={'favorites'} />
                 </div>
               </li>
             </ul>

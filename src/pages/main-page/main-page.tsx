@@ -1,21 +1,11 @@
 import MainHeader from '../../components/main-header/main-header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
-
-type FlatInfo = {
-  id: number;
-  title: string;
-  price: number;
-  previewImage: string;
-  desc: string;
-};
-
-type TCities = string[];
-type TOffers = FlatInfo[];
+import { TFlatInfo } from '../../types/index.ts';
 
 type TAppProps = {
-  offers: TOffers;
-  cities: TCities;
+  offers: TFlatInfo[];
+  cities: string[];
 };
 
 export default function MainPage({offers, cities}: TAppProps): JSX.Element {
@@ -49,7 +39,7 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList offers={offers} />
+                <CardList offers={offers} page={'cities'} />
               </div>
             </section>
             <div className="cities__right-section">
