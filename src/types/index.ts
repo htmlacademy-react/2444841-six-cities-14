@@ -6,7 +6,7 @@ export type TFlatInfo = {
   desc: string;
 };
 
-export type TCardLocation = 'cities' | 'favorites';
+export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TCardList = {
   offers: TFlatInfo[];

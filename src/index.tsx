@@ -57,6 +57,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App offers={flatsArray} cities ={cities}/>
+    <App offers={flatsArray} cities={cities}/>
   </React.StrictMode>
 );
