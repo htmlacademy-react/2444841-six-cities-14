@@ -17,3 +17,10 @@ export type TCardInfo = {
   offer: TFlatInfo;
   page: TCardLocation;
 };
+
+export type TCities = string[]
+
+export type TAppProps = {
+  offers: TFlatInfo[];
+  cities: TCities;
+};

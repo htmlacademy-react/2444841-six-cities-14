@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import Header from '../../components/header/header.tsx';
 import Review from '../../components/review/review.tsx';
 import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
@@ -6,11 +7,11 @@ import OfferHostInfo from '../../components/offer-components/offer-host-info/off
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 
 export default function OfferPage(): JSX.Element {
+  const params = useParams();
 
   return (
     <div className="page">
       <Header />
-
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery />
