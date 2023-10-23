@@ -4,7 +4,6 @@ const flatGallery: string[] = [
   'img/apartment-02.jpg',
   'img/apartment-03.jpg',
   'img/studio-01.jpg',
-  'img/apartment-01.jpg',
 ];
 
 export default function OfferGallery(): JSX.Element {

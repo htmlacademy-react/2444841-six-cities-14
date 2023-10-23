@@ -5,9 +5,18 @@ import OfferGallery from '../../components/offer-components/offer-gallery/offer-
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
+import { TOffer } from '../../types/index.ts';
 
-export default function OfferPage(): JSX.Element {
+type TProps = {
+  offersData: TOffer[]
+}
+
+
+export default function OfferPage(props: TProps): JSX.Element {
   const params = useParams();
+
+  const data = props.offersData.find((offer) => offer.id === params.id)
+  console.log(params.id, data?.images)
 
   return (
     <div className="page">

@@ -4,8 +4,10 @@ import OfferPage from '../../pages/offer-page/offer-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
+import ProtectedRoute from '../protected-route/protected-route.tsx';
 import { TAppProps } from '../../types/index.ts';
 import { TOffer } from '../../types/index.ts';
+import { AppRoute, AuthorizationStatus } from '../../const.ts';
 
 const offersData: TOffer[] = [
   {
@@ -58,7 +60,7 @@ const offersData: TOffer[] = [
       longitude: 6.779314,
       zoom: 16
     },
-    id: 1
+    id: "1"
   },
   {
     bedrooms: 3,
@@ -80,7 +82,7 @@ const offersData: TOffer[] = [
       isPro: true,
       name: "Angelina"
     },
-    id: 1,
+    id: "2",
     images: [
       "img/1.png"
     ],
@@ -105,11 +107,15 @@ export default function App({ offers, cities }: TAppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" index element={<MainPage offers={offers} cities={cities} />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/offer/:id" element={<OfferPage />} />
+        <Route path={AppRoute.Root} index element={<MainPage offers={offers} cities={cities} />} />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route path={AppRoute.Favorites} element={
+          <ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login} />
+            <FavoritesPage />
+          </ProtectedRoute>
+        }/>
+        <Route path={AppRoute.NotFoundPage} element={<NotFoundPage />} />
+        <Route path={AppRoute.Offer} element={<OfferPage offersData={offersData} />} />
       </Routes>
     </BrowserRouter>
   );

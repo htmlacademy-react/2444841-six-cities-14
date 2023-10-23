@@ -1,3 +1,5 @@
+import { AppRoute, AuthorizationStatus } from "../const";
+
 export type TFlatInfo = {
   id: number;
   title: string;
@@ -41,8 +43,12 @@ export type TOffer = {
   host: THost;
   description: string;
   location: TLocation;
-  id: number
+  id: string;
 };
+
+export type TImages = {
+  images: string[]
+}
 
 type TCity = {
   name: string;
@@ -61,3 +67,9 @@ type THost = {
   isPro: boolean;
   avatarUrl: string;
 };
+
+export type TProtectedRoute = {
+  status: AuthorizationStatus;
+  redirectPage: AppRoute;
+  children: JSX.Element;
+}
