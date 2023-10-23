@@ -24,3 +24,40 @@ export type TAppProps = {
   offers: TFlatInfo[];
   cities: TCities;
 };
+
+export type TOffer = {
+  city: TCity;
+  previewImage: string;
+  images: string[];
+  title: string;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+  type: string;
+  bedrooms: number;
+  maxAdults: number;
+  price: number;
+  good: string[];
+  host: THost;
+  description: string;
+  location: TLocation;
+  id: number
+};
+
+type TCity = {
+  name: string;
+  location: TLocation;
+};
+
+type TLocation = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+type THost = {
+  id: number;
+  name: string;
+  isPro: boolean;
+  avatarUrl: string;
+};
