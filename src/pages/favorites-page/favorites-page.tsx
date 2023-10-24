@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
@@ -56,7 +57,9 @@ export default function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <Header />
-
+      <Helmet>
+        <title>6 Cities: Your Favorites</title>
+      </Helmet>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">

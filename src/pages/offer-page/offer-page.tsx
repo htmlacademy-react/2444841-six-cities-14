@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import Review from '../../components/review/review.tsx';
 import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
@@ -8,19 +9,21 @@ import PlacesNear from '../../components/offer-components/places-near/places-nea
 import { TOffer } from '../../types/index.ts';
 
 type TProps = {
-  offersData: TOffer[]
+  offersData: TOffer[];
 }
 
 
 export default function OfferPage(props: TProps): JSX.Element {
   const params = useParams();
 
-  const data = props.offersData.find((offer) => offer.id === params.id)
-  console.log(params.id, data?.images)
+  const data = props.offersData.find((offer) => offer.id === params.id);
 
   return (
     <div className="page">
       <Header />
+      <Helmet>
+        <title>{data?.title}</title>
+      </Helmet>
       <main className="page__main page__main--offer">
         <section className="offer">
           <OfferGallery />

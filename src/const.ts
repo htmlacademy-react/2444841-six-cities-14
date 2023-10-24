@@ -4,7 +4,7 @@ export enum AppRoute {
   Login = '/login',
   NotFoundPage = '*',
   Offer = '/offer/:id',
-};
+}
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

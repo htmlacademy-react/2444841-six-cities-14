@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus } from "../const";
+import { AppRoute, AuthorizationStatus } from '../const';
 
 export type TFlatInfo = {
   id: number;
@@ -47,7 +47,7 @@ export type TOffer = {
 };
 
 export type TImages = {
-  images: string[]
+  images: string[];
 }
 
 type TCity = {
