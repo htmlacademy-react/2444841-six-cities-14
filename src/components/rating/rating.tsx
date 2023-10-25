@@ -29,7 +29,7 @@ const stars: TRating[] = [
 export default function Rating(): JSX.Element {
 
   return (
-    <>
+    <div className="reviews__rating-form form__rating">
       {stars.map((star) => (
         <div key={star.id}>
           <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-star`} type="radio" />
@@ -40,6 +40,6 @@ export default function Rating(): JSX.Element {
           </label>
         </div>
       ))}
-    </>
+    </div>
   );
 }
