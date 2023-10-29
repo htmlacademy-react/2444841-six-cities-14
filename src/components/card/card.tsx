@@ -9,9 +9,9 @@ export default function Card({offer, page}: TCardInfo): JSX.Element {
         <span>Premium</span>
       </div>
       <div className={`${page}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to="#">
           <img className="place-card__image" src={offer.previewImage} width={`${page === 'favorites' ? '150' : '260'}`} height={`${page === 'favorites' ? '110' : '200'}`} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

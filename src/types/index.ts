@@ -61,7 +61,7 @@ type TLocation = {
   zoom: number;
 };
 
-type THost = {
+export type THost = {
   id: number;
   name: string;
   isPro: boolean;

@@ -8,15 +8,23 @@ import OfferInfo from '../../components/offer-components/offer-info/offer-info.t
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 import { TOffer } from '../../types/index.ts';
+//import { AppRoute } from '../../const.ts';
+import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 type TProps = {
   offersData: TOffer[];
 }
 
 export default function OfferPage(props: TProps): JSX.Element {
-  const params = useParams();
+  const { id } = useParams<{id: string}>();
 
-  const data = props.offersData.find((offer) => offer.id === params.id);
+  const data = props.offersData.find((offer) => offer.id === id);
+
+  if (!data) {
+    return (
+      <NotFoundPage />
+    );
+  }
 
   return (
     <div className="page">
@@ -26,11 +34,24 @@ export default function OfferPage(props: TProps): JSX.Element {
       </Helmet>
       <main className="page__main page__main--offer">
         <section className="offer">
-          <OfferGallery />
+          <OfferGallery images={data?.images}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <OfferInfo />
-              <OfferHostInfo />
+              <OfferInfo
+                isPremium={data?.isPremium}
+                title={data?.title}
+                isFavorite={data?.isFavorite}
+                rating={data?.rating}
+                type={data?.type}
+                bedrooms={data?.bedrooms}
+                maxAdults={data?.maxAdults}
+                price={data?.price}
+                good={data?.good}
+              />
+              <OfferHostInfo
+                host={data?.host}
+                description={data?.description}
+              />
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
                 <ul className="reviews__list">

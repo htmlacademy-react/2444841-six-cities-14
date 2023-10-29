@@ -78,7 +78,7 @@ const offersData: TOffer[] = [
       'Heating'
     ],
     host: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: 3,
       isPro: true,
       name: 'Angelina'
