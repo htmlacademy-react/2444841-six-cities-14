@@ -1,29 +1,6 @@
-/*const offerInsideList: string[] = [
-  'Wi-Fi',
-  'Washing machine',
-  'Towels',
-  'Heating',
-  'Coffee machine',
-  'Baby seat',
-  'Kitchen',
-  'Dishwasher',
-  'Cabel TV',
-  'Fridge'
-];*/
+import { TOfferInfoProps } from '../../../types/index.ts';
 
-type Eet = {
-  isPremium: boolean;
-  title: string;
-  isFavorite: boolean;
-  rating: number;
-  type: string;
-  bedrooms: number;
-  maxAdults: number;
-  price: number;
-  good: string[];
-}
-
-export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: Eet): JSX.Element {
+export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: TOfferInfoProps): JSX.Element {
   return (
     <>
       {

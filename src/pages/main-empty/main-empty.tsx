@@ -1,4 +1,4 @@
-import Header from '../../components/header/header.tsx';
+/*import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amstardam', 'Hamburg', 'Dusseldorf'];
@@ -28,4 +28,4 @@ export default function MainEmpty(): JSX.Element {
       </main>
     </div>
   );
-}
+}*/

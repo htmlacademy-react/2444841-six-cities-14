@@ -1,4 +1,4 @@
-import Header from '../../components/header/header.tsx';
+/*import Header from '../../components/header/header.tsx';
 import Review from '../../components/review/review.tsx';
 import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
@@ -32,4 +32,4 @@ export default function OfferNotLoggedPage(): JSX.Element {
       </main>
     </div>
   );
-}
+}*/

@@ -73,3 +73,15 @@ export type TProtectedRoute = {
   redirectPage: AppRoute;
   children: JSX.Element;
 }
+
+export type TOfferInfoProps = {
+  isPremium: boolean;
+  title: string;
+  isFavorite: boolean;
+  rating: number;
+  type: string;
+  bedrooms: number;
+  maxAdults: number;
+  price: number;
+  good: string[];
+}
