@@ -12,11 +12,11 @@ export default function OfferInfo({ isPremium, title, isFavorite, rating, type, 
       <div className="offer__name-wrapper">
         <h1 className="offer__name">
           {title}
-        </h1> {/*Уточнть кнопки избранного*/}
+        </h1>
         {
           isFavorite ?
-            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
+            <button className="offer__bookmark-button offer__bookmark-button--active button" type="button">
+              <svg className="offer__bookmark-icon" width="31" height="33">
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
               <span className="visually-hidden">In bookmarks</span>

@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
-type TCities = {
-  cities: string[];
-};
+import { TCities } from '../../types/index.ts';
 
 export default function LocationsHeader({cities}: TCities): JSX.Element {
   return (

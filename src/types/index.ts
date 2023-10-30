@@ -20,11 +20,13 @@ export type TCardInfo = {
   page: TCardLocation;
 };
 
-export type TCities = string[]
+export type TCities = {
+  cities: string[];
+};
 
 export type TAppProps = {
   offers: TFlatInfo[];
-  cities: TCities;
+  cities: string[];
 };
 
 export type TOffer = {
@@ -68,6 +70,11 @@ export type THost = {
   avatarUrl: string;
 };
 
+export type THostProps = {
+  host: THost;
+  description: string;
+}
+
 export type TProtectedRoute = {
   status: AuthorizationStatus;
   redirectPage: AppRoute;
@@ -85,3 +92,8 @@ export type TOfferInfoProps = {
   price: number;
   good: string[];
 }
+
+export type TRating = {
+  id: number;
+  title: string;
+};

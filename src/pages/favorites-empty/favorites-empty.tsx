@@ -1,4 +1,4 @@
-/*import Header from '../../components/header/header.tsx';
+import Header from '../../components/header/header.tsx';
 import Footer from '../../components/footer/footer.tsx';
 
 export default function FavoritesEmpty(): JSX.Element {
@@ -21,4 +21,4 @@ export default function FavoritesEmpty(): JSX.Element {
       <Footer />
     </div>
   );
-}*/
+}

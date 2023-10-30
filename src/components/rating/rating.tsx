@@ -1,7 +1,4 @@
-type TRating = {
-  id: number;
-  title: string;
-};
+import { TRating } from '../../types/index.ts';
 
 const stars: TRating[] = [
   {

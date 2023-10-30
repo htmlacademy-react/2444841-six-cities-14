@@ -8,7 +8,6 @@ import OfferInfo from '../../components/offer-components/offer-info/offer-info.t
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 import { TOffer } from '../../types/index.ts';
-//import { AppRoute } from '../../const.ts';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 type TProps = {

@@ -1,9 +1,4 @@
-import { THost } from '../../../types/index.ts';
-
-type THostProps = {
-  host: THost;
-  description: string;
-}
+import { THostProps } from '../../../types/index.ts';
 
 export default function OfferHostInfo({host, description}: THostProps): JSX.Element {
 

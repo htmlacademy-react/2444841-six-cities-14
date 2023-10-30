@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page.tsx';
+import MainEmpty from '../../pages/main-empty/main-empty.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
@@ -109,7 +110,9 @@ export default function App({ offers, cities }: TAppProps) {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} index element={<MainPage offers={offers} cities={cities} />} />
+          {offers ? <Route path={AppRoute.Root} index element={<MainPage offers={offers} cities={cities} />} />
+            :
+            <Route path={AppRoute.Root} index element={<MainEmpty />} />}
           <Route path={AppRoute.Login} element={<ProtectedRoute status={AuthorizationStatus.Auth} redirectPage={AppRoute.Root}><LoginPage /></ProtectedRoute>}/>
           <Route path={AppRoute.Favorites} element={<ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login}><FavoritesPage /></ProtectedRoute>}/>
           <Route path={AppRoute.NotFoundPage} element={<NotFoundPage />} />
