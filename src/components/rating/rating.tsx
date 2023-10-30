@@ -1,7 +1,4 @@
-type TRating = {
-  id: number;
-  title: string;
-};
+import { TRating } from '../../types/index.ts';
 
 const stars: TRating[] = [
   {
@@ -31,7 +28,7 @@ export default function Rating(): JSX.Element {
   return (
     <div className="reviews__rating-form form__rating">
       {stars.map((star) => (
-        <div key={star.id}>
+        <div key={star.id} className="reviews__rating-form form__rating">
           <input className="form__rating-input visually-hidden" name="rating" value={star.id} id={`${star.id}-star`} type="radio" />
           <label htmlFor={`${star.id}-star`} className="reviews__rating-label form__rating-label" title={star.title}>
             <svg className="form__star-image" width="37" height="33">

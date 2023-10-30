@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
@@ -13,6 +14,9 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
+      <Helmet>
+        <title>6 Cities</title>
+      </Helmet>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

@@ -1,15 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import { TFlatInfo } from './types/index.ts';
 import App from './components/app/app.tsx';
-
-type TFlatInfo = {
-  id: number;
-  title: string;
-  price: number;
-  previewImage: string;
-  desc: string;
-};
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amstardam', 'Hamburg', 'Dusseldorf'];
 

@@ -1,6 +1,5 @@
-type TCities = {
-  cities: string[];
-};
+import { Link } from 'react-router-dom';
+import { TCities } from '../../types/index.ts';
 
 export default function LocationsHeader({cities}: TCities): JSX.Element {
   return (
@@ -8,9 +7,9 @@ export default function LocationsHeader({cities}: TCities): JSX.Element {
       <ul className="locations__list tabs__list">
         {cities.map((city) => (
           <li className="locations__item" key={city}>
-            <a className="locations__item-link tabs__item" href="#">
+            <Link className="locations__item-link tabs__item" to="#">
               <span>{city}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
