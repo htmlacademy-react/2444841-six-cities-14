@@ -7,17 +7,18 @@ import OfferGallery from '../../components/offer-components/offer-gallery/offer-
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
-import { TOffer } from '../../types/index.ts';
+import { TOffer, TReviews } from '../../types/index.ts';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
 
 type TProps = {
-  offersData: TOffer[];
+  offers: TOffer[];
+  reviews: TReviews[];
 }
 
 export default function OfferPage(props: TProps): JSX.Element {
   const { id } = useParams<{id: string}>();
 
-  const data = props.offersData.find((offer) => offer.id === id);
+  const data = props.offers.find((offer) => offer.id === id);
 
   if (!data) {
     return (

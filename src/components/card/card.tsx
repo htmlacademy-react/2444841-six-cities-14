@@ -33,9 +33,9 @@ export default function Card({offer, page}: TCardInfo): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.id}{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.desc}</p>
+        <p className="place-card__type">{offer.description}</p>
       </div>
     </article>
   );

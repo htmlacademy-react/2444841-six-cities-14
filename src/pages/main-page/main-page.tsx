@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useState } from 'react';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
@@ -6,10 +7,15 @@ import { TFlatInfo } from '../../types/index.ts';
 
 type TAppProps = {
   offers: TFlatInfo[];
-  cities: string[];
 };
 
-export default function MainPage({offers, cities}: TAppProps): JSX.Element {
+export default function MainPage({offers}: TAppProps): JSX.Element {
+
+  const [activeCard, setActiveCard] = useState()
+
+  function handleMouseOver(evt: JSX.Node) {
+    setActiveCard(evt.target.id)
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -20,7 +26,7 @@ export default function MainPage({offers, cities}: TAppProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader cities={cities}/>
+          <LocationsHeader />
         </div>
         <div className="cities">
           <div className="cities__places-container container">

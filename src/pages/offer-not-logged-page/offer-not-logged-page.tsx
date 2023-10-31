@@ -10,14 +10,14 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import { TOffer } from '../../types/index.ts';
 
 type TProps = {
-  offersData: TOffer[];
+  offers: TOffer[];
 }
 
 export default function OfferNotLoggedPage(props: TProps): JSX.Element {
 
   const { id } = useParams<{id: string}>();
 
-  const data = props.offersData.find((offer) => offer.id === id);
+  const data = props.offers.find((offer) => offer.id === id);
 
   if (!data) {
     return (

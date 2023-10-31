@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { TCities } from '../../types/index.ts';
 
-export default function LocationsHeader({cities}: TCities): JSX.Element {
+const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amstardam', 'Hamburg', 'Dusseldorf'];
+
+export default function LocationsHeader(): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

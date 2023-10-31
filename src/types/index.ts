@@ -1,11 +1,11 @@
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute, AuthorizationStatus } from '../const.ts';
 
 export type TFlatInfo = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   previewImage: string;
-  desc: string;
+  description: string;
 };
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
@@ -25,27 +25,22 @@ export type TCities = {
 };
 
 export type TAppProps = {
-  offers: TFlatInfo[];
-  cities: string[];
+  offers: TOffer[];
+  reviews: TReviews[];
 };
 
-export type TOffer = {
+export type TOffer = TFlatInfo & {
   city: TCity;
-  previewImage: string;
   images: string[];
-  title: string;
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
   type: string;
   bedrooms: number;
   maxAdults: number;
-  price: number;
   good: string[];
   host: THost;
-  description: string;
   location: TLocation;
-  id: string;
 };
 
 export type TImages = {
@@ -97,3 +92,11 @@ export type TRating = {
   id: number;
   title: string;
 };
+
+export type TReviews = {
+  id: string;
+  user: THost;
+  rating: number;
+  comment: string;
+  date: string;
+}
