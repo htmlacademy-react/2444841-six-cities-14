@@ -105,7 +105,7 @@ export const offers: TOffer[] = [
   },
   {
     city: {
-      name: 'Dusseldorf',
+      name: 'Amsterdam',
       location: {
         latitude: 51.225402,
         longitude: 6.776314,
@@ -130,8 +130,8 @@ export const offers: TOffer[] = [
       'https://14.react.pages.academy/static/offer/5.jpg'
     ],
     title: 'Waterfront with extraordinary view',
-    isFavorite: false,
-    isPremium: false,
+    isFavorite: true,
+    isPremium: true,
     rating: 4.8,
     type: 'room',
     bedrooms: 1,

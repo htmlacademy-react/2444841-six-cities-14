@@ -11,12 +11,12 @@ export type TFlatInfo = {
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TCardList = {
-  offers: TFlatInfo[];
+  offers: TOffer[];
   page: TCardLocation;
 };
 
 export type TCardInfo = {
-  offer: TFlatInfo;
+  offer: TOffer;
   page: TCardLocation;
 };
 

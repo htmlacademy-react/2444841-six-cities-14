@@ -1,21 +1,16 @@
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
-import { TFlatInfo } from '../../types/index.ts';
+import { TOffer } from '../../types/index.ts';
 
 type TAppProps = {
-  offers: TFlatInfo[];
+  offers: TOffer[];
 };
 
 export default function MainPage({offers}: TAppProps): JSX.Element {
 
-  const [activeCard, setActiveCard] = useState()
-
-  function handleMouseOver(evt: JSX.Node) {
-    setActiveCard(evt.target.id)
-  }
+  
 
   return (
     <div className="page page--gray page--main">

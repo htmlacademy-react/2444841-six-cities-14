@@ -20,7 +20,7 @@ export default function App({ offers, reviews}: TAppProps) {
             :
             <Route path={AppRoute.Root} index element={<MainEmpty />} />}
           <Route path={AppRoute.Login} element={<ProtectedRoute status={AuthorizationStatus.Auth} redirectPage={AppRoute.Root}><LoginPage /></ProtectedRoute>}/>
-          <Route path={AppRoute.Favorites} element={<ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login}><FavoritesPage /></ProtectedRoute>}/>
+          <Route path={AppRoute.Favorites} element={<ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login}><FavoritesPage offers={offers} /></ProtectedRoute>}/>
           <Route path={AppRoute.NotFoundPage} element={<NotFoundPage />} />
           <Route path={AppRoute.Offer} element={<OfferPage offers={offers} reviews={reviews} />} />
         </Routes>
