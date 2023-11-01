@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom';
 import { TCardInfo } from '../../types/index.ts';
 
-export default function Card({offer, page}: TCardInfo): JSX.Element {
+export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
+
+  const addCardId = () => {
+    onCardHover?.(offer.id)
+  }
+
+  const removeCardID = () => {
+    onCardHover?.(null)
+  }
 
   return (
-    <article className={`${page}__card place-card`}>
+    <article 
+      className={`${page}__card place-card`} 
+      onMouseLeave={removeCardID} 
+      onMouseEnter={addCardId}
+    >
       { offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>

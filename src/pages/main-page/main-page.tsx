@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
@@ -10,7 +11,11 @@ type TAppProps = {
 
 export default function MainPage({offers}: TAppProps): JSX.Element {
 
-  
+  const [activeOffer, setActiveOffer] = useState<string | null>(null)
+
+  function handleCardHover(id: string | null) {
+    setActiveOffer(id)
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -44,7 +49,7 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardList offers={offers} page={'cities'} />
+                <CardList offers={offers} page={'cities'} onCardHover={handleCardHover} />
               </div>
             </section>
             <div className="cities__right-section">

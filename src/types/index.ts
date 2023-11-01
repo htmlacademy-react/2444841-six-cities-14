@@ -13,11 +13,13 @@ export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 export type TCardList = {
   offers: TOffer[];
   page: TCardLocation;
+  onCardHover?: (id: string | null) => void;
 };
 
 export type TCardInfo = {
   offer: TOffer;
   page: TCardLocation;
+  onCardHover?: (id: string | null) => void;
 };
 
 export type TCities = {
