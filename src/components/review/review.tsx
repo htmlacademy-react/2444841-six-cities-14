@@ -1,13 +1,26 @@
-export default function Review(): JSX.Element {
+import { reviews } from '../../mocks/reviews.ts';
+import { TReviews } from '../../types/index.ts';
+
+type TId ={
+  id: string
+}
+
+export default function Review({id}: TId): JSX.Element {
+
+  const review: TReviews | undefined = reviews.find((rev) => rev.id === id)
+
+  if (!review) {
+    return <p>Reviews not found</p>
+  }
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
-          Max
+          {review.user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -18,9 +31,9 @@ export default function Review(): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
       </div>
     </li>
   );
