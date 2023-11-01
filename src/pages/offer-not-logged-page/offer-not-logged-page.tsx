@@ -6,14 +6,10 @@ import OfferGallery from '../../components/offer-components/offer-gallery/offer-
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
+import { TOfferPageProps } from '../../types/index.ts';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import { TOffer } from '../../types/index.ts';
 
-type TProps = {
-  offers: TOffer[];
-}
-
-export default function OfferNotLoggedPage(props: TProps): JSX.Element {
+export default function OfferNotLoggedPage(props: TOfferPageProps): JSX.Element {
 
   const { id } = useParams<{id: string}>();
 
@@ -24,6 +20,8 @@ export default function OfferNotLoggedPage(props: TProps): JSX.Element {
       <NotFoundPage />
     );
   }
+
+  const nearPlaces = props.offers.filter((offer) => offer.id !== id);
 
   return (
     <div className="page">
@@ -54,14 +52,14 @@ export default function OfferNotLoggedPage(props: TProps): JSX.Element {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
                 <ul className="reviews__list">
-                  <Review />
+                  <Review reviews={props.reviews} id={data?.id} />
                 </ul>
               </section>
             </div>
           </div>
           <section className="offer__map map"></section>
         </section>
-        <PlacesNear />
+        <PlacesNear offers={nearPlaces} />
       </main>
     </div>
   );

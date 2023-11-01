@@ -16,7 +16,7 @@ export default function FavoritesPage({offers}: TAppProps): JSX.Element {
 
   function pickOffers(city: string): TOffer[] {
     return favoritePlaces.filter((offer) => offer.city.name === city);
-  };
+  }
 
   return (
     <div className="page">
@@ -26,12 +26,12 @@ export default function FavoritesPage({offers}: TAppProps): JSX.Element {
       </Helmet>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          {favoritePlaces.length !== 0 ? 
+          {favoritePlaces.length !== 0 ?
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                {Array.from(new Set(favoriteCities)).map((city) => 
-                  <li className="favorites__locations-items"key={city}>
+                {Array.from(new Set(favoriteCities)).map((city) => (
+                  <li className="favorites__locations-items" key={city}>
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
                         <Link className="locations__item-link" to="#">
@@ -43,7 +43,7 @@ export default function FavoritesPage({offers}: TAppProps): JSX.Element {
                       <CardList offers={pickOffers(city)} page={'favorites'} />
                     </div>
                   </li>
-                )}
+                ))}
               </ul>
             </section> :
             <section className="favorites favorites--empty">
@@ -52,8 +52,7 @@ export default function FavoritesPage({offers}: TAppProps): JSX.Element {
                 <b className="favorites__status">Nothing yet saved.</b>
                 <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
               </div>
-            </section>
-          }
+            </section>}
         </div>
       </main>
       <Footer />

@@ -1,16 +1,12 @@
-import { reviews } from '../../mocks/reviews.ts';
-import { TReviews } from '../../types/index.ts';
+import { TReviews, TReviewComponent} from '../../types/index.ts';
 
-type TId ={
-  id: string
-}
 
-export default function Review({id}: TId): JSX.Element {
+export default function Review({reviews, id}: TReviewComponent): JSX.Element {
 
-  const review: TReviews | undefined = reviews.find((rev) => rev.id === id)
+  const review: TReviews | undefined = reviews.find((rev) => rev.id === id);
 
   if (!review) {
-    return <p>Reviews not found</p>
+    return <p>Reviews not found</p>;
   }
 
   return (

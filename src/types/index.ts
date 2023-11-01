@@ -102,3 +102,17 @@ export type TReviews = {
   comment: string;
   date: string;
 }
+
+export type TReviewComponent ={
+  reviews: TReviews[];
+  id: string;
+}
+
+export type TOfferPageProps = {
+  offers: TOffer[];
+  reviews: TReviews[];
+}
+
+export type TNearPlaces = {
+  offers: TOffer[];
+}

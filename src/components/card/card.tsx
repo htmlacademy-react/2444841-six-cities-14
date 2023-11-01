@@ -4,25 +4,24 @@ import { TCardInfo } from '../../types/index.ts';
 export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
   const addCardId = () => {
-    onCardHover?.(offer.id)
-  }
+    onCardHover?.(offer.id);
+  };
 
   const removeCardID = () => {
-    onCardHover?.(null)
-  }
+    onCardHover?.(null);
+  };
 
   return (
-    <article 
-      className={`${page}__card place-card`} 
-      onMouseLeave={removeCardID} 
+    <article
+      className={`${page}__card place-card`}
+      onMouseLeave={removeCardID}
       onMouseEnter={addCardId}
     >
       { offer.isPremium ?
         <div className="place-card__mark">
           <span>Premium</span>
         </div> :
-        ''
-      }
+        ''}
       <div className={`${page}__image-wrapper place-card__image-wrapper`}>
         <Link to="#">
           <img className="place-card__image" src={offer.previewImage} width={`${page === 'favorites' ? '150' : '260'}`} height={`${page === 'favorites' ? '110' : '200'}`} alt="Place image" />
@@ -46,8 +45,7 @@ export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
               <span className="visually-hidden">To bookmarks</span>
-            </button>
-          }
+            </button>}
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

@@ -11,10 +11,10 @@ type TAppProps = {
 
 export default function MainPage({offers}: TAppProps): JSX.Element {
 
-  const [activeOffer, setActiveOffer] = useState<string | null>(null)
+  const [activeOffer, setActiveOffer] = useState<string | null>(null);
 
   function handleCardHover(id: string | null) {
-    setActiveOffer(id)
+    setActiveOffer(id);
   }
 
   return (
@@ -24,7 +24,7 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
         <title>6 Cities</title>
       </Helmet>
       <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
+        <h1 className="visually-hidden">{activeOffer}Cities</h1>
         <div className="tabs">
           <LocationsHeader />
         </div>

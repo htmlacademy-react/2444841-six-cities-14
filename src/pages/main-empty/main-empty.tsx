@@ -1,8 +1,6 @@
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 
-const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amstardam', 'Hamburg', 'Dusseldorf'];
-
 export default function MainEmpty(): JSX.Element {
 
   return (
@@ -12,7 +10,7 @@ export default function MainEmpty(): JSX.Element {
       <main className="page__main page__main--index page__main--index-empty">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader cities={cities}/>
+          <LocationsHeader />
         </div>
         <div className="cities">
           <div className="cities__places-container cities__places-container--empty container">
