@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import Rating from '../../components/rating/rating.tsx';
+import { ConstantValues } from '../../const.ts';
 
 export default function ReviewForm(): JSX.Element {
 
@@ -15,7 +16,7 @@ export default function ReviewForm(): JSX.Element {
     setComment(evt.target.value);
   }
 
-  const isValid = comment.length > 50 && comment.length < 300 && starsCount !== '';
+  const isValid = comment.length > ConstantValues.MinCommentLength && comment.length < ConstantValues.MaxCommentLength && starsCount !== '';
 
   return (
     <form className="reviews__form form" action="#" method="post">

@@ -7,8 +7,9 @@ import OfferGallery from '../../components/offer-components/offer-gallery/offer-
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
-import { TOfferPageProps } from '../../types/index.ts';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
+import { TOfferPageProps } from '../../types/index.ts';
+import { AuthorizationStatus } from '../../const.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const { id } = useParams<{id: string}>();
@@ -54,7 +55,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
                 <ul className="reviews__list">
                   <Review reviews={props.reviews} id={data?.id} />
                 </ul>
-                <ReviewForm />
+                {props.status === AuthorizationStatus.Auth ? <ReviewForm /> : ''}
               </section>
             </div>
           </div>

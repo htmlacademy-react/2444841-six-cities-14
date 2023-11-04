@@ -109,6 +109,7 @@ export type TReviewComponent ={
 }
 
 export type TOfferPageProps = {
+  status: AuthorizationStatus;
   offers: TOffer[];
   reviews: TReviews[];
 }

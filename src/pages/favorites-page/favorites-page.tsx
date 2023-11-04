@@ -11,7 +11,7 @@ type TAppProps = {
 
 export default function FavoritesPage({offers}: TAppProps): JSX.Element {
 
-  const favoritePlaces = offers.filter((place) => place.isFavorite === true);
+  const favoritePlaces = offers.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
 
   function pickOffers(city: string): TOffer[] {
