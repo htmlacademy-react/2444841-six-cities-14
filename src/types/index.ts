@@ -13,13 +13,13 @@ export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 export type TCardList = {
   offers: TOffer[];
   page: TCardLocation;
-  onCardHover?: (id: string | null) => void;
+  onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCardInfo = {
   offer: TOffer;
   page: TCardLocation;
-  onCardHover?: (id: string | null) => void;
+  onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCities = {
@@ -120,4 +120,11 @@ export type TNearPlaces = {
 
 export type TMapProps = {
   city: TCity;
+  points: TPoint[];
+  activePoint: TPoint | null;
+}
+
+export type TPoint = {
+  id: string;
+  location: TLocation;
 }

@@ -4,7 +4,10 @@ import { TCardInfo } from '../../types/index.ts';
 export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
   const addCardId = () => {
-    onCardHover?.(offer.id);
+    onCardHover?.({
+      id: offer.id,
+      location: offer.location
+    });
   };
 
   const removeCardID = () => {

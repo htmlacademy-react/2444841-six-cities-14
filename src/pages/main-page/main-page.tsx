@@ -5,7 +5,7 @@ import LocationsHeader from '../../components/locations-header/locations-header.
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
 import { City } from '../../mocks/cities.ts';
-import { TOffer } from '../../types/index.ts';
+import { TOffer, TPoint } from '../../types/index.ts';
 
 type TAppProps = {
   offers: TOffer[];
@@ -13,11 +13,17 @@ type TAppProps = {
 
 export default function MainPage({offers}: TAppProps): JSX.Element {
 
-  const [activeOffer, setActiveOffer] = useState<string | null>(null);
+  const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
 
-  function handleCardHover(id: string | null) {
+  function handleCardHover(id: TPoint | null) {
     setActiveOffer(id);
   }
+
+  const points: TPoint[] = [];
+  offers.forEach((offer) => points.push({
+    id: offer.id,
+    location: offer.location
+  }));
 
   return (
     <div className="page page--gray page--main">
@@ -26,7 +32,7 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
         <title>6 Cities</title>
       </Helmet>
       <main className="page__main page__main--index">
-        <h1 className="visually-hidden">{activeOffer}Cities</h1>
+        <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <LocationsHeader />
         </div>
@@ -66,9 +72,7 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map city={City} />
-                </section>
+                <Map city={City} points={points} activePoint={activeOffer}/>
               </div>
             </div>}
         </div>

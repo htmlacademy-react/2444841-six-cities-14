@@ -16,3 +16,7 @@ export const ConstantValues = {
   MinCommentLength: 50,
   MaxCommentLength: 300,
 };
+
+export const PIN_MARKER_DEFAULT = 'img/pin.svg';
+
+export const PIN_MARKER_CURRENT = 'img/pin-active.svg';
