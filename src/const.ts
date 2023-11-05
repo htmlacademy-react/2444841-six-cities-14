@@ -11,3 +11,8 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export const ConstantValues = {
+  MinCommentLength: 50,
+  MaxCommentLength: 300,
+};

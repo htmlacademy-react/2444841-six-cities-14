@@ -1,13 +1,27 @@
 import { Link } from 'react-router-dom';
 import { TCardInfo } from '../../types/index.ts';
 
-export default function Card({offer, page}: TCardInfo): JSX.Element {
+export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
+
+  const addCardId = () => {
+    onCardHover?.(offer.id);
+  };
+
+  const removeCardID = () => {
+    onCardHover?.(null);
+  };
 
   return (
-    <article className={`${page}__card place-card`}>
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article
+      className={`${page}__card place-card`}
+      onMouseLeave={removeCardID}
+      onMouseEnter={addCardId}
+    >
+      { offer.isPremium ?
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div> :
+        ''}
       <div className={`${page}__image-wrapper place-card__image-wrapper`}>
         <Link to="#">
           <img className="place-card__image" src={offer.previewImage} width={`${page === 'favorites' ? '150' : '260'}`} height={`${page === 'favorites' ? '110' : '200'}`} alt="Place image" />
@@ -19,12 +33,19 @@ export default function Card({offer, page}: TCardInfo): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {offer.isFavorite ?
+            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+              <svg className="place-card__bookmark-icon" width="18" height="19">
+                <use xlinkHref="#icon-bookmark"></use>
+              </svg>
+              <span className="visually-hidden">In bookmarks</span>
+            </button> :
+            <button className="place-card__bookmark-button button" type="button">
+              <svg className="place-card__bookmark-icon" width="18" height="19">
+                <use xlinkHref="#icon-bookmark"></use>
+              </svg>
+              <span className="visually-hidden">To bookmarks</span>
+            </button>}
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -33,9 +54,9 @@ export default function Card({offer, page}: TCardInfo): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.id}{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.desc}</p>
+        <p className="place-card__type">{offer.description}</p>
       </div>
     </article>
   );

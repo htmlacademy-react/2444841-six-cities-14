@@ -1,7 +1,7 @@
 import Card from '../card/card.tsx';
 import { TCardList } from '../../types/index.ts';
 
-export default function CardList({offers, page}: TCardList): JSX.Element {
+export default function CardList({offers, page, onCardHover}: TCardList): JSX.Element {
 
   return (
     <>
@@ -10,6 +10,7 @@ export default function CardList({offers, page}: TCardList): JSX.Element {
           key={item.id}
           offer={item}
           page={page}
+          onCardHover={onCardHover}
         />
       ))}
     </>
