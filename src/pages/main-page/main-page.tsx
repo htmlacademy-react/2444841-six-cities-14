@@ -5,18 +5,14 @@ import LocationsHeader from '../../components/locations-header/locations-header.
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
 import { City } from '../../mocks/cities.ts';
-import { TOffer, TPoint } from '../../types/index.ts';
+import { TMainPageProps, TPoint } from '../../types/index.ts';
 
-type TAppProps = {
-  offers: TOffer[];
-};
-
-export default function MainPage({offers}: TAppProps): JSX.Element {
+export default function MainPage({offers}: TMainPageProps): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
 
-  function handleCardHover(id: TPoint | null) {
-    setActiveOffer(id);
+  function handleCardHover(point: TPoint | null) {
+    setActiveOffer(point);
   }
 
   const points: TPoint[] = [];

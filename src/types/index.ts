@@ -1,13 +1,5 @@
 import { AppRoute, AuthorizationStatus } from '../const.ts';
 
-export type TFlatInfo = {
-  id: string;
-  title: string;
-  price: number;
-  previewImage: string;
-  description: string;
-};
-
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TCardList = {
@@ -31,7 +23,16 @@ export type TAppProps = {
   reviews: TReviews[];
 };
 
-export type TOffer = TFlatInfo & {
+export type TMainPageProps = {
+  offers: TOffer[];
+};
+
+export type TOffer = {
+  id: string;
+  title: string;
+  price: number;
+  previewImage: string;
+  description: string;
   city: TCity;
   images: string[];
   isFavorite: boolean;

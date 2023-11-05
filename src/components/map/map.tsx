@@ -1,5 +1,5 @@
-import {useRef, useEffect} from 'react';
-import {Icon, Marker, layerGroup} from 'leaflet';
+import { useRef, useEffect } from 'react';
+import { Icon, Marker, layerGroup } from 'leaflet';
 import useMap from '../../hooks/use-map';
 import { PIN_MARKER_CURRENT, PIN_MARKER_DEFAULT } from '../../const.ts';
 import { TMapProps } from '../../types/index.ts';

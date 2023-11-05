@@ -3,22 +3,22 @@ import { TCardInfo } from '../../types/index.ts';
 
 export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
-  const addCardId = () => {
+  const addCardPoint = () => {
     onCardHover?.({
       id: offer.id,
       location: offer.location
     });
   };
 
-  const removeCardID = () => {
+  const removeCardPoint = () => {
     onCardHover?.(null);
   };
 
   return (
     <article
       className={`${page}__card place-card`}
-      onMouseLeave={removeCardID}
-      onMouseEnter={addCardId}
+      onMouseLeave={removeCardPoint}
+      onMouseEnter={addCardPoint}
     >
       { offer.isPremium ?
         <div className="place-card__mark">
