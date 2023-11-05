@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
+import Map from '../../components/map/map.tsx';
+import { City } from '../../mocks/cities.ts';
 import { TOffer } from '../../types/index.ts';
 
 type TAppProps = {
@@ -64,7 +66,9 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <section className="cities__map map">
+                  <Map city={City} />
+                </section>
               </div>
             </div>}
         </div>

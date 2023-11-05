@@ -49,7 +49,7 @@ export type TImages = {
   images: string[];
 }
 
-type TCity = {
+export type TCity = {
   name: string;
   location: TLocation;
 };
@@ -116,4 +116,8 @@ export type TOfferPageProps = {
 
 export type TNearPlaces = {
   offers: TOffer[];
+}
+
+export type TMapProps = {
+  city: TCity;
 }
