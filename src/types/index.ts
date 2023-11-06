@@ -20,7 +20,7 @@ export type TCities = {
 
 export type TAppProps = {
   offers: TOffer[];
-  reviews: TReviews[];
+  reviews: TReview[];
 };
 
 export type TMainPageProps = {
@@ -96,7 +96,7 @@ export type TRating = {
   title: string;
 };
 
-export type TReviews = {
+export type TReview = {
   id: string;
   user: THost;
   rating: number;
@@ -104,15 +104,19 @@ export type TReviews = {
   date: string;
 }
 
-export type TReviewComponent ={
-  reviews: TReviews[];
-  id: string;
+export type TReviewList = {
+  reviews: TReview[];
+  status: AuthorizationStatus;
+}
+
+export type TReviewComponent = {
+  review: TReview;
 }
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
   offers: TOffer[];
-  reviews: TReviews[];
+  reviews: TReview[];
 }
 
 export type TNearPlaces = {

@@ -9,7 +9,7 @@ import ProtectedRoute from '../protected-route/protected-route.tsx';
 import { TAppProps } from '../../types/index.ts';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
 
-export default function App({ offers, reviews}: TAppProps) {
+export default function App({ offers, reviews }: TAppProps) {
 
   return (
     <HelmetProvider>

@@ -1,13 +1,6 @@
-import { TReviews, TReviewComponent} from '../../types/index.ts';
+import { TReviewComponent } from '../../../types/index.ts';
 
-
-export default function Review({reviews, id}: TReviewComponent): JSX.Element {
-
-  const review: TReviews | undefined = reviews.find((rev) => rev.id === id);
-
-  if (!review) {
-    return <p>Reviews not found</p>;
-  }
+export default function Review({review}: TReviewComponent): JSX.Element {
 
   return (
     <li className="reviews__item">
