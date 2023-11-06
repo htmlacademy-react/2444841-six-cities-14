@@ -7,7 +7,8 @@ import OfferInfo from '../../components/offer-components/offer-info/offer-info.t
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import { TOfferPageProps } from '../../types/index.ts';
+import Map from '../../components/map/map.tsx';
+import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const { id } = useParams<{id: string}>();
@@ -19,6 +20,18 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
       <NotFoundPage />
     );
   }
+
+  const nearPoints: TPoint[] = [];
+  props.offers.forEach((offer) => nearPoints.push({
+    id: offer.id,
+    location: offer.location
+  }));
+
+  const mapCenter: TCity = {
+    id: data.id,
+    name: data.city.name,
+    location: data.location,
+  };
 
   const nearPlaces = props.offers.filter((offer) => offer.id !== id);
 
@@ -51,7 +64,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
               <ReviewList reviews={props.reviews} status={props.status} />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map city={mapCenter} points={nearPoints} activePoint={mapCenter}/>
         </section>
         <PlacesNear offers={nearPlaces} />
       </main>

@@ -28,7 +28,7 @@ export default function Map(props: TMapProps): JSX.Element {
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
-          lng: point.location.longitude
+          lng: point.location.longitude,
         });
 
         marker
