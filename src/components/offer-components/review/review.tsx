@@ -1,3 +1,4 @@
+import dateConverter from '../../../services/date-converter.ts';
 import { TReviewComponent } from '../../../types/index.ts';
 
 export default function Review({review}: TReviewComponent): JSX.Element {
@@ -22,7 +23,7 @@ export default function Review({review}: TReviewComponent): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+        <time className="reviews__time" dateTime={dateConverter(review.date)}>{dateConverter(review.date)}</time>
       </div>
     </li>
   );
