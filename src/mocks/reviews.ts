@@ -1,6 +1,6 @@
-import { TReviews } from '../types/index.ts';
+import { TReview } from '../types/index.ts';
 
-export const reviews: TReviews[] = [
+export const reviews: TReview[] = [
   {
     id: '1',
     user: {
