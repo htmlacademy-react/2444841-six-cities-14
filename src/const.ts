@@ -17,6 +17,15 @@ export const ConstantValues = {
   MaxCommentLength: 300,
 } as const;
 
+export enum SixCities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amstardam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
 export const PIN_MARKER_DEFAULT = 'img/pin.svg';
 
 export const PIN_MARKER_CURRENT = 'img/pin-active.svg';

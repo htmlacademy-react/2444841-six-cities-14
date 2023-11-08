@@ -1,6 +1,10 @@
-import { AppRoute, AuthorizationStatus } from '../const.ts';
+import { AppRoute, AuthorizationStatus, SixCities } from '../const.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
+
+export type TLocationsHeader = {
+  pickCity: (city: SixCities) => void;
+}
 
 export type TCardList = {
   offers: TOffer[];
@@ -12,10 +16,6 @@ export type TCardInfo = {
   offer: TOffer;
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
-};
-
-export type TCities = {
-  cities: string[];
 };
 
 export type TAppProps = {
@@ -52,7 +52,7 @@ export type TImages = {
 
 export type TCity = {
   id?: string;
-  name?: string;
+  name?: SixCities;
   location: TLocation;
 };
 

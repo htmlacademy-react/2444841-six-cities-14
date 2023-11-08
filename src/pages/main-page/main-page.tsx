@@ -4,15 +4,21 @@ import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
+import { SixCities } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TMainPageProps, TPoint } from '../../types/index.ts';
 
 export default function MainPage({offers}: TMainPageProps): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
+  const [activeCity, setActiveCity] = useState<SixCities>(SixCities.Paris);
 
   function handleCardHover(point: TPoint | null) {
     setActiveOffer(point);
+  }
+
+  function handleClick(city: SixCities) {
+    setActiveCity(city);
   }
 
   const points: TPoint[] = [];
@@ -30,7 +36,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader />
+          <LocationsHeader pickCity={handleClick} />
         </div>
         <div className="cities">
           {offers.length === 0 ?
@@ -47,7 +53,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
