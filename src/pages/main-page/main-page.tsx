@@ -4,6 +4,7 @@ import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
+import pickOffersBYCityName from '../../services/pick-offer-by-city-name.ts';
 import { SixCities } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TMainPageProps, TPoint } from '../../types/index.ts';
@@ -36,15 +37,15 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader pickCity={handleClick} />
+          <LocationsHeader pickCity={handleClick} activeCity={activeCity} />
         </div>
         <div className="cities">
-          {offers.length === 0 ?
+          {pickOffersBYCityName(activeCity, offers).length === 0 ?
             <div className="cities__places-container cities__places-container--empty container">
               <section className="cities__no-places">
                 <div className="cities__status-wrapper tabs__content">
                   <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
+                  <p className="cities__status-description">We could not find any property available at the moment in {activeCity}</p>
                 </div>
               </section>
               <div className="cities__right-section"></div>
@@ -53,7 +54,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                <b className="places__found">{pickOffersBYCityName(activeCity, offers).length} places to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -70,7 +71,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <CardList offers={offers} page={'cities'} onCardHover={handleCardHover} />
+                  <CardList offers={pickOffersBYCityName(activeCity, offers)} page={'cities'} onCardHover={handleCardHover} />
                 </div>
               </section>
               <div className="cities__right-section">

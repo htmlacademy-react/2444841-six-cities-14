@@ -4,6 +4,7 @@ export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TLocationsHeader = {
   pickCity: (city: SixCities) => void;
+  activeCity: SixCities;
 }
 
 export type TCardList = {
@@ -22,6 +23,10 @@ export type TAppProps = {
   offers: TOffer[];
   reviews: TReview[];
 };
+
+export type TFavoritePageProps = {
+  offers: TOffer[];
+}
 
 export type TMainPageProps = {
   offers: TOffer[];

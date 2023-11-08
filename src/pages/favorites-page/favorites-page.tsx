@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
-import { TOffer } from '../../types/index.ts';
+import pickOffersBYCityName from '../../services/pick-offer-by-city-name.ts';
+import { TFavoritePageProps } from '../../types/index.ts';
 
-type TAppProps = {
-  offers: TOffer[];
-};
-
-export default function FavoritesPage({offers}: TAppProps): JSX.Element {
+export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element {
 
   const favoritePlaces = offers.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
-
-  function pickOffers(city: string | undefined): TOffer[] {
-
-    return favoritePlaces.filter((offer) => offer.city.name === city);
-  }
 
   return (
     <div className="page">
@@ -41,7 +33,7 @@ export default function FavoritesPage({offers}: TAppProps): JSX.Element {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      <CardList offers={pickOffers(city)} page={'favorites'} />
+                      <CardList offers={pickOffersBYCityName(city, offers)} page={'favorites'} />
                     </div>
                   </li>
                 ))}

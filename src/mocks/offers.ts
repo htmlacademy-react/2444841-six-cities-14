@@ -1,9 +1,10 @@
 import { TOffer } from '../types/index.ts';
+import { SixCities } from '../const.ts';
 
 export const offers: TOffer[] = [
   {
     city: {
-      name: 'Amsterdam',
+      name: SixCities.Amsterdam,
       location: {
         latitude: 52.370216,
         longitude: 4.895168,
@@ -53,7 +54,7 @@ export const offers: TOffer[] = [
   },
   {
     city: {
-      name: 'Amsterdam',
+      name: SixCities.Amsterdam,
       location: {
         latitude: 52.370216,
         longitude: 4.895168,
@@ -105,7 +106,7 @@ export const offers: TOffer[] = [
   },
   {
     city: {
-      name: 'Amsterdam',
+      name: SixCities.Amsterdam,
       location: {
         latitude: 52.370216,
         longitude: 4.895168,
@@ -163,7 +164,7 @@ export const offers: TOffer[] = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: 'Amsterdam'
+      name: SixCities.Amsterdam,
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     good: [
