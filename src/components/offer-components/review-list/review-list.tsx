@@ -5,7 +5,7 @@ import { AuthorizationStatus } from '../../../const.ts';
 
 export default function ReviewList(props: TReviewList): JSX.Element {
 
-  const reviews: TReview[] = props.reviews.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date))).slice(0, 10);
+  const reviews: TReview[] = props.reviews.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, 10);
 
   return (
     <section className="offer__reviews reviews">

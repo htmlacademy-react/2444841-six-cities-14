@@ -1,4 +1,5 @@
 import dateConverter from '../../../services/date-converter.ts';
+import starsRender from '../../../services/stars-render.ts';
 import { TReviewComponent } from '../../../types/index.ts';
 
 export default function Review({review}: TReviewComponent): JSX.Element {
@@ -16,7 +17,7 @@ export default function Review({review}: TReviewComponent): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: starsRender(review.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import starsRender from '../../../services/stars-render.ts';
 import { TOfferInfoProps } from '../../../types/index.ts';
 
 export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: TOfferInfoProps): JSX.Element {
@@ -31,7 +32,7 @@ export default function OfferInfo({ isPremium, title, isFavorite, rating, type, 
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{width: '80%'}}></span>
+          <span style={{width: starsRender(rating)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
         <span className="offer__rating-value rating__value">{rating}</span>
