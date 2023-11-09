@@ -11,7 +11,7 @@ export default function LocationsHeader(props: TLocationsHeader): JSX.Element {
       <ul className="locations__list tabs__list">
         {cities.map((city) => (
           <li className="locations__item" key={city}>
-            <Link className={props.activeCity === city ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'} onClick={() => props.pickCity(city)} to={AppRoute.Root}>
+            <Link className={`locations__item-link tabs__item ${props.activeCity === city && 'tabs__item--active'}`} onClick={() => props.pickCity(city)} to={AppRoute.Root}>
               <span>{city}</span>
             </Link>
           </li>
