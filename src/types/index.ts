@@ -133,6 +133,7 @@ export type TMapProps = {
   city: TCity;
   points: TPoint[];
   activePoint: TCity | null;
+  page: 'cities' | 'offer';
 }
 
 export type TPoint = {

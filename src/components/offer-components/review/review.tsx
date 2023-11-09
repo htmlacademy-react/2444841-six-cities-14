@@ -1,5 +1,5 @@
-import dateConverter from '../../../services/date-converter.ts';
-import starsRender from '../../../services/stars-render.ts';
+import dateConverter from '../../../utils/date-converter.ts';
+import starsRender from '../../../utils/stars-render.ts';
 import { TReviewComponent } from '../../../types/index.ts';
 
 export default function Review({review}: TReviewComponent): JSX.Element {

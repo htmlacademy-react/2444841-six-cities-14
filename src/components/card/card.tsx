@@ -1,4 +1,4 @@
-import starsRender from '../../services/stars-render.ts';
+import starsRender from '../../utils/stars-render.ts';
 import { Link } from 'react-router-dom';
 import { TCardInfo } from '../../types/index.ts';
 

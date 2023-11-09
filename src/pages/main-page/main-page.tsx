@@ -4,8 +4,9 @@ import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
-import pickOffersBYCityName from '../../services/pick-offer-by-city-name.ts';
-import pluralize from '../../services/pluralize.ts';
+import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
+import pluralize from '../../utils/pluralize.ts';
+import markerPoints from '../../utils/marker-points.ts';
 import { SixCities } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TMainPageProps, TPoint } from '../../types/index.ts';
@@ -23,13 +24,9 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
     setActiveCity(city);
   }
 
-  const activeCityOffers = pickOffersBYCityName(activeCity, offers);
+  const activeCityOffers = pickOffersByCityName(activeCity, offers);
 
-  const points: TPoint[] = [];
-  offers.forEach((offer) => points.push({
-    id: offer.id,
-    location: offer.location
-  }));
+  const points: TPoint[] = markerPoints(offers);
 
   return (
     <div className="page page--gray page--main">
@@ -78,7 +75,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
-                <Map city={City} points={points} activePoint={activeOffer}/>
+                <Map city={City} points={points} activePoint={activeOffer} page={'cities'} />
               </div>
             </div>}
         </div>

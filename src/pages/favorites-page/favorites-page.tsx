@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
-import pickOffersBYCityName from '../../services/pick-offer-by-city-name.ts';
+import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import { TFavoritePageProps } from '../../types/index.ts';
 
 export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element {
@@ -33,7 +33,7 @@ export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element
                       </div>
                     </div>
                     <div className="favorites__places">
-                      <CardList offers={pickOffersBYCityName(city, offers)} page={'favorites'} />
+                      <CardList offers={pickOffersByCityName(city, offers)} page={'favorites'} />
                     </div>
                   </li>
                 ))}

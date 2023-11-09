@@ -1,5 +1,5 @@
-import starsRender from '../../../services/stars-render.ts';
-import pluralize from '../../../services/pluralize.ts';
+import starsRender from '../../../utils/stars-render.ts';
+import pluralize from '../../../utils/pluralize.ts';
 import { TOfferInfoProps } from '../../../types/index.ts';
 
 export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: TOfferInfoProps): JSX.Element {

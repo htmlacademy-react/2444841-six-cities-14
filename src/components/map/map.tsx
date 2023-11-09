@@ -7,14 +7,14 @@ import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = new Icon({
   iconUrl: PIN_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [14, 39]
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: PIN_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [14, 39]
 });
 
 export default function Map(props: TMapProps): JSX.Element {
@@ -46,5 +46,5 @@ export default function Map(props: TMapProps): JSX.Element {
     }
   }, [map, points, activePoint]);
 
-  return <section className="cities__map map" style={{height: '540px'}} ref={mapRef}></section>;
+  return <section className={`${props.page}__map map`} style={{height: '540px'}} ref={mapRef}></section>;
 }

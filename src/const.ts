@@ -21,7 +21,7 @@ export enum SixCities {
   Paris = 'Paris',
   Cologne = 'Cologne',
   Brussels = 'Brussels',
-  Amsterdam = 'Amstardam',
+  Amsterdam = 'Amsterdam',
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
