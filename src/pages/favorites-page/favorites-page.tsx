@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/header/header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
+import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import { TFavoritePageProps } from '../../types/index.ts';
 
@@ -39,13 +40,7 @@ export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element
                 ))}
               </ul>
             </section> :
-            <section className="favorites favorites--empty">
-              <h1 className="visually-hidden">Favorites (empty)</h1>
-              <div className="favorites__status-wrapper">
-                <b className="favorites__status">Nothing yet saved.</b>
-                <p className="favorites__status-description">Save properties to narrow down search or plan your future trips.</p>
-              </div>
-            </section>}
+            <FavoritesEmpty />}
         </div>
       </main>
       <Footer />
