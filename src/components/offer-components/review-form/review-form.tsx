@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import Rating from '../../components/rating/rating.tsx';
-import { ConstantValues } from '../../const.ts';
+import Rating from '../rating/rating.tsx';
+import { ConstantValues } from '../../../const.ts';
 
 export default function ReviewForm(): JSX.Element {
 

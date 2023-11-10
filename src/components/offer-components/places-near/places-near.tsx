@@ -2,6 +2,7 @@ import CardList from '../../card-list/card-list.tsx';
 import { TNearPlaces } from '../../../types/index.ts';
 
 export default function PlacesNear({offers}: TNearPlaces): JSX.Element {
+
   return (
     <div className="container">
       <section className="near-places places">

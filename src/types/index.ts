@@ -1,37 +1,43 @@
-import { AppRoute, AuthorizationStatus } from '../const.ts';
-
-export type TFlatInfo = {
-  id: string;
-  title: string;
-  price: number;
-  previewImage: string;
-  description: string;
-};
+import { AppRoute, AuthorizationStatus, SixCities } from '../const.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
+
+export type TLocationsHeader = {
+  pickCity: (city: SixCities) => void;
+  activeCity: SixCities;
+}
 
 export type TCardList = {
   offers: TOffer[];
   page: TCardLocation;
-  onCardHover?: (id: string | null) => void;
+  onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCardInfo = {
   offer: TOffer;
   page: TCardLocation;
-  onCardHover?: (id: string | null) => void;
-};
-
-export type TCities = {
-  cities: string[];
+  onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TAppProps = {
   offers: TOffer[];
-  reviews: TReviews[];
+  reviews: TReview[];
 };
 
-export type TOffer = TFlatInfo & {
+export type TFavoritePageProps = {
+  offers: TOffer[];
+}
+
+export type TMainPageProps = {
+  offers: TOffer[];
+};
+
+export type TOffer = {
+  id: string;
+  title: string;
+  price: number;
+  previewImage: string;
+  description: string;
   city: TCity;
   images: string[];
   isFavorite: boolean;
@@ -49,8 +55,9 @@ export type TImages = {
   images: string[];
 }
 
-type TCity = {
-  name: string;
+export type TCity = {
+  id?: string;
+  name?: SixCities;
   location: TLocation;
 };
 
@@ -95,7 +102,7 @@ export type TRating = {
   title: string;
 };
 
-export type TReviews = {
+export type TReview = {
   id: string;
   user: THost;
   rating: number;
@@ -103,17 +110,33 @@ export type TReviews = {
   date: string;
 }
 
-export type TReviewComponent ={
-  reviews: TReviews[];
-  id: string;
+export type TReviewList = {
+  reviews: TReview[];
+  status: AuthorizationStatus;
+}
+
+export type TReviewComponent = {
+  review: TReview;
 }
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
   offers: TOffer[];
-  reviews: TReviews[];
+  reviews: TReview[];
 }
 
 export type TNearPlaces = {
   offers: TOffer[];
+}
+
+export type TMapProps = {
+  city: TCity;
+  points: TPoint[];
+  activePoint: TCity | null;
+  page: 'cities' | 'offer';
+}
+
+export type TPoint = {
+  id: string;
+  location: TLocation;
 }

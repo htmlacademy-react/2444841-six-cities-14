@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { Fragment } from 'react';
-import { TRating } from '../../types/index.ts';
+import { TRating } from '../../../types/index.ts';
 
 export type TStarsCount = {
   starsCount: (evt: ChangeEvent<HTMLInputElement>) => void;

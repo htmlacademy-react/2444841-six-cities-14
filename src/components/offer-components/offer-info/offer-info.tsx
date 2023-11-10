@@ -1,6 +1,9 @@
+import starsRender from '../../../utils/stars-render.ts';
+import pluralize from '../../../utils/pluralize.ts';
 import { TOfferInfoProps } from '../../../types/index.ts';
 
 export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: TOfferInfoProps): JSX.Element {
+
   return (
     <>
       {
@@ -31,7 +34,7 @@ export default function OfferInfo({ isPremium, title, isFavorite, rating, type, 
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{width: '80%'}}></span>
+          <span style={{width: starsRender(rating)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
         <span className="offer__rating-value rating__value">{rating}</span>
@@ -41,10 +44,10 @@ export default function OfferInfo({ isPremium, title, isFavorite, rating, type, 
           {type}
         </li>
         <li className="offer__feature offer__feature--bedrooms">
-          {bedrooms}
+          {bedrooms} bedroom{pluralize(bedrooms)}
         </li>
         <li className="offer__feature offer__feature--adults">
-          {maxAdults}
+          {maxAdults} Adult{pluralize(maxAdults)}
         </li>
       </ul>
       <div className="offer__price">

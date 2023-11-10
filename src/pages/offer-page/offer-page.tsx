@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
-import Review from '../../components/review/review.tsx';
-import ReviewForm from '../../components/review-form/review-form.tsx';
+import ReviewList from '../../components/offer-components/review-list/review-list.tsx';
 import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
 import OfferHostInfo from '../../components/offer-components/offer-host-info/offer-host-info.tsx';
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
-import { TOfferPageProps } from '../../types/index.ts';
-import { AuthorizationStatus } from '../../const.ts';
+import Map from '../../components/map/map.tsx';
+import markerPoints from '../../utils/marker-points.ts';
+import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const { id } = useParams<{id: string}>();
@@ -21,6 +21,14 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
       <NotFoundPage />
     );
   }
+
+  const nearPoints: TPoint[] = markerPoints(props.offers);
+
+  const mapCenter: TCity = {
+    id: data.id,
+    name: data.city.name,
+    location: data.location,
+  };
 
   const nearPlaces = props.offers.filter((offer) => offer.id !== id);
 
@@ -50,16 +58,10 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
                 host={data?.host}
                 description={data?.description}
               />
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                <ul className="reviews__list">
-                  <Review reviews={props.reviews} id={data?.id} />
-                </ul>
-                {props.status === AuthorizationStatus.Auth ? <ReviewForm /> : ''}
-              </section>
+              <ReviewList reviews={props.reviews} status={props.status} />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map city={mapCenter} points={nearPoints} activePoint={mapCenter} page={'offer'} />
         </section>
         <PlacesNear offers={nearPlaces} />
       </main>

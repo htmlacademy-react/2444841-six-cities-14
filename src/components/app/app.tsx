@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import ScrollToTop from '../scroll-to-top/scroll-to-top.tsx';
 import MainPage from '../../pages/main-page/main-page.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
 import LoginPage from '../../pages/login-page/login-page.tsx';
@@ -9,11 +10,12 @@ import ProtectedRoute from '../protected-route/protected-route.tsx';
 import { TAppProps } from '../../types/index.ts';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
 
-export default function App({ offers, reviews}: TAppProps) {
+export default function App({ offers, reviews }: TAppProps) {
 
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path={AppRoute.Root} index element={<MainPage offers={offers} />} />
           <Route path={AppRoute.Login} element={<ProtectedRoute status={AuthorizationStatus.Auth} redirectPage={AppRoute.Root}><LoginPage /></ProtectedRoute>}/>

@@ -1,13 +1,8 @@
-import { TReviews, TReviewComponent} from '../../types/index.ts';
+import dateConverter from '../../../utils/date-converter.ts';
+import starsRender from '../../../utils/stars-render.ts';
+import { TReviewComponent } from '../../../types/index.ts';
 
-
-export default function Review({reviews, id}: TReviewComponent): JSX.Element {
-
-  const review: TReviews | undefined = reviews.find((rev) => rev.id === id);
-
-  if (!review) {
-    return <p>Reviews not found</p>;
-  }
+export default function Review({review}: TReviewComponent): JSX.Element {
 
   return (
     <li className="reviews__item">
@@ -22,14 +17,14 @@ export default function Review({reviews, id}: TReviewComponent): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: '80%'}}></span>
+            <span style={{width: starsRender(review.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+        <time className="reviews__time" dateTime={dateConverter(review.date)}>{dateConverter(review.date)}</time>
       </div>
     </li>
   );

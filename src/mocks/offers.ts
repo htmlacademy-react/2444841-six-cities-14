@@ -1,16 +1,17 @@
 import { TOffer } from '../types/index.ts';
+import { SixCities } from '../const.ts';
 
 export const offers: TOffer[] = [
   {
     city: {
-      name: 'Cologne',
+      name: SixCities.Amsterdam,
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 13
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
       }
     },
-    previewImage: 'img/studio-01.jpg',
+    previewImage: 'img/room.jpg',
     images: [
       'img/studio-01.jpg',
       'img/room.jpg',
@@ -45,19 +46,19 @@ export const offers: TOffer[] = [
     },
     description: 'Ideal for families or friends. A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery.',
     location: {
-      latitude: 51.237402,
-      longitude: 6.779314,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: '3'
   },
   {
     city: {
-      name: 'Hamburg',
+      name: SixCities.Amsterdam,
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 13
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
       }
     },
     previewImage: 'img/apartment-02.jpg',
@@ -97,19 +98,19 @@ export const offers: TOffer[] = [
     },
     description: 'Sorry we are closed! You are welcome!',
     location: {
-      latitude: 51.237402,
-      longitude: 6.779314,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     id: '4'
   },
   {
     city: {
-      name: 'Amsterdam',
+      name: SixCities.Amsterdam,
       location: {
-        latitude: 51.225402,
-        longitude: 6.776314,
-        zoom: 13
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
       }
     },
     previewImage: 'https://14.react.pages.academy/static/offer/3.jpg',
@@ -149,8 +150,8 @@ export const offers: TOffer[] = [
     },
     description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
     location: {
-      latitude: 51.237402,
-      longitude: 6.779314,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 16
     },
     id: '1'
@@ -163,7 +164,7 @@ export const offers: TOffer[] = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: 'Amsterdam'
+      name: SixCities.Amsterdam,
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     good: [
@@ -182,8 +183,8 @@ export const offers: TOffer[] = [
     isFavorite: true,
     isPremium: false,
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 8
     },
     maxAdults: 4,

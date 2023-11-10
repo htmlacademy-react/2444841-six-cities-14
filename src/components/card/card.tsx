@@ -1,21 +1,17 @@
+import starsRender from '../../utils/stars-render.ts';
 import { Link } from 'react-router-dom';
 import { TCardInfo } from '../../types/index.ts';
 
 export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
-  const addCardId = () => {
-    onCardHover?.(offer.id);
-  };
-
-  const removeCardID = () => {
-    onCardHover?.(null);
-  };
-
   return (
     <article
       className={`${page}__card place-card`}
-      onMouseLeave={removeCardID}
-      onMouseEnter={addCardId}
+      onMouseLeave={() => onCardHover?.(null)}
+      onMouseEnter={() => onCardHover?.({
+        id: offer.id,
+        location: offer.location
+      })}
     >
       { offer.isPremium ?
         <div className="place-card__mark">
@@ -49,14 +45,14 @@ export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '100%'}}></span>
+            <span style={{width: starsRender(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.description}</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );

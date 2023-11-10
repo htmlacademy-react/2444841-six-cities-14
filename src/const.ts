@@ -15,4 +15,17 @@ export enum AuthorizationStatus {
 export const ConstantValues = {
   MinCommentLength: 50,
   MaxCommentLength: 300,
-};
+} as const;
+
+export enum SixCities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
+
+export const PIN_MARKER_DEFAULT = 'img/pin.svg';
+
+export const PIN_MARKER_CURRENT = 'img/pin-active.svg';

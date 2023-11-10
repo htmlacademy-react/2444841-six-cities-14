@@ -3,19 +3,30 @@ import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
-import { TOffer } from '../../types/index.ts';
+import Map from '../../components/map/map.tsx';
+import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
+import pluralize from '../../utils/pluralize.ts';
+import markerPoints from '../../utils/marker-points.ts';
+import { SixCities } from '../../const.ts';
+import { City } from '../../mocks/cities.ts';
+import { TMainPageProps, TPoint } from '../../types/index.ts';
 
-type TAppProps = {
-  offers: TOffer[];
-};
+export default function MainPage({offers}: TMainPageProps): JSX.Element {
 
-export default function MainPage({offers}: TAppProps): JSX.Element {
+  const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
+  const [activeCity, setActiveCity] = useState<SixCities>(SixCities.Paris);
 
-  const [activeOffer, setActiveOffer] = useState<string | null>(null);
-
-  function handleCardHover(id: string | null) {
-    setActiveOffer(id);
+  function handleCardHover(point: TPoint | null) {
+    setActiveOffer(point);
   }
+
+  function handleClick(city: SixCities) {
+    setActiveCity(city);
+  }
+
+  const activeCityOffers = pickOffersByCityName(activeCity, offers);
+
+  const points: TPoint[] = markerPoints(offers);
 
   return (
     <div className="page page--gray page--main">
@@ -24,17 +35,17 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
         <title>6 Cities</title>
       </Helmet>
       <main className="page__main page__main--index">
-        <h1 className="visually-hidden">{activeOffer}Cities</h1>
+        <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader />
+          <LocationsHeader pickCity={handleClick} activeCity={activeCity} />
         </div>
         <div className="cities">
-          {offers.length === 0 ?
+          {activeCityOffers.length === 0 ?
             <div className="cities__places-container cities__places-container--empty container">
               <section className="cities__no-places">
                 <div className="cities__status-wrapper tabs__content">
                   <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
+                  <p className="cities__status-description">We could not find any property available at the moment in {activeCity}</p>
                 </div>
               </section>
               <div className="cities__right-section"></div>
@@ -43,7 +54,7 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+                <b className="places__found">{activeCityOffers.length} place{pluralize(activeCityOffers.length)} to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -60,11 +71,11 @@ export default function MainPage({offers}: TAppProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  <CardList offers={offers} page={'cities'} onCardHover={handleCardHover} />
+                  <CardList offers={activeCityOffers} page={'cities'} onCardHover={handleCardHover} />
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <Map city={City} points={points} activePoint={activeOffer} page={'cities'} />
               </div>
             </div>}
         </div>
