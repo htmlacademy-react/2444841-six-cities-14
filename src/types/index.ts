@@ -144,3 +144,8 @@ export type TPoint = {
   id: string;
   location: TLocation;
 }
+
+export type TRTKState = {
+  city: SixCities;
+  offers: TOffer[];
+}

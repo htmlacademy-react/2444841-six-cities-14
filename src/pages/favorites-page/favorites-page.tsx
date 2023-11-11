@@ -34,7 +34,7 @@ export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element
                       </div>
                     </div>
                     <div className="favorites__places">
-                      <CardList offers={pickOffersByCityName(city, offers)} page={'favorites'} />
+                      <CardList offers={pickOffersByCityName(city, favoritePlaces)} page={'favorites'} />
                     </div>
                   </li>
                 ))}
