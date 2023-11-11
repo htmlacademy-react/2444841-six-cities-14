@@ -5,10 +5,11 @@ import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
-import { TFavoritePageProps } from '../../types/index.ts';
+import { useAppSelector } from '../../hooks/index.tsx';
 
-export default function FavoritesPage({offers}: TFavoritePageProps): JSX.Element {
+export default function FavoritesPage(): JSX.Element {
 
+  const offers = useAppSelector((state) => state.offers);
   const favoritePlaces = offers.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
 
