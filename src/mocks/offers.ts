@@ -164,7 +164,7 @@ export const offers: TOffer[] = [
         longitude: 4.895168,
         zoom: 10
       },
-      name: SixCities.Amsterdam,
+      name: SixCities.Paris,
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     good: [
