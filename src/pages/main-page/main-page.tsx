@@ -4,6 +4,7 @@ import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
+import MainPageEmpty from '../../components/main-page-empty/main-page-empty.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
@@ -41,15 +42,7 @@ export default function MainPage({offers}: TMainPageProps): JSX.Element {
         </div>
         <div className="cities">
           {activeCityOffers.length === 0 ?
-            <div className="cities__places-container cities__places-container--empty container">
-              <section className="cities__no-places">
-                <div className="cities__status-wrapper tabs__content">
-                  <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in {activeCity}</p>
-                </div>
-              </section>
-              <div className="cities__right-section"></div>
-            </div>
+            <MainPageEmpty activeCity={activeCity} />
             :
             <div className="cities__places-container container">
               <section className="cities__places places">

@@ -32,6 +32,10 @@ export type TMainPageProps = {
   offers: TOffer[];
 };
 
+export type TMainPageEmptyProps = {
+  activeCity: SixCities;
+}
+
 export type TOffer = {
   id: string;
   title: string;
