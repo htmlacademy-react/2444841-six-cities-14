@@ -1,7 +1,8 @@
-import { TMainPageEmptyProps } from '../../types/index.ts';
+import { useAppSelector } from '../../hooks/index.tsx';
 
+export default function MainPageEmpty(): JSX.Element {
+  const activeCity = useAppSelector((state) => state.city);
 
-export default function MainPageEmpty({activeCity}: TMainPageEmptyProps): JSX.Element {
   return (
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">

@@ -25,10 +25,6 @@ export type TAppProps = {
   reviews: TReview[];
 };
 
-export type TMainPageEmptyProps = {
-  activeCity: SixCities;
-}
-
 export type TOffer = {
   id: string;
   title: string;

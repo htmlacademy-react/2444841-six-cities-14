@@ -47,7 +47,7 @@ export default function MainPage(): JSX.Element {
         </div>
         <div className="cities">
           {activeCityOffers.length === 0 ?
-            <MainPageEmpty activeCity={activeCity} />
+            <MainPageEmpty />
             :
             <div className="cities__places-container container">
               <section className="cities__places places">
