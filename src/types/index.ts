@@ -5,7 +5,6 @@ export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TLocationsHeader = {
   pickCity: (city: SixCities) => void;
-  activeCity: SixCities;
 }
 
 export type TCardList = {

@@ -43,7 +43,7 @@ export default function MainPage(): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <LocationsHeader pickCity={handleClick} activeCity={activeCity} />
+          <LocationsHeader pickCity={handleClick} />
         </div>
         <div className="cities">
           {activeCityOffers.length === 0 ?
