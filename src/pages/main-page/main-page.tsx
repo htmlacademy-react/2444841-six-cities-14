@@ -10,24 +10,29 @@ import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
 import { SixCities } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
-import { TMainPageProps, TPoint } from '../../types/index.ts';
+import { TPoint } from '../../types/index.ts';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
+import { changeCity } from '../../store/actions.ts';
 
-export default function MainPage({offers}: TMainPageProps): JSX.Element {
+export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
-  const [activeCity, setActiveCity] = useState<SixCities>(SixCities.Paris);
+  const activeCity = useAppSelector((state) => state.city);
+  const offers = useAppSelector((state) => state.offers);
+
+  const dispatch = useAppDispatch();
 
   function handleCardHover(point: TPoint | null) {
     setActiveOffer(point);
   }
 
   function handleClick(city: SixCities) {
-    setActiveCity(city);
+    dispatch(changeCity(city));
   }
 
   const activeCityOffers = pickOffersByCityName(activeCity, offers);
 
-  const points: TPoint[] = markerPoints(offers);
+  const points: TPoint[] = markerPoints(activeCityOffers);
 
   return (
     <div className="page page--gray page--main">
