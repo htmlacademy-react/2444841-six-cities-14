@@ -25,14 +25,6 @@ export type TAppProps = {
   reviews: TReview[];
 };
 
-export type TFavoritePageProps = {
-  offers: TOffer[];
-}
-
-export type TMainPageProps = {
-  offers: TOffer[];
-};
-
 export type TMainPageEmptyProps = {
   activeCity: SixCities;
 }
@@ -126,7 +118,6 @@ export type TReviewComponent = {
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
-  offers: TOffer[];
   reviews: TReview[];
 }
 

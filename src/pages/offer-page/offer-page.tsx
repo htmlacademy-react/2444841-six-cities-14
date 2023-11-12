@@ -10,11 +10,12 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import Map from '../../components/map/map.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
+import { useAppSelector } from '../../hooks/index.tsx';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const { id } = useParams<{id: string}>();
-
-  const data = props.offers.find((offer) => offer.id === id);
+  const data = offers.find((offer) => offer.id === id);
 
   if (!data) {
     return (
@@ -22,7 +23,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     );
   }
 
-  const nearPoints: TPoint[] = markerPoints(props.offers);
+  const nearPoints: TPoint[] = markerPoints(offers);
 
   const mapCenter: TCity = {
     id: data.id,
@@ -30,7 +31,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     location: data.location,
   };
 
-  const nearPlaces = props.offers.filter((offer) => offer.id !== id).slice(0, 3);
+  const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   return (
     <div className="page">
