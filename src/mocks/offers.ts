@@ -193,5 +193,44 @@ export const offers: TOffer[] = [
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment'
+  },
+  {
+    bedrooms: 88,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      },
+      name: SixCities.Paris,
+    },
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    good: [
+      'Heating',
+      'Cooling'
+    ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 5,
+      isPro: false,
+      name: 'Sveta'
+    },
+    id: '5',
+    images: [
+      'img/1.png'
+    ],
+    isFavorite: false,
+    isPremium: true,
+    location: {
+      latitude: 52.3898553943508,
+      longitude: 4.931509666406198,
+      zoom: 8
+    },
+    maxAdults: 55,
+    previewImage: 'img/apartment-01.jpg',
+    price: 12,
+    rating: 3.8,
+    title: 'Luxurious & luxurious studio at primary location',
+    type: 'room'
   }
 ];

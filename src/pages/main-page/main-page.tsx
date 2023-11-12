@@ -5,10 +5,12 @@ import LocationsHeader from '../../components/locations-header/locations-header.
 import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
 import MainPageEmpty from '../../components/main-page-empty/main-page-empty.tsx';
+import SortBy from '../../components/sort-by/sort-by.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
-import { SixCities } from '../../const.ts';
+import { sortedOffers } from '../../utils/sorted-offers.ts';
+import { SixCities, } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
@@ -19,8 +21,10 @@ export default function MainPage(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
-
+  const sorting = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
+  const activeCityOffers = pickOffersByCityName(activeCity, offers);
+  const points: TPoint[] = markerPoints(activeCityOffers);
 
   function handleCardHover(point: TPoint | null) {
     setActiveOffer(point);
@@ -29,10 +33,6 @@ export default function MainPage(): JSX.Element {
   function handleClick(city: SixCities) {
     dispatch(changeCity(city));
   }
-
-  const activeCityOffers = pickOffersByCityName(activeCity, offers);
-
-  const points: TPoint[] = markerPoints(activeCityOffers);
 
   return (
     <div className="page page--gray page--main">
@@ -53,23 +53,9 @@ export default function MainPage(): JSX.Element {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeCityOffers.length} place{pluralize(activeCityOffers.length)} to stay in {activeCity}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex={0}>
-                    Popular
-                    <svg className="places__sorting-arrow" width="7" height="4">
-                      <use xlinkHref="#icon-arrow-select"></use>
-                    </svg>
-                  </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                    <li className="places__option" tabIndex={0}>Price: low to high</li>
-                    <li className="places__option" tabIndex={0}>Price: high to low</li>
-                    <li className="places__option" tabIndex={0}>Top rated first</li>
-                  </ul>
-                </form>
+                <SortBy />
                 <div className="cities__places-list places__list tabs__content">
-                  <CardList offers={activeCityOffers} page={'cities'} onCardHover={handleCardHover} />
+                  <CardList offers={sortedOffers(activeCityOffers, sorting)} page={'cities'} onCardHover={handleCardHover} />
                 </div>
               </section>
               <div className="cities__right-section">

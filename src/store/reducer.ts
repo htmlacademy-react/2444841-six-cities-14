@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { SixCities } from '../const.ts';
+import { SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
-import { changeCity, renderOffers } from './actions.ts';
+import { changeCity, renderOffers, changeSorting } from './actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
   offers: [],
+  sorting: Sorting.Popular
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -15,5 +16,7 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(renderOffers, (state, action) => {
       state.offers = action.payload;
+    }).addCase(changeSorting, (state, action) => {
+      state.sorting = action.payload;
     });
 });

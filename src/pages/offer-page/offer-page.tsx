@@ -30,7 +30,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     location: data.location,
   };
 
-  const nearPlaces = props.offers.filter((offer) => offer.id !== id);
+  const nearPlaces = props.offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   return (
     <div className="page">
