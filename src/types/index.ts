@@ -48,8 +48,7 @@ export type TImages = {
 }
 
 export type TCity = {
-  id?: string;
-  name?: SixCities;
+  name: SixCities;
   location: TLocation;
 };
 
@@ -123,7 +122,7 @@ export type TNearPlaces = {
 export type TMapProps = {
   city: TCity;
   points: TPoint[];
-  activePoint: TCity | null;
+  activePoint: TPoint | null;
   page: 'cities' | 'offer';
 }
 
