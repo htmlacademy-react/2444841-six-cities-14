@@ -9,7 +9,7 @@ import SortBy from '../../components/sort-by/sort-by.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
-import { sortedOffers } from '../../utils/sorted-offers.ts';
+import sortedOffers from '../../utils/sorted-offers.ts';
 import { SixCities, } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TPoint } from '../../types/index.ts';

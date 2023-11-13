@@ -16,6 +16,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
   const { id } = useParams<{id: string}>();
   const data = offers.find((offer) => offer.id === id);
+  const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   if (!data) {
     return (
@@ -23,15 +24,13 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     );
   }
 
-  const nearPoints: TPoint[] = markerPoints(offers);
+  const nearPoints: TPoint[] = markerPoints(nearPlaces);
 
   const mapCenter: TCity = {
     id: data.id,
     name: data.city.name,
     location: data.location,
   };
-
-  const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   return (
     <div className="page">
