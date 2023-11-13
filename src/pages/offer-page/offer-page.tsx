@@ -27,8 +27,12 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const nearPoints: TPoint[] = markerPoints(nearPlaces);
 
   const mapCenter: TCity = {
-    id: data.id,
     name: data.city.name,
+    location: data.location,
+  };
+
+  const mapCenterMarker: TPoint = {
+    id: data.id,
     location: data.location,
   };
 
@@ -61,7 +65,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
               <ReviewList reviews={props.reviews} status={props.status} />
             </div>
           </div>
-          <Map city={mapCenter} points={nearPoints} activePoint={mapCenter} page={'offer'} />
+          <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
         </section>
         <PlacesNear offers={nearPlaces} />
       </main>
