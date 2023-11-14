@@ -9,13 +9,8 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import ProtectedRoute from '../protected-route/protected-route.tsx';
 import { TAppProps } from '../../types/index.ts';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
-import { useAppDispatch } from '../../hooks/index.tsx';
-import { renderOffers } from '../../store/actions.ts';
 
-export default function App({ offers, reviews }: TAppProps) {
-
-  const dispatch = useAppDispatch();
-  dispatch(renderOffers(offers));
+export default function App({ reviews }: TAppProps) {
 
   return (
     <HelmetProvider>

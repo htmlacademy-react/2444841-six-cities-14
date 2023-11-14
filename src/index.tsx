@@ -5,6 +5,9 @@ import App from './components/app/app.tsx';
 import { offers } from './mocks/offers.ts';
 import { reviews } from './mocks/reviews.ts';
 import { store } from './store/index.ts';
+import { loadOffersCard } from './store/api-actions.ts';
+
+store.dispatch(loadOffersCard());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

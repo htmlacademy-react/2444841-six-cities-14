@@ -8,13 +8,13 @@ export type TLocationsHeader = {
 }
 
 export type TCardList = {
-  offers: TOffer[];
+  offers: TOfferCard[];
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCardInfo = {
-  offer: TOffer;
+  offer: TOfferCard;
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
@@ -134,9 +134,24 @@ export type TPoint = {
 export type TRTKState = {
   city: SixCities;
   offers: TOffer[];
+  offersCard: TOfferCard[];
   sorting: Sorting;
 }
 
 export type TState = ReturnType<typeof store.getState>;
 
 export type TAppDispatch = typeof store.dispatch;
+
+
+export type TOfferCard = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  city: TCity;
+  location: TLocation;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}

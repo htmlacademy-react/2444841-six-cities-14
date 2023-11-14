@@ -1,6 +1,6 @@
-import { TPoint, TOffer } from '../types';
+import { TPoint, TOfferCard } from '../types';
 
-export default function markerPoints(offers: TOffer[]): TPoint[] {
+export default function markerPoints(offers: TOfferCard[]): TPoint[] {
   const markers: TPoint[] = [];
 
   offers.forEach((offer) => markers.push({

@@ -10,7 +10,7 @@ import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
-import { SixCities, } from '../../const.ts';
+import { SixCities } from '../../const.ts';
 import { City } from '../../mocks/cities.ts';
 import { TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
@@ -20,10 +20,10 @@ export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
+  const offersNew = useAppSelector((state) => state.offersCard);
   const sorting = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
-  const activeCityOffers = pickOffersByCityName(activeCity, offers);
+  const activeCityOffers = pickOffersByCityName(activeCity, offersNew);
   const points: TPoint[] = markerPoints(activeCityOffers);
 
   function handleCardHover(point: TPoint | null) {
