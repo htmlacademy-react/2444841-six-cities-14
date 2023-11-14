@@ -126,6 +126,7 @@ export type TRTKState = {
   offer: TOffer | null;
   cards: TCard[];
   sorting: Sorting;
+  loadingMainPage: boolean;
 }
 
 export type TState = ReturnType<typeof store.getState>;

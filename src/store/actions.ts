@@ -17,3 +17,7 @@ export const fetchCards = createAction('offers/fetchCards', (value: TCard[]) => 
 export const fetchOffer = createAction('offers/fetchOffer', (value: TOffer) => ({
   payload: value,
 }));
+
+export const mainPageStatus = createAction('loadingStatus/mainPageStatus', (value: boolean) => ({
+  payload: value,
+}));

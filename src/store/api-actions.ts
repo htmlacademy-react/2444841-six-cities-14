@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TAppDispatch, TState, TCard, TOffer } from '../types';
-import { fetchCards, fetchOffer } from './actions';
+import { fetchCards, fetchOffer, mainPageStatus } from './actions';
 
 export const loadCards = createAsyncThunk<void, undefined, {
   dispatch: TAppDispatch;
@@ -10,8 +10,10 @@ export const loadCards = createAsyncThunk<void, undefined, {
 }>(
   'offers/loadCards',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(mainPageStatus(true));
     const {data} = await api.get<TCard[]>('/six-cities/offers');
     dispatch(fetchCards(data));
+    dispatch(mainPageStatus(false));
   },
 );
 

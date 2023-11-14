@@ -6,6 +6,7 @@ import CardList from '../../components/card-list/card-list.tsx';
 import Map from '../../components/map/map.tsx';
 import MainPageEmpty from '../../components/main-page-empty/main-page-empty.tsx';
 import SortBy from '../../components/sort-by/sort-by.tsx';
+import Spinner from '../../components/spinner/spinner.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
@@ -20,6 +21,7 @@ export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector((state) => state.city);
+  const isLoading = useAppSelector((state) => state.loadingMainPage);
   const offersCard = useAppSelector((state) => state.cards);
   const sorting = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
@@ -45,24 +47,27 @@ export default function MainPage(): JSX.Element {
         <div className="tabs">
           <LocationsHeader pickCity={handleClick} />
         </div>
-        <div className="cities">
-          {activeCityOffers.length === 0 ?
-            <MainPageEmpty />
-            :
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{activeCityOffers.length} place{pluralize(activeCityOffers.length)} to stay in {activeCity}</b>
-                <SortBy />
-                <div className="cities__places-list places__list tabs__content">
-                  <CardList offers={sortedOffers(activeCityOffers, sorting)} page={'cities'} onCardHover={handleCardHover} />
+        {isLoading ?
+          <Spinner />
+          :
+          <div className="cities">
+            {activeCityOffers.length === 0 ?
+              <MainPageEmpty />
+              :
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{activeCityOffers.length} place{pluralize(activeCityOffers.length)} to stay in {activeCity}</b>
+                  <SortBy />
+                  <div className="cities__places-list places__list tabs__content">
+                    <CardList offers={sortedOffers(activeCityOffers, sorting)} page={'cities'} onCardHover={handleCardHover} />
+                  </div>
+                </section>
+                <div className="cities__right-section">
+                  <Map city={City} points={points} activePoint={activeOffer} page={'cities'} />
                 </div>
-              </section>
-              <div className="cities__right-section">
-                <Map city={City} points={points} activePoint={activeOffer} page={'cities'} />
-              </div>
-            </div>}
-        </div>
+              </div>}
+          </div>}
       </main>
     </div>
   );
