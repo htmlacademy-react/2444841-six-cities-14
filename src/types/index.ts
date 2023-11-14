@@ -29,7 +29,7 @@ export type TOffer = TCard & {
   images: string[];
   bedrooms: number;
   maxAdults: number;
-  good: string[];
+  goods: string[];
   host: THost;
 };
 
@@ -75,7 +75,7 @@ export type TOfferInfoProps = {
   bedrooms: number;
   maxAdults: number;
   price: number;
-  good: string[];
+  goods: string[];
 }
 
 export type TRating = {
@@ -123,7 +123,7 @@ export type TPoint = {
 
 export type TRTKState = {
   city: SixCities;
-  offers: TOffer[];
+  offer: TOffer | null;
   cards: TCard[];
   sorting: Sorting;
 }

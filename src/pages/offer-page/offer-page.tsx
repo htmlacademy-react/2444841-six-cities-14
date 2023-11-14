@@ -11,11 +11,18 @@ import Map from '../../components/map/map.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
 import { useAppSelector } from '../../hooks/index.tsx';
+import { loadOffer } from '../../store/api-actions.ts';
+
+import { offers } from '../../mocks/offers.ts';
+import { store } from '../../store/index.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
-  const { id } = useParams<{id: string}>();
-  const data = offers.find((offer) => offer.id === id);
+
+  const {id} = useParams<{id: string}>();
+  if (id !== undefined) {
+    store.dispatch(loadOffer(id));
+  }
+  const data = useAppSelector((state) => state.offer);
   const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   if (!data) {
@@ -56,7 +63,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
                 bedrooms={data?.bedrooms}
                 maxAdults={data?.maxAdults}
                 price={data?.price}
-                good={data?.good}
+                goods={data?.goods}
               />
               <OfferHostInfo
                 host={data?.host}

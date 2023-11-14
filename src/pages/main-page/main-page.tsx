@@ -20,10 +20,10 @@ export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector((state) => state.city);
-  const offersNew = useAppSelector((state) => state.cards);
+  const offersCard = useAppSelector((state) => state.cards);
   const sorting = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
-  const activeCityOffers = pickOffersByCityName(activeCity, offersNew);
+  const activeCityOffers = pickOffersByCityName(activeCity, offersCard);
   const points: TPoint[] = markerPoints(activeCityOffers);
 
   function handleCardHover(point: TPoint | null) {

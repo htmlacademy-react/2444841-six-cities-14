@@ -2,7 +2,7 @@ import starsRender from '../../../utils/stars-render.ts';
 import pluralize from '../../../utils/pluralize.ts';
 import { TOfferInfoProps } from '../../../types/index.ts';
 
-export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, good }: TOfferInfoProps): JSX.Element {
+export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods }: TOfferInfoProps): JSX.Element {
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function OfferInfo({ isPremium, title, isFavorite, rating, type, 
       <div className="offer__inside">
         <h2 className="offer__inside-title">What&apos;s inside</h2>
         <ul className="offer__inside-list">
-          {good.map((item) => (
+          {goods.map((item) => (
             <li className="offer__inside-item" key={item}>
               {item}
             </li>
