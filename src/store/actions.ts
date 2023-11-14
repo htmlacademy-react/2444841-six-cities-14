@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { SixCities, Sorting } from '../const';
-import { TOfferCard } from '../types';
+import { TCard } from '../types';
 
 export const changeCity = createAction('city/changeCity', (value: SixCities) => ({
   payload: value,
@@ -10,6 +10,6 @@ export const changeSorting = createAction('offers/changeSorting', (value: Sortin
   payload: value,
 }));
 
-export const fetchOffers = createAction('offers/fetchOffers', (value: TOfferCard[]) => ({
+export const fetchCards = createAction('offers/fetchCards', (value: TCard[]) => ({
   payload: value,
 }));

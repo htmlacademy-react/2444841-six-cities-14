@@ -1,7 +1,7 @@
-import { TOfferCard } from '../types/index.ts';
+import { TCard } from '../types/index.ts';
 import { Sorting } from '../const.ts';
 
-export default function sortedOffers(offers: TOfferCard[], sorting: Sorting): TOfferCard[] {
+export default function sortedOffers(offers: TCard[], sorting: Sorting): TCard[] {
   if(sorting === Sorting.TopRated) {
     return offers.sort((best, worst) => worst.rating - best.rating);
   } else if(sorting === Sorting.HighToLow) {

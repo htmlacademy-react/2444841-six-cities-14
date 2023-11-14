@@ -8,13 +8,13 @@ export type TLocationsHeader = {
 }
 
 export type TCardList = {
-  offers: TOfferCard[];
+  offers: TCard[];
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCardInfo = {
-  offer: TOfferCard;
+  offer: TCard;
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
@@ -24,23 +24,13 @@ export type TAppProps = {
   reviews: TReview[];
 };
 
-export type TOffer = {
-  id: string;
-  title: string;
-  price: number;
-  previewImage: string;
+export type TOffer = TCard & {
   description: string;
-  city: TCity;
   images: string[];
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  type: string;
   bedrooms: number;
   maxAdults: number;
   good: string[];
   host: THost;
-  location: TLocation;
 };
 
 export type TImages = {
@@ -134,7 +124,7 @@ export type TPoint = {
 export type TRTKState = {
   city: SixCities;
   offers: TOffer[];
-  offersCard: TOfferCard[];
+  cards: TCard[];
   sorting: Sorting;
 }
 
@@ -143,7 +133,7 @@ export type TState = ReturnType<typeof store.getState>;
 export type TAppDispatch = typeof store.dispatch;
 
 
-export type TOfferCard = {
+export type TCard = {
   id: string;
   title: string;
   type: string;
