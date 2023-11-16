@@ -21,3 +21,7 @@ export const fetchOffer = createAction('offers/fetchOffer', (value: TOffer) => (
 export const mainPageStatus = createAction('loadingStatus/mainPageStatus', (value: boolean) => ({
   payload: value,
 }));
+
+export const offerPageStatus = createAction('loadingStatus/offerPageStatus', (value: boolean) => ({
+  payload: value,
+}));

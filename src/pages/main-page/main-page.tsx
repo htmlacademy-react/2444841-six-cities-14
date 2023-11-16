@@ -12,7 +12,7 @@ import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
 import { SixCities } from '../../const.ts';
-import { City } from '../../mocks/cities.ts';
+import { City } from '../../const.ts';
 import { TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { changeCity } from '../../store/actions.ts';
@@ -27,6 +27,7 @@ export default function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const activeCityOffers = pickOffersByCityName(activeCity, offersCard);
   const points: TPoint[] = markerPoints(activeCityOffers);
+  const cityMap = City.find((city) => city.name === activeCity)
 
   function handleCardHover(point: TPoint | null) {
     setActiveOffer(point);
@@ -64,7 +65,7 @@ export default function MainPage(): JSX.Element {
                   </div>
                 </section>
                 <div className="cities__right-section">
-                  <Map city={City} points={points} activePoint={activeOffer} page={'cities'} />
+                  <Map city={cityMap} points={points} activePoint={activeOffer} page={'cities'} />
                 </div>
               </div>}
           </div>}

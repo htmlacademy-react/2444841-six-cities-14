@@ -8,6 +8,7 @@ import OfferHostInfo from '../../components/offer-components/offer-host-info/off
 import PlacesNear from '../../components/offer-components/places-near/places-near.tsx';
 import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import Map from '../../components/map/map.tsx';
+import Spinner from '../../components/spinner/spinner.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
 import { useAppSelector } from '../../hooks/index.tsx';
@@ -17,6 +18,8 @@ import { offers } from '../../mocks/offers.ts';
 import { store } from '../../store/index.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
+
+  const isLoading = useAppSelector((state) => state.loadingOfferPage);
 
   const {id} = useParams<{id: string}>();
   if (id !== undefined) {
@@ -47,35 +50,38 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     <div className="page">
       <Header />
       <Helmet>
-        <title>{data?.title}</title>
+        <title>{data.title}</title>
       </Helmet>
-      <main className="page__main page__main--offer">
-        <section className="offer">
-          <OfferGallery images={data?.images}/>
-          <div className="offer__container container">
-            <div className="offer__wrapper">
-              <OfferInfo
-                isPremium={data?.isPremium}
-                title={data?.title}
-                isFavorite={data?.isFavorite}
-                rating={data?.rating}
-                type={data?.type}
-                bedrooms={data?.bedrooms}
-                maxAdults={data?.maxAdults}
-                price={data?.price}
-                goods={data?.goods}
-              />
-              <OfferHostInfo
-                host={data?.host}
-                description={data?.description}
-              />
-              <ReviewList reviews={props.reviews} status={props.status} />
+      {isLoading ?
+        <Spinner />
+        :
+        <main className="page__main page__main--offer">
+          <section className="offer">
+            <OfferGallery images={data.images}/>
+            <div className="offer__container container">
+              <div className="offer__wrapper">
+                <OfferInfo
+                  isPremium={data.isPremium}
+                  title={data.title}
+                  isFavorite={data.isFavorite}
+                  rating={data.rating}
+                  type={data.type}
+                  bedrooms={data.bedrooms}
+                  maxAdults={data.maxAdults}
+                  price={data.price}
+                  goods={data.goods}
+                />
+                <OfferHostInfo
+                  host={data.host}
+                  description={data.description}
+                />
+                <ReviewList reviews={props.reviews} status={props.status} />
+              </div>
             </div>
-          </div>
-          <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
-        </section>
-        <PlacesNear offers={nearPlaces} />
-      </main>
+            <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
+          </section>
+          <PlacesNear offers={nearPlaces} />
+        </main>}
     </div>
   );
 }

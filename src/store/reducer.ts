@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
-import { changeCity, changeSorting, fetchCards, fetchOffer, mainPageStatus } from './actions.ts';
+import { changeCity, changeSorting, fetchCards, fetchOffer, mainPageStatus, offerPageStatus } from './actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
@@ -9,6 +9,7 @@ const initialState: TRTKState = {
   cards: [],
   sorting: Sorting.Popular,
   loadingMainPage: false,
+  loadingOfferPage: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -24,6 +25,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(mainPageStatus, (state, action) => {
       state.loadingMainPage = action.payload;
+    })
+    .addCase(offerPageStatus, (state, action) => {
+      state.loadingOfferPage = action.payload;
     })
     .addCase(changeSorting, (state, action) => {
       state.sorting = action.payload;
