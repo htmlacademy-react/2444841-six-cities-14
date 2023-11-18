@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { AppRoute, SixCities } from '../../const.ts';
+import './location-header.css';
+import { SixCities } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { changeCity } from '../../store/actions.ts';
 
@@ -12,9 +12,9 @@ export default function LocationsHeader(): JSX.Element {
       <ul className="locations__list tabs__list">
         {Object.values(SixCities).map((city) => (
           <li className="locations__item" key={city}>
-            <Link className={`locations__item-link tabs__item ${activeCity === city && 'tabs__item--active'}`} onClick={() => dispatch(changeCity(city))} to={AppRoute.Root}>
+            <button className={`locations__item-link tabs__item ${activeCity === city && 'tabs__item--active'}`} onClick={() => dispatch(changeCity(city))}>
               <span>{city}</span>
-            </Link>
+            </button>
           </li>
         ))}
       </ul>

@@ -1,0 +1,7 @@
+.locations__item-link {
+  border: 0;
+  background-color: inherit;
+}
+.locations__item-link:focus-visible {
+  outline: 0;
+}
