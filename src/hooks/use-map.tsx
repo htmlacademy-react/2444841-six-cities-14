@@ -8,9 +8,11 @@ function useMap(
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
   const isRenderedRef = useRef<boolean>(false);
+  console.log(city.name, 1)
 
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
+      console.log(city.name, 2)
       const instance = new Map(mapRef.current, {
         center: {
           lat: city.location.latitude,

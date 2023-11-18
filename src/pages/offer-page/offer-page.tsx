@@ -47,15 +47,15 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
   const nearPoints: TPoint[] = markerPoints(nearPlaces);
 
   const mapCenter: TCity = {
-    name: data.city.name,
-    location: data.location,
+    name: data?.city.name,
+    location: data?.location,
   };
 
   const mapCenterMarker: TPoint = {
-    id: data.id,
-    location: data.location,
+    id: data?.id,
+    location: data?.location,
   };
-  //console.log(mapCenterMarker)
+  //console.log(mapCenter, nearPoints, mapCenterMarker)
 
   return (
     <div className="page">

@@ -17,11 +17,8 @@ export const loadCards = createAsyncThunk<void, undefined, {
   },
 );
 
-export const loadOffer = createAsyncThunk<TOffer, string, {
-  dispatch: TAppDispatch;
-  state: TState;
-  extra: AxiosInstance;
-}>(
+export const loadOffer = createAsyncThunk<TOffer, string, {extra: AxiosInstance}>
+(
   'offers/loadOffer',
   async (id, { extra: api }) => {
     const {data} = await api.get<TOffer>(`/six-cities/offers/${id}`);
