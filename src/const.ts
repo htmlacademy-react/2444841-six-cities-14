@@ -1,4 +1,4 @@
-import { TCity } from './types/index.ts';
+import { TCity, TRating } from './types/index.ts';
 
 export enum AppRoute {
   Root = '/',
@@ -38,6 +38,29 @@ export enum Sorting {
   HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export const Stars: TRating[] = [
+  {
+    id: 5,
+    title: 'perfect'
+  },
+  {
+    id: 4,
+    title: 'good'
+  },
+  {
+    id: 3,
+    title: 'not bad'
+  },
+  {
+    id: 2,
+    title: 'badly'
+  },
+  {
+    id: 1,
+    title: 'terribly'
+  },
+];
 
 export const City: TCity[] = [
   {
@@ -91,4 +114,7 @@ export const City: TCity[] = [
 ];
 
 export const MAX_NEAR_PLACES = 3;
+
+export const MAX_IMAGES = 6;
+
 export const MAX_VISIBLE_REVIEWS = 10;

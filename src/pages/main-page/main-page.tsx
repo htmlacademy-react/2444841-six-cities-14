@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header.tsx';
 import LocationsHeader from '../../components/locations-header/locations-header.tsx';
@@ -13,7 +13,8 @@ import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
 import { City } from '../../const.ts';
 import { TPoint } from '../../types/index.ts';
-import { useAppSelector } from '../../hooks/index.tsx';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
+import { loadCards } from '../../store/api-actions.ts';
 
 export default function MainPage(): JSX.Element {
 
@@ -25,6 +26,11 @@ export default function MainPage(): JSX.Element {
   const activeCityOffers = pickOffersByCityName(activeCity, offersCard);
   const points: TPoint[] = markerPoints(activeCityOffers);
   const cityMap = City.find((city) => city.name === activeCity);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadCards());
+  }, [dispatch]);
 
   if (cityMap === undefined) {
     return <p>Map not found</p>;

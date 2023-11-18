@@ -15,11 +15,6 @@ export type TCardInfo = {
   onCardHover?: (id: TPoint | null) => void;
 };
 
-export type TAppProps = {
-  offers: TOffer[];
-  reviews: TReview[];
-};
-
 export type TOffer = TCard & {
   description: string;
   images: string[];
@@ -79,16 +74,21 @@ export type TRating = {
   title: string;
 };
 
+export type TUser = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
 export type TReview = {
   id: string;
-  user: THost;
+  user: TUser;
   rating: number;
   comment: string;
   date: string;
 }
 
 export type TReviewList = {
-  reviews: TReview[];
   status: AuthorizationStatus;
 }
 
@@ -98,7 +98,6 @@ export type TReviewComponent = {
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
-  reviews: TReview[];
 }
 
 export type TMapProps = {
@@ -121,6 +120,7 @@ export type TRTKState = {
   loadingMainPage: boolean;
   loadingOfferPage: boolean;
   nearPlaces: TCard[];
+  reviewList: TReview[];
 }
 
 export type TState = ReturnType<typeof store.getState>;

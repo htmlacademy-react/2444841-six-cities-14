@@ -1,4 +1,4 @@
-import axios, {AxiosInstance} from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 const BACKEND_URL = 'https://14.design.pages.academy';
 const REQUEST_TIMEOUT = 5000;

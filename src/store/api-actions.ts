@@ -1,19 +1,13 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TAppDispatch, TState, TCard, TOffer } from '../types';
-import { fetchCards, mainPageStatus } from './actions';
+import { TCard, TOffer, TReview } from '../types';
 
-export const loadCards = createAsyncThunk<void, undefined, {
-  dispatch: TAppDispatch;
-  state: TState;
-  extra: AxiosInstance;
-}>(
+export const loadCards = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
+(
   'offers/loadCards',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(mainPageStatus(true));
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<TCard[]>('/six-cities/offers');
-    dispatch(fetchCards(data));
-    dispatch(mainPageStatus(false));
+    return data;
   },
 );
 
@@ -31,6 +25,15 @@ export const loadNearPlaces = createAsyncThunk<TCard[], string, {extra: AxiosIns
   'offers/loadNearPlaces',
   async (id, {extra: api}) => {
     const {data} = await api.get<TCard[]>(`/six-cities/offers/${id}/nearby`);
+    return data;
+  },
+);
+
+export const loadReviewList = createAsyncThunk<TReview[], string, {extra: AxiosInstance}>
+(
+  'offers/loadReviewList',
+  async (id, {extra: api}) => {
+    const {data} = await api.get<TReview[]>(`/six-cities/comments/${id}`);
     return data;
   },
 );

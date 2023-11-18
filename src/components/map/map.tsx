@@ -21,7 +21,6 @@ export default function Map(props: TMapProps): JSX.Element {
   const {city, points, activePoint, page} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  //console.log(city.name)
 
   if (page === 'offer' && activePoint !== null) {
     points.push(activePoint);

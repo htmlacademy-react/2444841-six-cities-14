@@ -12,9 +12,9 @@ import Spinner from '../../components/spinner/spinner.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
-import { loadNearPlaces, loadOffer } from '../../store/api-actions.ts';
+import { loadNearPlaces, loadOffer, loadReviewList } from '../../store/api-actions.ts';
 import { useEffect } from 'react';
-import { fetchOffer } from '../../store/actions.ts';
+import { unmountOffer } from '../../store/actions.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
 
@@ -28,10 +28,11 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     if (id) {
       dispatch(loadOffer(id));
       dispatch(loadNearPlaces(id));
+      dispatch(loadReviewList(id));
     }
 
     return () => {
-      dispatch(fetchOffer(null));
+      dispatch(unmountOffer());
     };
   }, [id, dispatch]);
 
@@ -83,7 +84,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
                 host={data.host}
                 description={data.description}
               />
-              <ReviewList reviews={props.reviews} status={props.status} />
+              <ReviewList status={props.status} />
             </div>
           </div>
           <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
