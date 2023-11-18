@@ -1,11 +1,10 @@
-import { AppRoute, AuthorizationStatus, SixCities } from '../const.ts';
+import { AppRoute, AuthorizationStatus, SixCities, Sorting } from '../const.ts';
 import { store } from '../store/index.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
 export type TLocationsHeader = {
   pickCity: (city: SixCities) => void;
-  activeCity: SixCities;
 }
 
 export type TCardList = {
@@ -24,18 +23,6 @@ export type TAppProps = {
   offers: TOffer[];
   reviews: TReview[];
 };
-
-export type TFavoritePageProps = {
-  offers: TOffer[];
-}
-
-export type TMainPageProps = {
-  offers: TOffer[];
-};
-
-export type TMainPageEmptyProps = {
-  activeCity: SixCities;
-}
 
 export type TOffer = {
   id: string;
@@ -61,8 +48,7 @@ export type TImages = {
 }
 
 export type TCity = {
-  id?: string;
-  name?: SixCities;
+  name: SixCities;
   location: TLocation;
 };
 
@@ -126,7 +112,6 @@ export type TReviewComponent = {
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
-  offers: TOffer[];
   reviews: TReview[];
 }
 
@@ -137,7 +122,7 @@ export type TNearPlaces = {
 export type TMapProps = {
   city: TCity;
   points: TPoint[];
-  activePoint: TCity | null;
+  activePoint: TPoint | null;
   page: 'cities' | 'offer';
 }
 
@@ -149,6 +134,7 @@ export type TPoint = {
 export type TRTKState = {
   city: SixCities;
   offers: TOffer[];
+  sorting: Sorting;
 }
 
 export type TState = ReturnType<typeof store.getState>;

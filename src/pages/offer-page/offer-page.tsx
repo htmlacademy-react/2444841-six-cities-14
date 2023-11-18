@@ -10,11 +10,13 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import Map from '../../components/map/map.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
+import { useAppSelector } from '../../hooks/index.tsx';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const { id } = useParams<{id: string}>();
-
-  const data = props.offers.find((offer) => offer.id === id);
+  const data = offers.find((offer) => offer.id === id);
+  const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
 
   if (!data) {
     return (
@@ -22,15 +24,17 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     );
   }
 
-  const nearPoints: TPoint[] = markerPoints(props.offers);
+  const nearPoints: TPoint[] = markerPoints(nearPlaces);
 
   const mapCenter: TCity = {
-    id: data.id,
     name: data.city.name,
     location: data.location,
   };
 
-  const nearPlaces = props.offers.filter((offer) => offer.id !== id);
+  const mapCenterMarker: TPoint = {
+    id: data.id,
+    location: data.location,
+  };
 
   return (
     <div className="page">
@@ -61,7 +65,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
               <ReviewList reviews={props.reviews} status={props.status} />
             </div>
           </div>
-          <Map city={mapCenter} points={nearPoints} activePoint={mapCenter} page={'offer'} />
+          <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
         </section>
         <PlacesNear offers={nearPlaces} />
       </main>

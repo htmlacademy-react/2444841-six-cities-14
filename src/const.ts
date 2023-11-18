@@ -29,3 +29,10 @@ export enum SixCities {
 export const PIN_MARKER_DEFAULT = 'img/pin.svg';
 
 export const PIN_MARKER_CURRENT = 'img/pin-active.svg';
+
+export enum Sorting {
+  Popular = 'Popular',
+  LowToHigh = 'Price: low to high',
+  HighToLow = 'Price: high to low',
+  TopRated = 'Top rated first',
+}
