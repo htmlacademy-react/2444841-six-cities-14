@@ -11,24 +11,34 @@ import Map from '../../components/map/map.tsx';
 import Spinner from '../../components/spinner/spinner.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
-import { useAppSelector } from '../../hooks/index.tsx';
-import { loadOffer } from '../../store/api-actions.ts';
-
-import { offers } from '../../mocks/offers.ts';
-import { store } from '../../store/index.ts';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
+import { loadNearPlaces, loadOffer } from '../../store/api-actions.ts';
+import { useEffect } from 'react';
+import { fetchOffer } from '../../store/actions.ts';
 
 export default function OfferPage(props: TOfferPageProps): JSX.Element {
 
   const isLoading = useAppSelector((state) => state.loadingOfferPage);
-
-  const {id} = useParams<{id: string}>();
-  if (id !== undefined) {
-    store.dispatch(loadOffer(id));
-  }
+  const { id } = useParams<{id: string}>();
+  const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.offer);
-  const nearPlaces = offers.filter((offer) => offer.id !== id).slice(0, 3);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(loadOffer(id));
+      dispatch(loadNearPlaces(id));
+    }
+
+    return () => {
+      dispatch(fetchOffer(null));
+    };
+  }, [id, dispatch]);
 
   if (!data) {
+    if (isLoading) {
+      return <Spinner />;
+    }
     return (
       <NotFoundPage />
     );
@@ -45,6 +55,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
     id: data.id,
     location: data.location,
   };
+  //console.log(mapCenterMarker)
 
   return (
     <div className="page">
@@ -52,36 +63,33 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
       <Helmet>
         <title>{data.title}</title>
       </Helmet>
-      {isLoading ?
-        <Spinner />
-        :
-        <main className="page__main page__main--offer">
-          <section className="offer">
-            <OfferGallery images={data.images}/>
-            <div className="offer__container container">
-              <div className="offer__wrapper">
-                <OfferInfo
-                  isPremium={data.isPremium}
-                  title={data.title}
-                  isFavorite={data.isFavorite}
-                  rating={data.rating}
-                  type={data.type}
-                  bedrooms={data.bedrooms}
-                  maxAdults={data.maxAdults}
-                  price={data.price}
-                  goods={data.goods}
-                />
-                <OfferHostInfo
-                  host={data.host}
-                  description={data.description}
-                />
-                <ReviewList reviews={props.reviews} status={props.status} />
-              </div>
+      <main className="page__main page__main--offer">
+        <section className="offer">
+          <OfferGallery images={data.images}/>
+          <div className="offer__container container">
+            <div className="offer__wrapper">
+              <OfferInfo
+                isPremium={data.isPremium}
+                title={data.title}
+                isFavorite={data.isFavorite}
+                rating={data.rating}
+                type={data.type}
+                bedrooms={data.bedrooms}
+                maxAdults={data.maxAdults}
+                price={data.price}
+                goods={data.goods}
+              />
+              <OfferHostInfo
+                host={data.host}
+                description={data.description}
+              />
+              <ReviewList reviews={props.reviews} status={props.status} />
             </div>
-            <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
-          </section>
-          <PlacesNear offers={nearPlaces} />
-        </main>}
+          </div>
+          <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />
+        </section>
+        <PlacesNear />
+      </main>
     </div>
   );
 }

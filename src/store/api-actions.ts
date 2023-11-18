@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TAppDispatch, TState, TCard, TOffer } from '../types';
-import { fetchCards, fetchOffer, mainPageStatus, offerPageStatus } from './actions';
+import { fetchCards, mainPageStatus } from './actions';
 
 export const loadCards = createAsyncThunk<void, undefined, {
   dispatch: TAppDispatch;
@@ -17,16 +17,23 @@ export const loadCards = createAsyncThunk<void, undefined, {
   },
 );
 
-export const loadOffer = createAsyncThunk<void, string, {
+export const loadOffer = createAsyncThunk<TOffer, string, {
   dispatch: TAppDispatch;
   state: TState;
   extra: AxiosInstance;
 }>(
   'offers/loadOffer',
-  async (id, {dispatch, extra: api}) => {
-    dispatch(offerPageStatus(true));
+  async (id, { extra: api }) => {
     const {data} = await api.get<TOffer>(`/six-cities/offers/${id}`);
-    dispatch(fetchOffer(data));
-    dispatch(offerPageStatus(false));
+    return data;
+  },
+);
+
+export const loadNearPlaces = createAsyncThunk<TCard[], string, {extra: AxiosInstance}>
+(
+  'offers/loadNearPlaces',
+  async (id, {extra: api}) => {
+    const {data} = await api.get<TCard[]>(`/six-cities/offers/${id}/nearby`);
+    return data;
   },
 );

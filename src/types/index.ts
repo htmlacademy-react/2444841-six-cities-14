@@ -3,10 +3,6 @@ import { store } from '../store/index.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
-export type TLocationsHeader = {
-  pickCity: (city: SixCities) => void;
-}
-
 export type TCardList = {
   offers: TCard[];
   page: TCardLocation;
@@ -105,10 +101,6 @@ export type TOfferPageProps = {
   reviews: TReview[];
 }
 
-export type TNearPlaces = {
-  offers: TOffer[];
-}
-
 export type TMapProps = {
   city: TCity;
   points: TPoint[];
@@ -128,6 +120,7 @@ export type TRTKState = {
   sorting: Sorting;
   loadingMainPage: boolean;
   loadingOfferPage: boolean;
+  nearPlaces: TCard[];
 }
 
 export type TState = ReturnType<typeof store.getState>;

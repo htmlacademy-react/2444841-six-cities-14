@@ -14,7 +14,7 @@ export const fetchCards = createAction('offers/fetchCards', (value: TCard[]) => 
   payload: value,
 }));
 
-export const fetchOffer = createAction('offers/fetchOffer', (value: TOffer) => ({
+export const fetchOffer = createAction('offers/fetchOffer', (value: TOffer | null) => ({
   payload: value,
 }));
 

@@ -88,4 +88,7 @@ export const City: TCity[] = [
       zoom: 13
     }
   }
-]
+];
+
+export const MAX_NEAR_PLACES = 3;
+export const MAX_VISIBLE_REVIEWS = 10;

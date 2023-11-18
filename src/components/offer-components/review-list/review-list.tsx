@@ -1,11 +1,11 @@
 import Review from '../review/review.tsx';
 import ReviewForm from '../review-form/review-form.tsx';
 import { TReview, TReviewList } from '../../../types/index.ts';
-import { AuthorizationStatus } from '../../../const.ts';
+import { AuthorizationStatus, MAX_VISIBLE_REVIEWS } from '../../../const.ts';
 
 export default function ReviewList(props: TReviewList): JSX.Element {
 
-  const reviews: TReview[] = props.reviews.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, 10);
+  const reviews: TReview[] = props.reviews.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
 
   return (
     <section className="offer__reviews reviews">
