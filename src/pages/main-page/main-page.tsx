@@ -44,7 +44,7 @@ export default function MainPage(): JSX.Element {
     <div className="page page--gray page--main">
       <Header />
       <Helmet>
-        <title>6 Cities</title>
+        <title>6 Cities: {activeCity}</title>
       </Helmet>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
