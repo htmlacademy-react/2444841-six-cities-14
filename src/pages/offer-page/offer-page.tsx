@@ -10,13 +10,13 @@ import NotFoundPage from '../not-found-page/not-found-page.tsx';
 import Map from '../../components/map/map.tsx';
 import Spinner from '../../components/spinner/spinner.tsx';
 import markerPoints from '../../utils/marker-points.ts';
-import { TOfferPageProps, TPoint, TCity } from '../../types/index.ts';
+import { TPoint, TCity } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { loadNearPlaces, loadOffer, loadReviewList } from '../../store/api-actions.ts';
 import { useEffect } from 'react';
 import { unmountOffer } from '../../store/actions.ts';
 
-export default function OfferPage(props: TOfferPageProps): JSX.Element {
+export default function OfferPage(): JSX.Element {
 
   const isLoading = useAppSelector((state) => state.loadingOfferPage);
   const { id } = useParams<{id: string}>();
@@ -84,7 +84,7 @@ export default function OfferPage(props: TOfferPageProps): JSX.Element {
                 host={data.host}
                 description={data.description}
               />
-              <ReviewList status={props.status} />
+              <ReviewList />
             </div>
           </div>
           <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />

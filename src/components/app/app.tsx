@@ -7,7 +7,7 @@ import LoginPage from '../../pages/login-page/login-page.tsx';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import ProtectedRoute from '../protected-route/protected-route.tsx';
-import { AppRoute, AuthorizationStatus } from '../../const.ts';
+import { AppRoute } from '../../const.ts';
 
 export default function App() {
 
@@ -17,10 +17,10 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route path={AppRoute.Root} index element={<MainPage />} />
-          <Route path={AppRoute.Login} element={<ProtectedRoute status={AuthorizationStatus.Auth} redirectPage={AppRoute.Root}><LoginPage /></ProtectedRoute>}/>
-          <Route path={AppRoute.Favorites} element={<ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login}><FavoritesPage /></ProtectedRoute>}/>
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path={AppRoute.Favorites} element={<ProtectedRoute redirectPage={AppRoute.Login}><FavoritesPage /></ProtectedRoute>}/>
           <Route path={AppRoute.NotFoundPage} element={<NotFoundPage />} />
-          <Route path={AppRoute.Offer} element={<OfferPage status={AuthorizationStatus.Auth} />} />
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

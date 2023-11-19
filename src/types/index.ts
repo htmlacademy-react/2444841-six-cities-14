@@ -52,7 +52,6 @@ export type THostProps = {
 }
 
 export type TProtectedRoute = {
-  status: AuthorizationStatus;
   redirectPage: AppRoute;
   children: JSX.Element;
 }
@@ -80,6 +79,11 @@ export type TUser = {
   isPro: boolean;
 }
 
+export type TUserAuth = TUser & {
+  email: string;
+  token: string;
+}
+
 export type TReview = {
   id: string;
   user: TUser;
@@ -88,16 +92,8 @@ export type TReview = {
   date: string;
 }
 
-export type TReviewList = {
-  status: AuthorizationStatus;
-}
-
 export type TReviewComponent = {
   review: TReview;
-}
-
-export type TOfferPageProps = {
-  status: AuthorizationStatus;
 }
 
 export type TMapProps = {
@@ -121,6 +117,7 @@ export type TRTKState = {
   loadingOfferPage: boolean;
   nearPlaces: TCard[];
   reviewList: TReview[];
+  authorizationStatus: AuthorizationStatus;
 }
 
 export type TState = ReturnType<typeof store.getState>;
