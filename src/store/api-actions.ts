@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TCard, TOffer, TReview, TUserAuth, TAppDispatch } from '../types';
+import { TCard, TOffer, TReview, TUserAuth, TAppDispatch, TLogin } from '../types';
 
 export const loadCards = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
 (
@@ -38,14 +38,24 @@ export const loadReviewList = createAsyncThunk<TReview[], string, {extra: AxiosI
   },
 );
 
-export const login = createAsyncThunk<TUserAuth, undefined, {
-  dispatch: TAppDispatch;
-  extra: AxiosInstance;
-}>
+export const login = createAsyncThunk<TUserAuth, undefined, {extra: AxiosInstance}>
 (
   'auth/login',
   async (_arg, {extra: api}) => {
     const {data} = await api.get<TUserAuth>('/six-cities/login');
+    return data;
+  },
+);
+
+export const loginAction = createAsyncThunk<TUserAuth, TLogin, {
+  dispatch: TAppDispatch;
+  extra: AxiosInstance;
+}>
+(
+  'auth/loginAction',
+  async ({email, password}, {extra: api}) => {
+    const {data} = await api.post<TUserAuth>('/six-cities/login', {email, password});
+    console.log(data.token);
     return data;
   },
 );

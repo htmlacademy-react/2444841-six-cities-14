@@ -137,3 +137,8 @@ export type TCard = {
   isPremium: boolean;
   rating: number;
 }
+
+export type TLogin = {
+  email: string;
+  password: string;
+}

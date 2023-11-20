@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, MAX_NEAR_PLACES, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
 import { changeCity, changeSorting, mainPageStatus, offerPageStatus, unmountOffer } from './actions.ts';
-import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login } from './api-actions.ts';
+import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction } from './api-actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
@@ -22,6 +22,12 @@ export const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
     .addCase(login.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(loginAction.fulfilled, (state) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(loginAction.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
     .addCase(changeCity, (state, action) => {
