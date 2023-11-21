@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { getToken } from './token';
 import { TUserAuthError } from '../types/error-types';
 
 const BACKEND_URL = 'https://14.design.pages.academy';
@@ -9,6 +10,16 @@ export const createAPI = (): AxiosInstance => {
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
   });
+
+  api.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+      const token = getToken();
+      if (token && config.headers) {
+        config.headers['x-token'] = token;
+      }
+      return config;
+    },
+  );
 
   api.interceptors.response.use(
     (response) => response,
