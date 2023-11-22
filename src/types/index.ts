@@ -118,6 +118,7 @@ export type TRTKState = {
   nearPlaces: TCard[];
   reviewList: TReview[];
   authorizationStatus: AuthorizationStatus;
+  userData: TUserAuth | null;
 }
 
 export type TState = ReturnType<typeof store.getState>;

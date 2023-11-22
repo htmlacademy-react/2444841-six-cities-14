@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, MAX_NEAR_PLACES, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
 import { changeCity, changeSorting, mainPageStatus, offerPageStatus, unmountOffer } from './actions.ts';
-import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction } from './api-actions.ts';
+import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction, logout } from './api-actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
@@ -14,18 +14,25 @@ const initialState: TRTKState = {
   nearPlaces: [],
   reviewList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  userData: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(login.fulfilled, (state) => {
+    .addCase(login.fulfilled, (state, action) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
+      state.userData = action.payload;
     })
     .addCase(login.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
     })
-    .addCase(loginAction.fulfilled, (state) => {
+    .addCase(logout.fulfilled, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+      state.userData = null;
+    })
+    .addCase(loginAction.fulfilled, (state, action) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
+      state.userData = action.payload;
     })
     .addCase(loginAction.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
