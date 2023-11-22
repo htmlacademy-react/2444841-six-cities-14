@@ -10,11 +10,11 @@ export default function SortBy(): JSX.Element {
   const activeSorting = useAppSelector((state) => state.sorting);
   const dispatch = useAppDispatch();
 
-  function handleToggle() {
+  function handleToggle(): void {
     setOpened(!opened);
   }
 
-  function handleChangeSorting(item: Sorting) {
+  function handleChangeSorting(item: Sorting): void {
     dispatch(changeSorting(item));
     setOpened(false);
   }

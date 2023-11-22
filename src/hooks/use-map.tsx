@@ -2,7 +2,7 @@ import { useEffect, useState, MutableRefObject, useRef } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { TCity } from '../types/index.ts';
 
-function useMap(
+export default function useMap(
   mapRef: MutableRefObject<HTMLElement | null>,
   city: TCity
 ): Map | null {
@@ -16,7 +16,7 @@ function useMap(
           lat: city.location.latitude,
           lng: city.location.longitude
         },
-        zoom: 10
+        zoom: city.location.zoom
       });
 
       const layer = new TileLayer(
@@ -36,5 +36,3 @@ function useMap(
 
   return map;
 }
-
-export default useMap;

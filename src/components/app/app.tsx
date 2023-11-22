@@ -7,15 +7,9 @@ import LoginPage from '../../pages/login-page/login-page.tsx';
 import FavoritesPage from '../../pages/favorites-page/favorites-page.tsx';
 import NotFoundPage from '../../pages/not-found-page/not-found-page.tsx';
 import ProtectedRoute from '../protected-route/protected-route.tsx';
-import { TAppProps } from '../../types/index.ts';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
-import { useAppDispatch } from '../../hooks/index.tsx';
-import { renderOffers } from '../../store/actions.ts';
 
-export default function App({ offers, reviews }: TAppProps) {
-
-  const dispatch = useAppDispatch();
-  dispatch(renderOffers(offers));
+export default function App() {
 
   return (
     <HelmetProvider>
@@ -26,7 +20,7 @@ export default function App({ offers, reviews }: TAppProps) {
           <Route path={AppRoute.Login} element={<ProtectedRoute status={AuthorizationStatus.Auth} redirectPage={AppRoute.Root}><LoginPage /></ProtectedRoute>}/>
           <Route path={AppRoute.Favorites} element={<ProtectedRoute status={AuthorizationStatus.NoAuth} redirectPage={AppRoute.Login}><FavoritesPage /></ProtectedRoute>}/>
           <Route path={AppRoute.NotFoundPage} element={<NotFoundPage />} />
-          <Route path={AppRoute.Offer} element={<OfferPage status={AuthorizationStatus.Auth} reviews={reviews} />} />
+          <Route path={AppRoute.Offer} element={<OfferPage status={AuthorizationStatus.Auth} />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

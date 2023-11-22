@@ -9,8 +9,8 @@ import { useAppSelector } from '../../hooks/index.tsx';
 
 export default function FavoritesPage(): JSX.Element {
 
-  const offers = useAppSelector((state) => state.offers);
-  const favoritePlaces = offers.filter((place) => place.isFavorite);
+  const cards = useAppSelector((state) => state.cards);
+  const favoritePlaces = cards.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
 
   return (

@@ -3,44 +3,25 @@ import { store } from '../store/index.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
-export type TLocationsHeader = {
-  pickCity: (city: SixCities) => void;
-}
-
 export type TCardList = {
-  offers: TOffer[];
+  offers: TCard[];
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
 
 export type TCardInfo = {
-  offer: TOffer;
+  offer: TCard;
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
 
-export type TAppProps = {
-  offers: TOffer[];
-  reviews: TReview[];
-};
-
-export type TOffer = {
-  id: string;
-  title: string;
-  price: number;
-  previewImage: string;
+export type TOffer = TCard & {
   description: string;
-  city: TCity;
   images: string[];
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  type: string;
   bedrooms: number;
   maxAdults: number;
-  good: string[];
+  goods: string[];
   host: THost;
-  location: TLocation;
 };
 
 export type TImages = {
@@ -85,7 +66,7 @@ export type TOfferInfoProps = {
   bedrooms: number;
   maxAdults: number;
   price: number;
-  good: string[];
+  goods: string[];
 }
 
 export type TRating = {
@@ -93,16 +74,21 @@ export type TRating = {
   title: string;
 };
 
+export type TUser = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
 export type TReview = {
   id: string;
-  user: THost;
+  user: TUser;
   rating: number;
   comment: string;
   date: string;
 }
 
 export type TReviewList = {
-  reviews: TReview[];
   status: AuthorizationStatus;
 }
 
@@ -112,11 +98,6 @@ export type TReviewComponent = {
 
 export type TOfferPageProps = {
   status: AuthorizationStatus;
-  reviews: TReview[];
-}
-
-export type TNearPlaces = {
-  offers: TOffer[];
 }
 
 export type TMapProps = {
@@ -133,10 +114,29 @@ export type TPoint = {
 
 export type TRTKState = {
   city: SixCities;
-  offers: TOffer[];
+  offer: TOffer | null;
+  cards: TCard[];
   sorting: Sorting;
+  loadingMainPage: boolean;
+  loadingOfferPage: boolean;
+  nearPlaces: TCard[];
+  reviewList: TReview[];
 }
 
 export type TState = ReturnType<typeof store.getState>;
 
 export type TAppDispatch = typeof store.dispatch;
+
+
+export type TCard = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  previewImage: string;
+  city: TCity;
+  location: TLocation;
+  isFavorite: boolean;
+  isPremium: boolean;
+  rating: number;
+}
