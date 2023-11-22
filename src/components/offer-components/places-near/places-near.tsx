@@ -1,9 +1,10 @@
 import CardList from '../../card-list/card-list.tsx';
 import { useAppSelector } from '../../../hooks/index.tsx';
+import { MAX_NEAR_PLACES } from '../../../const.ts';
 
 export default function PlacesNear(): JSX.Element {
 
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces).slice(0, MAX_NEAR_PLACES);
 
 
   return (

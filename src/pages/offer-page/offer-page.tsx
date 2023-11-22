@@ -56,7 +56,6 @@ export default function OfferPage(): JSX.Element {
     id: data?.id,
     location: data?.location,
   };
-  //console.log(mapCenter, nearPoints, mapCenterMarker)
 
   return (
     <div className="page">

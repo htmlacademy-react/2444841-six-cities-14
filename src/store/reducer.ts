@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { AuthorizationStatus, MAX_NEAR_PLACES, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
+import { AuthorizationStatus, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
-import { changeCity, changeSorting, mainPageStatus, offerPageStatus, unmountOffer } from './actions.ts';
+import { changeCity, changeSorting, loadingMainPage, loadingOfferPage, unmountOffer } from './actions.ts';
 import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction, logout } from './api-actions.ts';
 
 const initialState: TRTKState = {
@@ -57,14 +57,14 @@ export const reducer = createReducer(initialState, (builder) => {
       state.loadingOfferPage = false;
       state.offer = action.payload;
     })
-    .addCase(mainPageStatus, (state, action) => {
+    .addCase(loadingMainPage, (state, action) => {
       state.loadingMainPage = action.payload;
     })
-    .addCase(offerPageStatus, (state, action) => {
+    .addCase(loadingOfferPage, (state, action) => {
       state.loadingOfferPage = action.payload;
     })
     .addCase(loadNearPlaces.fulfilled, (state, action) => {
-      state.nearPlaces = action.payload.slice(0, MAX_NEAR_PLACES);
+      state.nearPlaces = action.payload;
     })
     .addCase(loadReviewList.fulfilled, (state, action) => {
       state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
