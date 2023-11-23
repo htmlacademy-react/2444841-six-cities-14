@@ -1,13 +1,13 @@
 import { AuthorizationStatus } from '../../const.ts';
 import { Navigate } from 'react-router-dom';
 import { TProtectedRoute } from '../../types/index.ts';
-
-const currentStatus: AuthorizationStatus = AuthorizationStatus.Auth;
+import { useAppSelector } from '../../hooks/index.tsx';
 
 export default function ProtectedRoute(props: TProtectedRoute): JSX.Element {
-  const { status, redirectPage, children } = props;
+  const { redirectPage, children } = props;
+  const status = useAppSelector((state) => state.authorizationStatus);
 
   return (
-    currentStatus === status ? <Navigate to={redirectPage} /> : children
+    status === AuthorizationStatus.Auth ? children : <Navigate to={redirectPage} />
   );
 }

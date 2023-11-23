@@ -25,7 +25,7 @@ export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
-          <div className={`${page === 'favorites' ? 'favorites__card-info ' : ''}place-card__price`}>
+          <div className={`${page === 'favorites' ? 'favorites__card-info' : ''} place-card__price`}>
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>

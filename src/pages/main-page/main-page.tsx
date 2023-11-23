@@ -12,7 +12,7 @@ import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
 import { City } from '../../const.ts';
-import { TPoint } from '../../types/index.ts';
+import { TCard, TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { loadCards } from '../../store/api-actions.ts';
 
@@ -23,7 +23,7 @@ export default function MainPage(): JSX.Element {
   const isLoading = useAppSelector((state) => state.loadingMainPage);
   const offersCard = useAppSelector((state) => state.cards);
   const sorting = useAppSelector((state) => state.sorting);
-  const activeCityOffers = pickOffersByCityName(activeCity, offersCard);
+  const activeCityOffers: TCard[] = pickOffersByCityName(activeCity, offersCard);
   const points: TPoint[] = markerPoints(activeCityOffers);
   const cityMap = City.find((city) => city.name === activeCity);
   const dispatch = useAppDispatch();

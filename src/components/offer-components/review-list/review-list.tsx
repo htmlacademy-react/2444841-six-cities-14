@@ -1,12 +1,12 @@
 import Review from '../review/review.tsx';
 import ReviewForm from '../review-form/review-form.tsx';
-import { TReviewList } from '../../../types/index.ts';
 import { AuthorizationStatus } from '../../../const.ts';
 import { useAppSelector } from '../../../hooks/index.tsx';
 
-export default function ReviewList(props: TReviewList): JSX.Element {
+export default function ReviewList(): JSX.Element {
 
   const reviewList = useAppSelector((state) => state.reviewList);
+  const status = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <section className="offer__reviews reviews">
@@ -19,7 +19,7 @@ export default function ReviewList(props: TReviewList): JSX.Element {
           />
         ))}
       </ul>
-      {props.status === AuthorizationStatus.Auth ? <ReviewForm /> : ''}
+      {status === AuthorizationStatus.Auth ? <ReviewForm /> : ''}
     </section>
   );
 }
