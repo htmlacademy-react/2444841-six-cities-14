@@ -83,7 +83,7 @@ export default function OfferPage(): JSX.Element {
                 host={data.host}
                 description={data.description}
               />
-              <ReviewList />
+              <ReviewList id={data.id}/>
             </div>
           </div>
           <Map city={mapCenter} points={nearPoints} activePoint={mapCenterMarker} page={'offer'} />

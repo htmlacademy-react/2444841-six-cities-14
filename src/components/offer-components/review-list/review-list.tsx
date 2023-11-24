@@ -2,8 +2,9 @@ import Review from '../review/review.tsx';
 import ReviewForm from '../review-form/review-form.tsx';
 import { AuthorizationStatus } from '../../../const.ts';
 import { useAppSelector } from '../../../hooks/index.tsx';
+import { TReviewProps } from '../../../types/index.ts';
 
-export default function ReviewList(): JSX.Element {
+export default function ReviewList({id}: TReviewProps): JSX.Element {
 
   const reviewList = useAppSelector((state) => state.reviewList);
   const status = useAppSelector((state) => state.authorizationStatus);
@@ -19,7 +20,7 @@ export default function ReviewList(): JSX.Element {
           />
         ))}
       </ul>
-      {status === AuthorizationStatus.Auth ? <ReviewForm /> : ''}
+      {status === AuthorizationStatus.Auth ? <ReviewForm id={id}/> : ''}
     </section>
   );
 }

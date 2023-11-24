@@ -15,6 +15,10 @@ export type TCardInfo = {
   onCardHover?: (id: TPoint | null) => void;
 };
 
+export type TReviewProps = {
+  id: string;
+}
+
 export type TOffer = TCard & {
   description: string;
   images: string[];
@@ -118,7 +122,7 @@ export type TRTKState = {
   nearPlaces: TCard[];
   reviewList: TReview[];
   authorizationStatus: AuthorizationStatus;
-  userData: TUserAuth | null;
+  userData: TUser | null;
 }
 
 export type TState = ReturnType<typeof store.getState>;
@@ -145,3 +149,11 @@ export type TLogin = {
 }
 
 export type Token = string;
+
+export type TCommentData = {
+  id: string;
+  comment: string;
+  rating: number;
+}
+
+

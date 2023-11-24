@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
 import { changeCity, changeSorting, loadingMainPage, loadingOfferPage, unmountOffer } from './actions.ts';
-import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction, logout } from './api-actions.ts';
+import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction, logout, postComment } from './api-actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
@@ -68,6 +68,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviewList.fulfilled, (state, action) => {
       state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
+    })
+    .addCase(postComment.fulfilled, (state, action) => {
+      state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
     })
     .addCase(changeSorting, (state, action) => {
       state.sorting = action.payload;
