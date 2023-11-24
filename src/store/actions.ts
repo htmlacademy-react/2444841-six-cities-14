@@ -11,10 +11,10 @@ export const changeSorting = createAction('offers/changeSorting', (value: Sortin
 
 export const unmountOffer = createAction('offers/unmountOffer');
 
-export const loadingMainPage = createAction('loadingStatus/loadingMainPage', (value: boolean) => ({
+export const getMainPageStatus = createAction('loadingStatus/loadingMainPage', (value: boolean) => ({
   payload: value,
 }));
 
-export const loadingOfferPage = createAction('loadingStatus/loadingOfferPage', (value: boolean) => ({
+export const getOfferPageStatus = createAction('loadingStatus/loadingOfferPage', (value: boolean) => ({
   payload: value,
 }));

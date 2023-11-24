@@ -1,16 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { AuthorizationStatus, MAX_VISIBLE_REVIEWS, SixCities, Sorting } from '../const.ts';
 import { TRTKState } from '../types/index.ts';
-import { changeCity, changeSorting, loadingMainPage, loadingOfferPage, unmountOffer } from './actions.ts';
-import { loadOffer, loadNearPlaces, loadReviewList, loadCards, login, loginAction, logout, postComment } from './api-actions.ts';
+import { changeCity, changeSorting, getMainPageStatus, getOfferPageStatus, unmountOffer } from './actions.ts';
+import { fetchOffer, fetchNearPlaces, fetchReviewList, fetchCards, login, loginAction, logout, postComment } from './api-actions.ts';
 
 const initialState: TRTKState = {
   city: SixCities.Paris,
   offer: null,
   cards: [],
   sorting: Sorting.Popular,
-  loadingMainPage: false,
-  loadingOfferPage: false,
+  mainPageStatus: false,
+  offerPageStatus: false,
   nearPlaces: [],
   reviewList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -43,30 +43,30 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(unmountOffer, (state) => {
       state.offer = null;
     })
-    .addCase(loadCards.pending, (state) => {
-      state.loadingMainPage = true;
+    .addCase(fetchCards.pending, (state) => {
+      state.mainPageStatus = true;
     })
-    .addCase(loadCards.fulfilled, (state, action) => {
-      state.loadingMainPage = false;
+    .addCase(fetchCards.fulfilled, (state, action) => {
+      state.mainPageStatus = false;
       state.cards = action.payload;
     })
-    .addCase(loadOffer.pending, (state) => {
-      state.loadingOfferPage = true;
+    .addCase(fetchOffer.pending, (state) => {
+      state.offerPageStatus = true;
     })
-    .addCase(loadOffer.fulfilled, (state, action) => {
-      state.loadingOfferPage = false;
+    .addCase(fetchOffer.fulfilled, (state, action) => {
+      state.offerPageStatus = false;
       state.offer = action.payload;
     })
-    .addCase(loadingMainPage, (state, action) => {
-      state.loadingMainPage = action.payload;
+    .addCase(getMainPageStatus, (state, action) => {
+      state.mainPageStatus = action.payload;
     })
-    .addCase(loadingOfferPage, (state, action) => {
-      state.loadingOfferPage = action.payload;
+    .addCase(getOfferPageStatus, (state, action) => {
+      state.offerPageStatus = action.payload;
     })
-    .addCase(loadNearPlaces.fulfilled, (state, action) => {
+    .addCase(fetchNearPlaces.fulfilled, (state, action) => {
       state.nearPlaces = action.payload;
     })
-    .addCase(loadReviewList.fulfilled, (state, action) => {
+    .addCase(fetchReviewList.fulfilled, (state, action) => {
       state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
     })
     .addCase(postComment.fulfilled, (state, action) => {

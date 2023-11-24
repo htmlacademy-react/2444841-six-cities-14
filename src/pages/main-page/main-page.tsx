@@ -14,13 +14,13 @@ import sortedOffers from '../../utils/sorted-offers.ts';
 import { City } from '../../const.ts';
 import { TCard, TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
-import { loadCards } from '../../store/api-actions.ts';
+import { fetchCards } from '../../store/api-actions.ts';
 
 export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector((state) => state.city);
-  const isLoading = useAppSelector((state) => state.loadingMainPage);
+  const isLoading = useAppSelector((state) => state.mainPageStatus);
   const offersCard = useAppSelector((state) => state.cards);
   const sorting = useAppSelector((state) => state.sorting);
   const activeCityOffers: TCard[] = pickOffersByCityName(activeCity, offersCard);
@@ -29,7 +29,7 @@ export default function MainPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loadCards());
+    dispatch(fetchCards());
   }, [dispatch]);
 
   if (cityMap === undefined) {

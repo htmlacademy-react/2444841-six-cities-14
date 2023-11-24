@@ -117,8 +117,8 @@ export type TRTKState = {
   offer: TOffer | null;
   cards: TCard[];
   sorting: Sorting;
-  loadingMainPage: boolean;
-  loadingOfferPage: boolean;
+  mainPageStatus: boolean;
+  offerPageStatus: boolean;
   nearPlaces: TCard[];
   reviewList: TReview[];
   authorizationStatus: AuthorizationStatus;

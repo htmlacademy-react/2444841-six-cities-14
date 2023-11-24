@@ -12,13 +12,13 @@ import Spinner from '../../components/spinner/spinner.tsx';
 import markerPoints from '../../utils/marker-points.ts';
 import { TPoint, TCity } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
-import { loadNearPlaces, loadOffer, loadReviewList } from '../../store/api-actions.ts';
+import { fetchNearPlaces, fetchOffer, fetchReviewList } from '../../store/api-actions.ts';
 import { useEffect } from 'react';
 import { unmountOffer } from '../../store/actions.ts';
 
 export default function OfferPage(): JSX.Element {
 
-  const isLoading = useAppSelector((state) => state.loadingOfferPage);
+  const isLoading = useAppSelector((state) => state.offerPageStatus);
   const { id } = useParams<{id: string}>();
   const dispatch = useAppDispatch();
   const data = useAppSelector((state) => state.offer);
@@ -26,9 +26,9 @@ export default function OfferPage(): JSX.Element {
 
   useEffect(() => {
     if (id) {
-      dispatch(loadOffer(id));
-      dispatch(loadNearPlaces(id));
-      dispatch(loadReviewList(id));
+      dispatch(fetchOffer(id));
+      dispatch(fetchNearPlaces(id));
+      dispatch(fetchReviewList(id));
     }
 
     return () => {
