@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 import { TError } from '../types/error-types';
+import { errorMessageRender } from '../utils/error-message-render';
+import { toast } from 'react-toastify';
 
 const BACKEND_URL = 'https://14.design.pages.academy';
 const REQUEST_TIMEOUT = 5000;
@@ -25,8 +27,9 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError<TError>) => {
       if (error.response) {
-        throw error;
+        toast.warn(errorMessageRender(error));
       }
+      throw error;
     }
   );
 
