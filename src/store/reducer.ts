@@ -12,6 +12,7 @@ const initialState: TRTKState = {
   mainPageStatus: false,
   offerPageStatus: false,
   reviewListStatus: false,
+  nearPlacesStatus: false,
   nearPlaces: [],
   reviewList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -47,12 +48,18 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchCards.pending, (state) => {
       state.mainPageStatus = true;
     })
+    .addCase(fetchCards.rejected, (state) => {
+      state.mainPageStatus = false;
+    })
     .addCase(fetchCards.fulfilled, (state, action) => {
       state.mainPageStatus = false;
       state.cards = action.payload;
     })
     .addCase(fetchOffer.pending, (state) => {
       state.offerPageStatus = true;
+    })
+    .addCase(fetchOffer.rejected, (state) => {
+      state.offerPageStatus = false;
     })
     .addCase(fetchOffer.fulfilled, (state, action) => {
       state.offerPageStatus = false;
@@ -64,11 +71,21 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(getOfferPageStatus, (state, action) => {
       state.offerPageStatus = action.payload;
     })
+    .addCase(fetchNearPlaces.pending, (state) => {
+      state.nearPlacesStatus = true;
+    })
+    .addCase(fetchNearPlaces.rejected, (state) => {
+      state.nearPlacesStatus = false;
+    })
     .addCase(fetchNearPlaces.fulfilled, (state, action) => {
+      state.nearPlacesStatus = false;
       state.nearPlaces = action.payload;
     })
     .addCase(fetchReviewList.pending, (state) => {
       state.reviewListStatus = true;
+    })
+    .addCase(fetchReviewList.rejected, (state) => {
+      state.reviewListStatus = false;
     })
     .addCase(fetchReviewList.fulfilled, (state, action) => {
       state.reviewListStatus = false;
@@ -76,6 +93,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(postComment.pending, (state) => {
       state.reviewListStatus = true;
+    })
+    .addCase(postComment.rejected, (state) => {
+      state.reviewListStatus = false;
     })
     .addCase(postComment.fulfilled, (state, action) => {
       state.reviewListStatus = false;

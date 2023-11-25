@@ -120,6 +120,7 @@ export type TRTKState = {
   mainPageStatus: boolean;
   offerPageStatus: boolean;
   reviewListStatus: boolean;
+  nearPlacesStatus: boolean;
   nearPlaces: TCard[];
   reviewList: TReview[];
   authorizationStatus: AuthorizationStatus;
