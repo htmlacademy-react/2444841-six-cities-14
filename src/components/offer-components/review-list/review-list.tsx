@@ -3,11 +3,17 @@ import ReviewForm from '../review-form/review-form.tsx';
 import { AuthorizationStatus } from '../../../const.ts';
 import { useAppSelector } from '../../../hooks/index.tsx';
 import { TReviewProps } from '../../../types/index.ts';
+import Spinner from '../../spinner/spinner.tsx';
 
 export default function ReviewList({id}: TReviewProps): JSX.Element {
 
   const reviewList = useAppSelector((state) => state.reviewList);
   const status = useAppSelector((state) => state.authorizationStatus);
+  const isLoading = useAppSelector((state) => state.reviewListStatus);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="offer__reviews reviews">

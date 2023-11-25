@@ -11,6 +11,7 @@ const initialState: TRTKState = {
   sorting: Sorting.Popular,
   mainPageStatus: false,
   offerPageStatus: false,
+  reviewListStatus: false,
   nearPlaces: [],
   reviewList: [],
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -66,10 +67,18 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(fetchNearPlaces.fulfilled, (state, action) => {
       state.nearPlaces = action.payload;
     })
+    .addCase(fetchReviewList.pending, (state) => {
+      state.reviewListStatus = true;
+    })
     .addCase(fetchReviewList.fulfilled, (state, action) => {
+      state.reviewListStatus = false;
       state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
     })
+    .addCase(postComment.pending, (state) => {
+      state.reviewListStatus = true;
+    })
     .addCase(postComment.fulfilled, (state, action) => {
+      state.reviewListStatus = false;
       state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
     })
     .addCase(changeSorting, (state, action) => {
