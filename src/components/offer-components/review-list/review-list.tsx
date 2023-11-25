@@ -4,12 +4,15 @@ import { AuthorizationStatus } from '../../../const.ts';
 import { useAppSelector } from '../../../hooks/index.tsx';
 import { TReviewProps } from '../../../types/index.ts';
 import Spinner from '../../spinner/spinner.tsx';
+import { getReviews } from '../../../store/reviews/selectors.ts';
+import { getAuthStatus } from '../../../store/user/selectors.ts';
+import { getLoadingReviews } from '../../../store/reviews/selectors.ts';
 
 export default function ReviewList({id}: TReviewProps): JSX.Element {
 
-  const reviewList = useAppSelector((state) => state.reviewList);
-  const status = useAppSelector((state) => state.authorizationStatus);
-  const isLoading = useAppSelector((state) => state.reviewListStatus);
+  const reviewList = useAppSelector(getReviews);
+  const status = useAppSelector(getAuthStatus);
+  const isLoading = useAppSelector(getLoadingReviews);
 
   if (isLoading) {
     return <Spinner />;

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TCard, TOffer, TReview, TUserAuth, TAppDispatch, TLogin, TUser, TCommentData } from '../types';
+import { TCard, TOffer, TReview, TUserAuth, TLogin, TUser, TCommentData } from '../types';
 import { dropToken, saveToken } from '../services/token';
 
 export const fetchCards = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
@@ -48,10 +48,7 @@ export const login = createAsyncThunk<TUserAuth, undefined, {extra: AxiosInstanc
   },
 );
 
-export const loginAction = createAsyncThunk<TUser, TLogin, {
-  dispatch: TAppDispatch;
-  extra: AxiosInstance;
-}>
+export const loginAction = createAsyncThunk<TUser, TLogin, {extra: AxiosInstance}>
 (
   'auth/loginAction',
   async ({email, password}, {extra: api}) => {
@@ -74,10 +71,7 @@ export const logout = createAsyncThunk<void, undefined, {extra: AxiosInstance}>
   },
 );
 
-export const postComment = createAsyncThunk<TReview, TCommentData, {
-  dispatch: TAppDispatch;
-  extra: AxiosInstance;
-}>
+export const postComment = createAsyncThunk<TReview, TCommentData, {extra: AxiosInstance}>
 (
   'auth/postComment',
   async ({id, comment, rating}, {extra: api}) => {

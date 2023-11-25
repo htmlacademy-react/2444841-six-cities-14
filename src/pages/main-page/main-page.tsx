@@ -15,14 +15,15 @@ import { City } from '../../const.ts';
 import { TCard, TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { fetchCards } from '../../store/api-actions.ts';
+import { getCards, getCity, getLoadingStatus, getSorting } from '../../store/main-page/selectors.ts';
 
 export default function MainPage(): JSX.Element {
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
-  const activeCity = useAppSelector((state) => state.city);
-  const isLoading = useAppSelector((state) => state.mainPageStatus);
-  const offersCard = useAppSelector((state) => state.cards);
-  const sorting = useAppSelector((state) => state.sorting);
+  const activeCity = useAppSelector(getCity);
+  const isLoading = useAppSelector(getLoadingStatus);
+  const offersCard = useAppSelector(getCards);
+  const sorting = useAppSelector(getSorting);
   const activeCityOffers: TCard[] = pickOffersByCityName(activeCity, offersCard);
   const points: TPoint[] = markerPoints(activeCityOffers);
   const cityMap = City.find((city) => city.name === activeCity);

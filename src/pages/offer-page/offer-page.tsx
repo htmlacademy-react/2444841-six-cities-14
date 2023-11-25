@@ -14,15 +14,18 @@ import { TPoint, TCity } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { fetchNearPlaces, fetchOffer, fetchReviewList } from '../../store/api-actions.ts';
 import { useEffect } from 'react';
-import { unmountOffer } from '../../store/actions.ts';
+import { getLoadingOfferPage } from '../../store/offer-page/selectors.ts';
+import { getOffer } from '../../store/offer-page/selectors.ts';
+import { getNearPlaces } from '../../store/near-places/selectors.ts';
+import { unmountOffer } from '../../store/offer-page/offer-page.ts';
 
 export default function OfferPage(): JSX.Element {
 
-  const isLoading = useAppSelector((state) => state.offerPageStatus);
+  const isLoading = useAppSelector(getLoadingOfferPage);
   const { id } = useParams<{id: string}>();
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.offer);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const data = useAppSelector(getOffer);
+  const nearPlaces = useAppSelector(getNearPlaces);
 
   useEffect(() => {
     if (id) {

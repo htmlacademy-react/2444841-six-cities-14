@@ -1,5 +1,4 @@
 import { AppRoute, AuthorizationStatus, SixCities, Sorting } from '../const.ts';
-import { store } from '../store/index.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
@@ -126,11 +125,6 @@ export type TRTKState = {
   authorizationStatus: AuthorizationStatus;
   userData: TUser | null;
 }
-
-export type TState = ReturnType<typeof store.getState>;
-
-export type TAppDispatch = typeof store.dispatch;
-
 
 export type TCard = {
   id: string;

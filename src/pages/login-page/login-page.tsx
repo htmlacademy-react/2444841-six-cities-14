@@ -4,12 +4,13 @@ import { AppRoute, AuthorizationStatus, SixCities } from '../../const.ts';
 import { useRef, FormEvent, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { loginAction } from '../../store/api-actions.ts';
+import { getAuthStatus } from '../../store/user/selectors.ts';
 
 export default function LoginPage(): JSX.Element {
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

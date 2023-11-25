@@ -6,10 +6,11 @@ import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import { useAppSelector } from '../../hooks/index.tsx';
+import { getCards } from '../../store/main-page/selectors.ts';
 
 export default function FavoritesPage(): JSX.Element {
 
-  const cards = useAppSelector((state) => state.cards);
+  const cards = useAppSelector(getCards);
   const favoritePlaces = cards.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
 

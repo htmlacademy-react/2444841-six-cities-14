@@ -2,8 +2,7 @@ import { ChangeEvent } from 'react';
 import { Fragment } from 'react';
 import { Stars } from '../../../const';
 
-export type TStarsCount = {
-  starsCount: (evt: ChangeEvent<HTMLInputElement>) => void;
+export type TStarsCount = {starsCount: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Rating({starsCount}: TStarsCount): JSX.Element {
