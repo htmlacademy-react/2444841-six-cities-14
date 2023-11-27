@@ -11,6 +11,7 @@ export type TMainPageSlice = {
 export type TNearPlacesSlice = {
   nearPlacesStatus: boolean;
   nearPlaces: TCard[];
+  nearPlacesError: boolean;
 }
 
 export type TOfferPageSlice = {
@@ -21,6 +22,7 @@ export type TOfferPageSlice = {
 export type TReviewsSlice = {
   reviewList: TReview[];
   reviewListStatus: boolean;
+  reviewListError: boolean;
 }
 
 export type TLoginSlice = {

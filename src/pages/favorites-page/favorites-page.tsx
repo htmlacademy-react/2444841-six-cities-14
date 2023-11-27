@@ -5,14 +5,21 @@ import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
-import { useAppSelector } from '../../hooks/index.tsx';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { getCards } from '../../store/main-page/selectors.ts';
+import { AppRoute, SixCities } from '../../const.ts';
+import { changeCity } from '../../store/main-page/main-page.ts';
 
 export default function FavoritesPage(): JSX.Element {
 
   const cards = useAppSelector(getCards);
   const favoritePlaces = cards.filter((place) => place.isFavorite);
   const favoriteCities = favoritePlaces.map((city) => city.city.name);
+  const dispatch = useAppDispatch();
+
+  function handleClick(city: SixCities): void {
+    dispatch(changeCity(city));
+  }
 
   return (
     <div className="page">
@@ -30,7 +37,7 @@ export default function FavoritesPage(): JSX.Element {
                   <li className="favorites__locations-items" key={city}>
                     <div className="favorites__locations locations locations--current">
                       <div className="locations__item">
-                        <Link className="locations__item-link" to="#">
+                        <Link className="locations__item-link" onClick={() => handleClick(city)} to={AppRoute.Root}>
                           <span>{city}</span>
                         </Link>
                       </div>

@@ -18,6 +18,8 @@ import { getLoadingOfferPage } from '../../store/offer-page/selectors.ts';
 import { getOffer } from '../../store/offer-page/selectors.ts';
 import { getNearPlaces } from '../../store/near-places/selectors.ts';
 import { unmountOffer } from '../../store/offer-page/offer-page.ts';
+import { unmountNearPlaces } from '../../store/near-places/near-places.ts';
+import { unmountReviews } from '../../store/reviews/reviews.ts';
 
 export default function OfferPage(): JSX.Element {
 
@@ -36,6 +38,8 @@ export default function OfferPage(): JSX.Element {
 
     return () => {
       dispatch(unmountOffer());
+      dispatch(unmountNearPlaces());
+      dispatch(unmountReviews());
     };
   }, [id, dispatch]);
 
@@ -47,6 +51,7 @@ export default function OfferPage(): JSX.Element {
       <NotFoundPage />
     );
   }
+
 
   const nearPoints: TPoint[] = markerPoints(nearPlaces);
 

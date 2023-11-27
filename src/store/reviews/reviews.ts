@@ -6,12 +6,17 @@ import { fetchReviewList, postComment } from '../api-actions';
 const initialState: TReviewsSlice = {
   reviewList: [],
   reviewListStatus: false,
+  reviewListError: false,
 };
 
 export const reviews = createSlice({
   name: 'reviews',
   initialState,
-  reducers: {},
+  reducers: {
+    unmountReviews: (state) => {
+      state.reviewList = [];
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchReviewList.pending, (state) => {
@@ -19,6 +24,7 @@ export const reviews = createSlice({
       })
       .addCase(fetchReviewList.rejected, (state) => {
         state.reviewListStatus = false;
+        state.reviewListError = true;
       })
       .addCase(fetchReviewList.fulfilled, (state, action) => {
         state.reviewListStatus = false;
@@ -36,3 +42,5 @@ export const reviews = createSlice({
       });
   }
 });
+
+export const { unmountReviews } = reviews.actions;
