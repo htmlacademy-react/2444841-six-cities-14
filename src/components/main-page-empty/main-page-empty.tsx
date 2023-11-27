@@ -1,7 +1,8 @@
 import { useAppSelector } from '../../hooks/index.tsx';
+import { getCity } from '../../store/main-page/selectors.ts';
 
 export default function MainPageEmpty(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector(getCity);
 
   return (
     <div className="cities__places-container cities__places-container--empty container">

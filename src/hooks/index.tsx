@@ -1,4 +1,4 @@
-import { TAppDispatch, TState } from '../types/index.ts';
+import { TAppDispatch, TState } from '../types/state.ts';
 import { useSelector, useDispatch, TypedUseSelectorHook } from 'react-redux';
 
 export const useAppDispatch = () => useDispatch<TAppDispatch>();

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Sorting } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeSorting } from '../../store/actions';
+import { changeSorting } from '../../store/main-page/main-page';
+import { getSorting } from '../../store/main-page/selectors';
 
 
 export default function SortBy(): JSX.Element {
 
   const [opened, setOpened] = useState<boolean>(false);
-  const activeSorting = useAppSelector((state) => state.sorting);
+  const activeSorting = useAppSelector(getSorting);
   const dispatch = useAppDispatch();
 
   function handleToggle(): void {

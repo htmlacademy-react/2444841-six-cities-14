@@ -1,23 +1,11 @@
-export type TUserAuthError401 = {
-  errorType: 'COMMON_ERROR';
-  message: 'Access deny.' | 'Header Token is not correct.';
-}
-
-export type TOfferFetchError404 = {
-  errorType: 'COMMON_ERROR';
-  message: string;
-}
-
-export type TValidationError400 = {
+export type TError = {
   errorType: 'VALIDATION_ERROR';
   message: string;
-  details: TValidatinErrorDetail[];
+  details?: TValidationErrorDetail[];
 }
 
-export type TValidatinErrorDetail = {
+export type TValidationErrorDetail = {
   property: string;
   value: string;
   messages: string[];
 }
-
-export type TError = TValidationError400 | TOfferFetchError404 | TUserAuthError401;

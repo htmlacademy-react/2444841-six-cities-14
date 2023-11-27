@@ -1,10 +1,11 @@
 import './location-header.css';
 import { SixCities } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
-import { changeCity } from '../../store/actions.ts';
+import { changeCity } from '../../store/main-page/main-page.ts';
+import { getCity } from '../../store/main-page/selectors.ts';
 
 export default function LocationsHeader(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.city);
+  const activeCity = useAppSelector(getCity);
   const dispatch = useAppDispatch();
 
   return (

@@ -1,5 +1,4 @@
 import { AppRoute, AuthorizationStatus, SixCities, Sorting } from '../const.ts';
-import { store } from '../store/index.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
@@ -14,6 +13,10 @@ export type TCardInfo = {
   page: TCardLocation;
   onCardHover?: (id: TPoint | null) => void;
 };
+
+export type TReviewProps = {
+  id: string;
+}
 
 export type TOffer = TCard & {
   description: string;
@@ -113,18 +116,15 @@ export type TRTKState = {
   offer: TOffer | null;
   cards: TCard[];
   sorting: Sorting;
-  loadingMainPage: boolean;
-  loadingOfferPage: boolean;
+  mainPageStatus: boolean;
+  offerPageStatus: boolean;
+  reviewListStatus: boolean;
+  nearPlacesStatus: boolean;
   nearPlaces: TCard[];
   reviewList: TReview[];
   authorizationStatus: AuthorizationStatus;
-  userData: TUserAuth | null;
+  userData: TUser | null;
 }
-
-export type TState = ReturnType<typeof store.getState>;
-
-export type TAppDispatch = typeof store.dispatch;
-
 
 export type TCard = {
   id: string;
@@ -145,3 +145,11 @@ export type TLogin = {
 }
 
 export type Token = string;
+
+export type TCommentData = {
+  id: string;
+  comment: string;
+  rating: number;
+}
+
+
