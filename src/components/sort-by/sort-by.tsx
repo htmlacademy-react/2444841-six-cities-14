@@ -10,6 +10,7 @@ export default function SortBy(): JSX.Element {
   const [opened, setOpened] = useState<boolean>(false);
   const activeSorting = useAppSelector(getSorting);
   const dispatch = useAppDispatch();
+  const sorting = Object.values(Sorting);
 
   function handleToggle(): void {
     setOpened(!opened);
@@ -30,7 +31,7 @@ export default function SortBy(): JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${opened ? 'places__options--opened' : ''}`}>
-        {Object.values(Sorting).map((item) => (
+        {sorting.map((item) => (
           <li
             key={item}
             className={`places__option ${activeSorting === item ? 'places__option--active' : ''}`}

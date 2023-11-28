@@ -1,12 +1,13 @@
-import Card from '../card/card.tsx';
+import MemorizedCard from '../card/card.tsx';
 import { TCardList } from '../../types/index.ts';
+import { memo } from 'react';
 
-export default function CardList({offers, page, onCardHover}: TCardList): JSX.Element {
+export function CardList({offers, page, onCardHover}: TCardList): JSX.Element {
 
   return (
     <>
       {offers.map((item) => (
-        <Card
+        <MemorizedCard
           key={item.id}
           offer={item}
           page={page}
@@ -16,3 +17,6 @@ export default function CardList({offers, page, onCardHover}: TCardList): JSX.El
     </>
   );
 }
+
+const MemorizedCardList = memo(CardList);
+export default MemorizedCardList;
