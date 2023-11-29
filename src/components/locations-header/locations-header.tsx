@@ -5,7 +5,7 @@ import { changeCity } from '../../store/main-page/main-page.ts';
 import { getCity } from '../../store/main-page/selectors.ts';
 import { memo } from 'react';
 
-function LocationsHeader(): JSX.Element {
+export function LocationsHeader(): JSX.Element {
   const activeCity = useAppSelector(getCity);
   const dispatch = useAppDispatch();
   const cities = Object.values(SixCities);

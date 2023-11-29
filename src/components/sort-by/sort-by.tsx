@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Sorting } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeSorting } from '../../store/main-page/main-page';
 import { getSorting } from '../../store/main-page/selectors';
 
 
-export default function SortBy(): JSX.Element {
+export function SortBy(): JSX.Element {
 
   const [opened, setOpened] = useState<boolean>(false);
   const activeSorting = useAppSelector(getSorting);
@@ -45,3 +45,6 @@ export default function SortBy(): JSX.Element {
     </form>
   );
 }
+
+const MemorizedSordBy = memo(SortBy);
+export default MemorizedSordBy;
