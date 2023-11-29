@@ -1,9 +1,9 @@
-import { ChangeEvent, useState } from 'react';
-import Rating from '../rating/rating.tsx';
+import { ChangeEvent, useCallback, useState } from 'react';
 import { ConstantValues } from '../../../const.ts';
 import { useAppDispatch } from '../../../hooks/index.tsx';
 import { postComment } from '../../../store/api-actions.ts';
 import { TReviewProps } from '../../../types/index.ts';
+import MemoRating from '../rating/rating.tsx';
 
 export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
@@ -16,9 +16,9 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
     setComment(evt.target.value);
   }
 
-  function handleRating(evt: ChangeEvent<HTMLInputElement>){
+  const handleRating = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setRating(Number(evt.target.value));
-  }
+  }, []);
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -31,7 +31,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
   return (
     <form className="reviews__form form" onSubmit={handleSubmit} action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <Rating starsCount={handleRating} />
+      <MemoRating starsCount={handleRating} />
       <textarea onChange={handleChange} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
