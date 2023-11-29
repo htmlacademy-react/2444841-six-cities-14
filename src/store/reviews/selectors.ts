@@ -1,7 +1,18 @@
-import { TReview } from '../../types';
-import { TState } from '../../types/state';
+import { createSelector } from '@reduxjs/toolkit';
+import { TReviewsSlice, TState } from '../../types/state';
 
+export const getReviews = createSelector(
+  (state: TState) => state['reviews'],
+  (state: TReviewsSlice) => state.reviewList
+);
 
-export const getReviews = (state: Pick<TState, 'reviews'>): TReview[] => state['reviews'].reviewList;
-export const getLoadingReviews = (state: Pick<TState, 'reviews'>): boolean => state['reviews'].reviewListStatus;
-export const getReviewsError = (state: Pick<TState, 'reviews'>): boolean => state['reviews'].reviewListError;
+export const getLoadingReviews = createSelector(
+  (state: TState) => state['reviews'],
+  (state: TReviewsSlice) => state.reviewListStatus
+);
+
+export const getReviewsError = createSelector(
+  (state: TState) => state['reviews'],
+  (state: TReviewsSlice) => state.reviewListError
+);
+
