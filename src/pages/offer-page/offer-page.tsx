@@ -45,7 +45,15 @@ export default function OfferPage(): JSX.Element {
 
   if (!data) {
     if (isLoading) {
-      return <Spinner />;
+      return (
+        <div className="page">
+          <Header />
+          <Helmet>
+            <title>Loading offer...</title>
+          </Helmet>
+          <Spinner />
+        </div>
+      );
     }
     return (
       <NotFoundPage />

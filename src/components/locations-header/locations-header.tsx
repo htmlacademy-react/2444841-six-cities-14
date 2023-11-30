@@ -1,4 +1,4 @@
-import './location-header.css';
+import './location-header.modules.css';
 import { SixCities } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { changeCity } from '../../store/main-page/main-page.ts';
