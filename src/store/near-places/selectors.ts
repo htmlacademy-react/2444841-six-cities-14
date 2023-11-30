@@ -1,6 +1,17 @@
-import { TCard } from '../../types';
-import { TState } from '../../types/state';
+import { createSelector } from '@reduxjs/toolkit';
+import { TNearPlacesSlice, TState } from '../../types/state';
 
-export const getNearPlaces = (state: Pick<TState, 'nearPlaces'>): TCard[] => state['nearPlaces'].nearPlaces;
-export const getLoadingNearPlaces = (state: Pick<TState, 'nearPlaces'>): boolean => state['nearPlaces'].nearPlacesStatus;
-export const getNearPlacesError = (state: Pick<TState, 'nearPlaces'>): boolean => state['nearPlaces'].nearPlacesError;
+export const getNearPlaces = createSelector(
+  (state: TState) => state['nearPlaces'],
+  (state: TNearPlacesSlice) => state.nearPlaces
+);
+
+export const getLoadingNearPlaces = createSelector(
+  (state: TState) => state['nearPlaces'],
+  (state: TNearPlacesSlice) => state.nearPlacesStatus
+);
+
+export const getNearPlacesError = createSelector(
+  (state: TState) => state['nearPlaces'],
+  (state: TNearPlacesSlice) => state.nearPlacesError
+);

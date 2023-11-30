@@ -3,15 +3,16 @@ import { AppRoute, AuthorizationStatus } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { logout } from '../../store/api-actions.ts';
 import { getAuthStatus, getUserData } from '../../store/user/selectors.ts';
+import { memo, useCallback } from 'react';
 
-export default function Header(): JSX.Element {
+export function Header(): JSX.Element {
   const status = useAppSelector(getAuthStatus);
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
-  function handleClick(): void {
+  const handleClick = useCallback((): void => {
     dispatch(logout());
-  }
+  }, [dispatch]);
 
   return (
     <header className="header">
@@ -55,3 +56,5 @@ export default function Header(): JSX.Element {
     </header>
   );
 }
+const MemorizedHeader = memo(Header);
+export default MemorizedHeader;

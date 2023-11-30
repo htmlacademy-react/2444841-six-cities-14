@@ -1,5 +1,12 @@
-import { TOffer } from '../../types';
-import { TState } from '../../types/state';
+import { createSelector } from '@reduxjs/toolkit';
+import { TOfferPageSlice, TState } from '../../types/state';
 
-export const getOffer = (state: Pick<TState, 'offerPage'>): TOffer | null => state['offerPage'].offer;
-export const getLoadingOfferPage = (state: Pick<TState, 'offerPage'>): boolean => state['offerPage'].offerPageStatus;
+export const getOffer = createSelector(
+  (state: TState) => state['offerPage'],
+  (state: TOfferPageSlice) => state.offer
+);
+
+export const getLoadingOfferPage = createSelector(
+  (state: TState) => state['offerPage'],
+  (state: TOfferPageSlice) => state.offerPageStatus
+);

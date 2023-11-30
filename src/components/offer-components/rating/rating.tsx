@@ -1,11 +1,11 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import { Fragment } from 'react';
 import { Stars } from '../../../const';
 
 export type TStarsCount = {starsCount: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function Rating({starsCount}: TStarsCount): JSX.Element {
+export function Rating({starsCount}: TStarsCount): JSX.Element {
 
   return (
     <div className="reviews__rating-form form__rating">
@@ -22,3 +22,6 @@ export default function Rating({starsCount}: TStarsCount): JSX.Element {
     </div>
   );
 }
+
+const MemoRating = memo(Rating);
+export default MemoRating;

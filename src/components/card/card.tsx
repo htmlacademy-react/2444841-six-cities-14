@@ -1,8 +1,11 @@
 import starsRender from '../../utils/stars-render.ts';
 import { Link } from 'react-router-dom';
 import { TCardInfo } from '../../types/index.ts';
+import { memo } from 'react';
 
-export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
+export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
+
+  const stars = starsRender(offer.rating);
 
   return (
     <article
@@ -45,7 +48,7 @@ export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: starsRender(offer.rating)}}></span>
+            <span style={{width: stars}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -57,3 +60,6 @@ export default function Card({offer, page, onCardHover}: TCardInfo): JSX.Element
     </article>
   );
 }
+
+const MemorizedCard = memo(Card);
+export default MemorizedCard;
