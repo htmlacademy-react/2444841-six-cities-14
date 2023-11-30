@@ -4,9 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { logout } from '../../store/api-actions.ts';
 import { getAuthStatus, getUserData } from '../../store/user/selectors.ts';
 import { memo, useCallback } from 'react';
+import { getFavoritesPage } from '../../store/favorites-page/selectors.ts';
 
 export function Header(): JSX.Element {
   const status = useAppSelector(getAuthStatus);
+  const favorites = useAppSelector(getFavoritesPage);
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
@@ -31,7 +33,7 @@ export function Header(): JSX.Element {
                     <div className="header__avatar-wrapper user__avatar-wrapper" style={{'backgroundImage': `url(${userData?.avatarUrl})`}}>
                     </div>
                     <span className="header__user-name user__name">{userData?.name}</span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__favorite-count">{favorites.length}</span>
                   </Link>
                 </li>
                 <li className="header__nav-item">

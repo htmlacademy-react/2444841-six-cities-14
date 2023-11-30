@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { fetchCards } from '../../store/api-actions.ts';
+import { fetchCards, fetchFavorites } from '../../store/api-actions.ts';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/index.tsx';
 import { HelmetProvider } from 'react-helmet-async';
@@ -17,6 +17,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(fetchCards());
+    dispatch(fetchFavorites());
   }, [dispatch]);
 
   return (
