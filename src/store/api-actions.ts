@@ -79,3 +79,12 @@ export const postComment = createAsyncThunk<TReview, TCommentData, {extra: Axios
     return data;
   },
 );
+
+export const fetchFavorites = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
+(
+  'offers/fetchFavorites',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<TCard[]>('/six-cities/favorite');
+    return data;
+  },
+);

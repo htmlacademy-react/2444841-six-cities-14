@@ -8,6 +8,7 @@ export type TMainPageSlice = {
   cards: TCard[];
   mainPageStatus: boolean;
 }
+
 export type TNearPlacesSlice = {
   nearPlacesStatus: boolean;
   nearPlaces: TCard[];
@@ -28,6 +29,12 @@ export type TReviewsSlice = {
 export type TLoginSlice = {
   authorizationStatus: AuthorizationStatus;
   userData: TUser | null;
+}
+
+export type TFavoritesPageSlice = {
+  favoritesPageStatus: boolean;
+  favoritesPage: TCard[];
+  favoritesPageError: boolean;
 }
 
 export type TState = ReturnType<typeof store.getState>;
