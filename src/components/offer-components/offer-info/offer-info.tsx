@@ -1,63 +1,79 @@
 import starsRender from '../../../utils/stars-render.ts';
 import pluralize from '../../../utils/pluralize.ts';
-import { TOfferInfoProps } from '../../../types/index.ts';
+import { TCard, TFavoriteData, TOfferInfoProps } from '../../../types/index.ts';
+import BookmarkButton from '../../bookmark-button/bookmark-button.tsx';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/index.tsx';
+import { getAuthStatus } from '../../../store/user/selectors.ts';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../../const.ts';
+import { addFavorite } from '../../../store/api-actions.ts';
+import { refreshCards } from '../../../store/main-page/main-page.ts';
 
-export default function OfferInfo({ isPremium, title, isFavorite, rating, type, bedrooms, maxAdults, price, goods }: TOfferInfoProps): JSX.Element {
+export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
+
+  const [favoriteStatus, setFavoriteStatus] = useState<boolean>(offer.isFavorite);
+  const [newOffer, setNewOffer] = useState<TCard>({...offer});
+  const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthStatus);
+  const navigate = useNavigate();
+
+
+  function handleToggle(): void {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    }
+    setFavoriteStatus(!favoriteStatus);
+    const data: TFavoriteData = {
+      id: offer.id,
+      isFavorite: Number(!favoriteStatus),
+    };
+
+    dispatch(addFavorite(data));
+    setNewOffer({...offer, isFavorite: favoriteStatus});
+    dispatch(refreshCards(newOffer));
+  }
 
   return (
     <>
       {
-        isPremium &&
+        offer.isPremium &&
         <div className="offer__mark">
           <span>Premium</span>
         </div>
       }
       <div className="offer__name-wrapper">
         <h1 className="offer__name">
-          {title}
+          {offer.title}
         </h1>
-        {
-          isFavorite ?
-            <button className="offer__bookmark-button offer__bookmark-button--active button" type="button">
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">In bookmarks</span>
-            </button> :
-            <button className="offer__bookmark-button button" type="button">
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
-        }
+        <BookmarkButton status={favoriteStatus} element='offer' bookmarkToggle={handleToggle} />
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
-          <span style={{width: starsRender(rating)}}></span>
+          <span style={{width: starsRender(offer.rating)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
-        <span className="offer__rating-value rating__value">{rating}</span>
+        <span className="offer__rating-value rating__value">{offer.rating}</span>
       </div>
       <ul className="offer__features">
         <li className="offer__feature offer__feature--entire">
-          {type}
+          {offer.type}
         </li>
         <li className="offer__feature offer__feature--bedrooms">
-          {bedrooms} bedroom{pluralize(bedrooms)}
+          {offer.bedrooms} bedroom{pluralize(offer.bedrooms)}
         </li>
         <li className="offer__feature offer__feature--adults">
-          {maxAdults} Adult{pluralize(maxAdults)}
+          {offer.maxAdults} Adult{pluralize(offer.maxAdults)}
         </li>
       </ul>
       <div className="offer__price">
-        <b className="offer__price-value">&euro;{price}</b>
+        <b className="offer__price-value">&euro;{offer.price}</b>
         <span className="offer__price-text">&nbsp;night</span>
       </div>
       <div className="offer__inside">
         <h2 className="offer__inside-title">What&apos;s inside</h2>
         <ul className="offer__inside-list">
-          {goods.map((item) => (
+          {offer.goods.map((item) => (
             <li className="offer__inside-item" key={item}>
               {item}
             </li>

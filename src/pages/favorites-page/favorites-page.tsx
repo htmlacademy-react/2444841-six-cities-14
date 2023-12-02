@@ -10,15 +10,22 @@ import { AppRoute, SixCities } from '../../const.ts';
 import { changeCity } from '../../store/main-page/main-page.ts';
 import { getFavoritesPage, getFavoritesPageError, getLoadingFavoritesPage } from '../../store/favorites-page/selectors.ts';
 import Spinner from '../../components/spinner/spinner.tsx';
+import { useEffect } from 'react';
+import { fetchFavorites } from '../../store/api-actions.ts';
 
 export default function FavoritesPage(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchFavorites());
+  }, [dispatch]);
 
   const favoriteCards = useAppSelector(getFavoritesPage);
   const isLoading = useAppSelector(getLoadingFavoritesPage);
   const hasError = useAppSelector(getFavoritesPageError);
-  const favoritePlaces = favoriteCards.filter((place) => place.isFavorite);
-  const favoriteCities = favoritePlaces.map((city) => city.city.name);
-  const dispatch = useAppDispatch();
+  //const favoritePlaces = favoriteCards.filter((place) => place.isFavorite);
+  const favoriteCities = favoriteCards.map((city) => city.city.name);
+
 
   function handleClick(city: SixCities): void {
     dispatch(changeCity(city));
@@ -35,7 +42,7 @@ export default function FavoritesPage(): JSX.Element {
           <Spinner />
           :
           <div className="page__favorites-container container">
-            {favoritePlaces.length !== 0 ?
+            {favoriteCards.length !== 0 ?
               <section className="favorites">
                 {hasError ?
                   <h1 className="favorites__title">Saved listing not found, please refresh</h1>
@@ -53,7 +60,7 @@ export default function FavoritesPage(): JSX.Element {
                             </div>
                           </div>
                           <div className="favorites__places">
-                            <CardList offers={pickOffersByCityName(city, favoritePlaces)} page={'favorites'} />
+                            <CardList offers={pickOffersByCityName(city, favoriteCards)} page={'favorites'} />
                           </div>
                         </li>
                       ))}

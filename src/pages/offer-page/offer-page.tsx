@@ -84,17 +84,7 @@ export default function OfferPage(): JSX.Element {
           <OfferGallery images={data.images}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <OfferInfo
-                isPremium={data.isPremium}
-                title={data.title}
-                isFavorite={data.isFavorite}
-                rating={data.rating}
-                type={data.type}
-                bedrooms={data.bedrooms}
-                maxAdults={data.maxAdults}
-                price={data.price}
-                goods={data.goods}
-              />
+              <OfferInfo offer={data} />
               <OfferHostInfo
                 host={data.host}
                 description={data.description}

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Map from '../../components/map/map.tsx';
 import MainPageEmpty from '../../components/main-page-empty/main-page-empty.tsx';
@@ -9,14 +9,21 @@ import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
 import { City } from '../../const.ts';
 import { TPoint } from '../../types/index.ts';
-import { useAppSelector } from '../../hooks/index.tsx';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { getCards, getCity, getLoadingStatus, getSorting } from '../../store/main-page/selectors.ts';
 import MemorizedLocationsHeader from '../../components/locations-header/locations-header.tsx';
 import MemorizedHeader from '../../components/header/header.tsx';
 import MemorizedCardList from '../../components/card-list/card-list.tsx';
 import MemorizedSordBy from '../../components/sort-by/sort-by.tsx';
+import { fetchCards } from '../../store/api-actions.ts';
 
 export default function MainPage(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCards());
+  }, [dispatch]);
 
   const [activeOffer, setActiveOffer] = useState<TPoint | null>(null);
   const activeCity = useAppSelector(getCity);

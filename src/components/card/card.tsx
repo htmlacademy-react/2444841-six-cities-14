@@ -1,11 +1,39 @@
 import starsRender from '../../utils/stars-render.ts';
-import { Link } from 'react-router-dom';
-import { TCardInfo } from '../../types/index.ts';
-import { memo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { TCard, TCardInfo, TFavoriteData } from '../../types/index.ts';
+import { memo, useState } from 'react';
+import BookmarkButton from '../bookmark-button/bookmark-button.tsx';
+import { addFavorite } from '../../store/api-actions.ts';
+import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
+import { refreshCards } from '../../store/main-page/main-page.ts';
+import { getAuthStatus } from '../../store/user/selectors.ts';
+import { AppRoute, AuthorizationStatus } from '../../const.ts';
+
 
 export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
+  const [favoriteStatus, setFavoriteStatus] = useState<boolean>(offer.isFavorite);
+  const [newOffer, setNewOffer] = useState<TCard>({...offer});
+  const dispatch = useAppDispatch();
   const stars = starsRender(offer.rating);
+  const authStatus = useAppSelector(getAuthStatus);
+  const navigate = useNavigate();
+
+
+  function handleToggle(): void {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    }
+    setFavoriteStatus(!favoriteStatus);
+    const data: TFavoriteData = {
+      id: offer.id,
+      isFavorite: Number(!favoriteStatus),
+    };
+
+    dispatch(addFavorite(data));
+    setNewOffer((prevState) => ({...prevState, isFavorite: favoriteStatus}));
+    dispatch(refreshCards(newOffer));
+  }
 
   return (
     <article
@@ -32,19 +60,7 @@ export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {offer.isFavorite ?
-            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">In bookmarks</span>
-            </button> :
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>}
+          <BookmarkButton bookmarkToggle={handleToggle} status={favoriteStatus} element='place-card' />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

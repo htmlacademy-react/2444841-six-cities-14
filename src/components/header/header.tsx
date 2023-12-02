@@ -1,19 +1,26 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
-import { logout } from '../../store/api-actions.ts';
+import { fetchCards, fetchFavorites, logout } from '../../store/api-actions.ts';
 import { getAuthStatus, getUserData } from '../../store/user/selectors.ts';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { getFavoritesPage } from '../../store/favorites-page/selectors.ts';
 
 export function Header(): JSX.Element {
-  const status = useAppSelector(getAuthStatus);
+  const authStatus = useAppSelector(getAuthStatus);
   const favorites = useAppSelector(getFavoritesPage);
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavorites());
+    }
+  }, [dispatch, authStatus]);
+
   const handleClick = useCallback((): void => {
-    dispatch(logout());
+    dispatch(logout())
+      .then(() => dispatch(fetchCards()));
   }, [dispatch]);
 
   return (
@@ -26,7 +33,7 @@ export function Header(): JSX.Element {
             </Link>
           </div>
           <nav className="header__nav">
-            {status === AuthorizationStatus.Auth ?
+            {authStatus === AuthorizationStatus.Auth ?
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>

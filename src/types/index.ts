@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus, SixCities, Sorting } from '../const.ts';
+import { AppRoute, SixCities } from '../const.ts';
 
 export type TCardLocation = 'cities' | 'favorites' | 'near-places';
 
@@ -60,15 +60,7 @@ export type TProtectedRoute = {
 }
 
 export type TOfferInfoProps = {
-  isPremium: boolean;
-  title: string;
-  isFavorite: boolean;
-  rating: number;
-  type: string;
-  bedrooms: number;
-  maxAdults: number;
-  price: number;
-  goods: string[];
+  offer: TOffer;
 }
 
 export type TRating = {
@@ -111,21 +103,6 @@ export type TPoint = {
   location: TLocation;
 }
 
-export type TRTKState = {
-  city: SixCities;
-  offer: TOffer | null;
-  cards: TCard[];
-  sorting: Sorting;
-  mainPageStatus: boolean;
-  offerPageStatus: boolean;
-  reviewListStatus: boolean;
-  nearPlacesStatus: boolean;
-  nearPlaces: TCard[];
-  reviewList: TReview[];
-  authorizationStatus: AuthorizationStatus;
-  userData: TUser | null;
-}
-
 export type TCard = {
   id: string;
   title: string;
@@ -152,4 +129,14 @@ export type TCommentData = {
   rating: number;
 }
 
+export type TFavoriteData = {
+  id: string;
+  isFavorite: number;
+}
 
+export type TBookmarkButton = {
+  //id: string;
+  status: boolean;
+  element: 'offer' | 'place-card';
+  bookmarkToggle: () => void;
+}

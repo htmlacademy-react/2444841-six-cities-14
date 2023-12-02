@@ -1,7 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { fetchCards, fetchFavorites } from '../../store/api-actions.ts';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/index.tsx';
 import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from '../scroll-to-top/scroll-to-top.tsx';
 import OfferPage from '../../pages/offer-page/offer-page.tsx';
@@ -13,12 +10,6 @@ import { AppRoute } from '../../const.ts';
 import MainPage from '../../pages/main-page/main-page.tsx';
 
 export default function App() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCards());
-    dispatch(fetchFavorites());
-  }, [dispatch]);
 
   return (
     <HelmetProvider>
