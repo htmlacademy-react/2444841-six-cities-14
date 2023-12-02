@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import Header from '../../components/header/header.tsx';
 import CardList from '../../components/card-list/card-list.tsx';
 import Footer from '../../components/footer/footer.tsx';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty.tsx';
@@ -10,8 +9,9 @@ import { AppRoute, SixCities } from '../../const.ts';
 import { changeCity } from '../../store/main-page/main-page.ts';
 import { getFavoritesPage, getFavoritesPageError, getLoadingFavoritesPage } from '../../store/favorites-page/selectors.ts';
 import Spinner from '../../components/spinner/spinner.tsx';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { fetchFavorites } from '../../store/api-actions.ts';
+import MemorizedHeader from '../../components/header/header.tsx';
 
 export default function FavoritesPage(): JSX.Element {
 
@@ -23,17 +23,15 @@ export default function FavoritesPage(): JSX.Element {
   const favoriteCards = useAppSelector(getFavoritesPage);
   const isLoading = useAppSelector(getLoadingFavoritesPage);
   const hasError = useAppSelector(getFavoritesPageError);
-  //const favoritePlaces = favoriteCards.filter((place) => place.isFavorite);
-  const favoriteCities = favoriteCards.map((city) => city.city.name);
+  const favoriteCities = Array.from(new Set(favoriteCards.map((city) => city.city.name)));
 
-
-  function handleClick(city: SixCities): void {
+  const handleClick = useCallback((city: SixCities) => {
     dispatch(changeCity(city));
-  }
+  }, [dispatch]);
 
   return (
     <div className="page">
-      <Header />
+      <MemorizedHeader />
       <Helmet>
         <title>6 Cities: Your Favorites</title>
       </Helmet>
@@ -50,7 +48,7 @@ export default function FavoritesPage(): JSX.Element {
                   <>
                     <h1 className="favorites__title">Saved listing</h1>
                     <ul className="favorites__list">
-                      {Array.from(new Set(favoriteCities)).map((city) => (
+                      {favoriteCities.map((city) => (
                         <li className="favorites__locations-items" key={city}>
                           <div className="favorites__locations locations locations--current">
                             <div className="locations__item">

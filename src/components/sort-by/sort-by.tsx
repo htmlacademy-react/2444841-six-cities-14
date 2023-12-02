@@ -1,16 +1,14 @@
 import { memo, useState } from 'react';
-import { Sorting } from '../../const';
+import { SORTING, Sorting } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeSorting } from '../../store/main-page/main-page';
 import { getSorting } from '../../store/main-page/selectors';
-
 
 export function SortBy(): JSX.Element {
 
   const [opened, setOpened] = useState<boolean>(false);
   const activeSorting = useAppSelector(getSorting);
   const dispatch = useAppDispatch();
-  const sorting = Object.values(Sorting);
 
   function handleToggle(): void {
     setOpened(!opened);
@@ -31,7 +29,7 @@ export function SortBy(): JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${opened ? 'places__options--opened' : ''}`}>
-        {sorting.map((item) => (
+        {SORTING.map((item) => (
           <li
             key={item}
             className={`places__option ${activeSorting === item ? 'places__option--active' : ''}`}

@@ -16,3 +16,12 @@ export const getReviewsError = createSelector(
   (state: TReviewsSlice) => state.reviewListError
 );
 
+export const getLoadingReviewForm = createSelector(
+  (state: TState) => state['reviews'],
+  (state: TReviewsSlice) => state.reviewPostStatus
+);
+
+export const getReviewFormError = createSelector(
+  (state: TState) => state['reviews'],
+  (state: TReviewsSlice) => state.reviewPostError
+);

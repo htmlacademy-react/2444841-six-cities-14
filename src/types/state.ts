@@ -24,6 +24,8 @@ export type TReviewsSlice = {
   reviewList: TReview[];
   reviewListStatus: boolean;
   reviewListError: boolean;
+  reviewPostError: boolean;
+  reviewPostStatus: boolean;
 }
 
 export type TLoginSlice = {
