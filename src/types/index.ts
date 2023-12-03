@@ -131,7 +131,7 @@ export type TCommentData = {
 
 export type TFavoriteData = {
   id: string;
-  isFavorite: number;
+  isFavorite: boolean;
 }
 
 export type TBookmarkButton = {

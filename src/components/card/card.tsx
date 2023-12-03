@@ -1,39 +1,36 @@
 import starsRender from '../../utils/stars-render.ts';
 import { Link, useNavigate } from 'react-router-dom';
-import { TCard, TCardInfo, TFavoriteData } from '../../types/index.ts';
-import { memo, useState } from 'react';
-import BookmarkButton from '../bookmark-button/bookmark-button.tsx';
+import { TCardInfo, TFavoriteData } from '../../types/index.ts';
+import { memo, useCallback, useState } from 'react';
 import { addFavorite } from '../../store/api-actions.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { refreshCards } from '../../store/main-page/main-page.ts';
 import { getAuthStatus } from '../../store/user/selectors.ts';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
-
+import MemoBookmarkButton from '../bookmark-button/bookmark-button.tsx';
 
 export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
   const [favoriteStatus, setFavoriteStatus] = useState<boolean>(offer.isFavorite);
-  const [newOffer, setNewOffer] = useState<TCard>({...offer});
   const dispatch = useAppDispatch();
   const stars = starsRender(offer.rating);
   const authStatus = useAppSelector(getAuthStatus);
   const navigate = useNavigate();
 
 
-  function handleToggle(): void {
+  const handleToggle = useCallback((): void => {
     if (authStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.Login);
     }
     setFavoriteStatus(!favoriteStatus);
     const data: TFavoriteData = {
-      id: offer.id,
-      isFavorite: Number(!favoriteStatus),
+      id: offer.id,// + 's',
+      isFavorite: !favoriteStatus,
     };
 
     dispatch(addFavorite(data));
-    setNewOffer((prevState) => ({...prevState, isFavorite: favoriteStatus}));
-    dispatch(refreshCards(newOffer));
-  }
+    dispatch(refreshCards(data));
+  }, [dispatch, navigate, authStatus, favoriteStatus, offer.id]);
 
   return (
     <article
@@ -60,7 +57,7 @@ export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <BookmarkButton bookmarkToggle={handleToggle} status={favoriteStatus} element='place-card' />
+          <MemoBookmarkButton bookmarkToggle={handleToggle} status={favoriteStatus} element='place-card' />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

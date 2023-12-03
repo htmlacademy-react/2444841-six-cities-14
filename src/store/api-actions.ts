@@ -93,7 +93,8 @@ export const addFavorite = createAsyncThunk<TCard, TFavoriteData, {extra: AxiosI
 (
   'favorites/addFavorite',
   async ({id, isFavorite}, {extra: api}) => {
-    const {data} = await api.post<TOffer>(`/six-cities/favorite/${id}/${isFavorite}`, {isFavorite});
+    const number = Number(isFavorite);
+    const {data} = await api.post<TOffer>(`/six-cities/favorite/${id}/${number}`, {number});
     const card: TCard = {
       id: data.id,
       title: data.title,

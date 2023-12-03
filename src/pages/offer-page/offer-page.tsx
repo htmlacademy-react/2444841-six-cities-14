@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import Header from '../../components/header/header.tsx';
 import ReviewList from '../../components/offer-components/review-list/review-list.tsx';
 import OfferGallery from '../../components/offer-components/offer-gallery/offer-gallery.tsx';
 import OfferInfo from '../../components/offer-components/offer-info/offer-info.tsx';
@@ -20,6 +19,7 @@ import { getNearPlaces } from '../../store/near-places/selectors.ts';
 import { unmountOffer } from '../../store/offer-page/offer-page.ts';
 import { unmountNearPlaces } from '../../store/near-places/near-places.ts';
 import { unmountReviews } from '../../store/reviews/reviews.ts';
+import MemorizedHeader from '../../components/header/header.tsx';
 
 export default function OfferPage(): JSX.Element {
 
@@ -47,7 +47,7 @@ export default function OfferPage(): JSX.Element {
     if (isLoading) {
       return (
         <div className="page">
-          <Header />
+          <MemorizedHeader />
           <Helmet>
             <title>Loading offer...</title>
           </Helmet>
@@ -75,7 +75,7 @@ export default function OfferPage(): JSX.Element {
 
   return (
     <div className="page">
-      <Header />
+      <MemorizedHeader />
       <Helmet>
         <title>{data.title}</title>
       </Helmet>

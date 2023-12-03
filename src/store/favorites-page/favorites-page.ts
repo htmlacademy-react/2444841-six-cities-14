@@ -6,6 +6,8 @@ const initialState: TFavoritesPageSlice = {
   favoritesPageStatus: false,
   favoritesPage: [],
   favoritesPageError: false,
+  addFavoriteStatus: false,
+  addFavoriteError: false,
 };
 
 export const favoritesPage = createSlice({
@@ -14,6 +16,9 @@ export const favoritesPage = createSlice({
   reducers: {
     unmountFavoritesPage: (state) => {
       state.favoritesPage = [];
+    },
+    closeError: (state) => {
+      state.addFavoriteError = false;
     },
   },
   extraReducers(builder) {
@@ -30,15 +35,14 @@ export const favoritesPage = createSlice({
         state.favoritesPage = action.payload;
       })
       .addCase(addFavorite.pending, (state) => {
-        state.favoritesPageStatus = true;
+        state.addFavoriteStatus = true;
       })
       .addCase(addFavorite.rejected, (state) => {
-        state.favoritesPageStatus = false;
-        state.favoritesPageError = true;
+        state.addFavoriteStatus = false;
+        state.addFavoriteError = true;
       })
       .addCase(addFavorite.fulfilled, (state, action) => {
-        state.favoritesPageStatus = false;
-
+        state.addFavoriteStatus = false;
         if (action.payload.isFavorite) {
           state.favoritesPage = [...state.favoritesPage, action.payload];
         } else {
@@ -48,4 +52,4 @@ export const favoritesPage = createSlice({
   }
 });
 
-export const { unmountFavoritesPage } = favoritesPage.actions;
+export const { unmountFavoritesPage, closeError } = favoritesPage.actions;

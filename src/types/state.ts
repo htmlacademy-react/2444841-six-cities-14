@@ -37,6 +37,8 @@ export type TFavoritesPageSlice = {
   favoritesPageStatus: boolean;
   favoritesPage: TCard[];
   favoritesPageError: boolean;
+  addFavoriteStatus: boolean;
+  addFavoriteError: boolean;
 }
 
 export type TState = ReturnType<typeof store.getState>;

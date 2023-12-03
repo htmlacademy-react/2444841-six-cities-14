@@ -1,6 +1,6 @@
 import starsRender from '../../../utils/stars-render.ts';
 import pluralize from '../../../utils/pluralize.ts';
-import { TCard, TFavoriteData, TOfferInfoProps } from '../../../types/index.ts';
+import { TFavoriteData, TOfferInfoProps } from '../../../types/index.ts';
 import BookmarkButton from '../../bookmark-button/bookmark-button.tsx';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/index.tsx';
@@ -13,7 +13,6 @@ import { refreshCards } from '../../../store/main-page/main-page.ts';
 export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
 
   const [favoriteStatus, setFavoriteStatus] = useState<boolean>(offer.isFavorite);
-  const [newOffer, setNewOffer] = useState<TCard>({...offer});
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthStatus);
   const navigate = useNavigate();
@@ -26,12 +25,11 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
     setFavoriteStatus(!favoriteStatus);
     const data: TFavoriteData = {
       id: offer.id,
-      isFavorite: Number(!favoriteStatus),
+      isFavorite: !favoriteStatus,
     };
 
     dispatch(addFavorite(data));
-    setNewOffer({...offer, isFavorite: favoriteStatus});
-    dispatch(refreshCards(newOffer));
+    dispatch(refreshCards(data));
   }
 
   return (
