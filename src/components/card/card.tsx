@@ -30,7 +30,7 @@ export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
 
     dispatch(addFavorite(data));
     dispatch(refreshCards(data));
-  }, [dispatch, navigate, authStatus, favoriteStatus, offer.id]);
+  }, [dispatch, navigate, authStatus, favoriteStatus, offer]);
 
   return (
     <article
@@ -74,5 +74,9 @@ export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
   );
 }
 
-const MemorizedCard = memo(Card);
+function arePropsEqual(oldProps: TCardInfo, newProps: TCardInfo) {
+  return oldProps.offer === newProps.offer;
+}
+
+const MemorizedCard = memo(Card, arePropsEqual);
 export default MemorizedCard;

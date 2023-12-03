@@ -1,14 +1,14 @@
 import starsRender from '../../../utils/stars-render.ts';
 import pluralize from '../../../utils/pluralize.ts';
 import { TFavoriteData, TOfferInfoProps } from '../../../types/index.ts';
-import BookmarkButton from '../../bookmark-button/bookmark-button.tsx';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../hooks/index.tsx';
 import { getAuthStatus } from '../../../store/user/selectors.ts';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../../const.ts';
 import { addFavorite } from '../../../store/api-actions.ts';
 import { refreshCards } from '../../../store/main-page/main-page.ts';
+import MemoBookmarkButton from '../../bookmark-button/bookmark-button.tsx';
 
 export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
 
@@ -17,20 +17,19 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
   const authStatus = useAppSelector(getAuthStatus);
   const navigate = useNavigate();
 
-
-  function handleToggle(): void {
+  const handleToggle = useCallback((): void => {
     if (authStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.Login);
     }
     setFavoriteStatus(!favoriteStatus);
     const data: TFavoriteData = {
-      id: offer.id,
+      id: offer.id,// + 's',
       isFavorite: !favoriteStatus,
     };
 
     dispatch(addFavorite(data));
     dispatch(refreshCards(data));
-  }
+  }, [dispatch, navigate, authStatus, favoriteStatus, offer]);
 
   return (
     <>
@@ -44,7 +43,7 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
         <h1 className="offer__name">
           {offer.title}
         </h1>
-        <BookmarkButton status={favoriteStatus} element='offer' bookmarkToggle={handleToggle} />
+        <MemoBookmarkButton status={favoriteStatus} element='offer' bookmarkToggle={handleToggle} />
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">

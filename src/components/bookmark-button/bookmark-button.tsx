@@ -1,20 +1,7 @@
-import { toast } from 'react-toastify';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFetchingFavoriteError } from '../../store/favorites-page/selectors';
 import { TBookmarkButton } from '../../types';
-import { closeError } from '../../store/favorites-page/favorites-page';
 import { memo, useMemo } from 'react';
 
 export function BookmarkButton({ status, element, bookmarkToggle }: TBookmarkButton): JSX.Element {
-
-  const dispatch = useAppDispatch();
-  const hasError = useAppSelector(getFetchingFavoriteError);
-
-
-  if (hasError) {
-    toast.warn('Something went wrong');
-    setTimeout(() => dispatch(closeError()), 5000);
-  }
 
   const isActive = useMemo(
     (() => {
