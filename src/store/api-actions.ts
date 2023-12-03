@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { TCard, TOffer, TReview, TUserAuth, TLogin, TUser, TCommentData } from '../types';
+import { TCard, TOffer, TReview, TUserAuth, TLogin, TUser, TCommentData, TFavoriteData } from '../types';
 import { dropToken, saveToken } from '../services/token';
 
 export const fetchCards = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
@@ -77,5 +77,36 @@ export const postComment = createAsyncThunk<TReview, TCommentData, {extra: Axios
   async ({id, comment, rating}, {extra: api}) => {
     const {data} = await api.post<TReview>(`/six-cities/comments/${id}`, {comment, rating});
     return data;
+  },
+);
+
+export const fetchFavorites = createAsyncThunk<TCard[], undefined, {extra: AxiosInstance}>
+(
+  'favorites/fetchFavorites',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<TCard[]>('/six-cities/favorite');
+    return data;
+  },
+);
+
+export const addFavorite = createAsyncThunk<TCard, TFavoriteData, {extra: AxiosInstance}>
+(
+  'favorites/addFavorite',
+  async ({id, isFavorite}, {extra: api}) => {
+    const number = Number(isFavorite);
+    const {data} = await api.post<TOffer>(`/six-cities/favorite/${id}/${number}`, {number});
+    const card: TCard = {
+      id: data.id,
+      title: data.title,
+      type: data.type,
+      price: data.price,
+      previewImage: data.previewImage,
+      city: data.city,
+      location: data.location,
+      isFavorite: data.isFavorite,
+      isPremium: data.isPremium,
+      rating: data.rating,
+    };
+    return card;
   },
 );

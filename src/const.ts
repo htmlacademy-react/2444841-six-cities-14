@@ -28,6 +28,8 @@ export enum SixCities {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const CITIES = Object.values(SixCities);
+
 export const PIN_MARKER_DEFAULT = 'img/pin.svg';
 
 export const PIN_MARKER_CURRENT = 'img/pin-active.svg';
@@ -38,6 +40,8 @@ export enum Sorting {
   HighToLow = 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export const SORTING = Object.values(Sorting);
 
 export const Stars: TRating[] = [
   {

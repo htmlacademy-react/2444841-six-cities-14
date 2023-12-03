@@ -7,6 +7,8 @@ const initialState: TReviewsSlice = {
   reviewList: [],
   reviewListStatus: false,
   reviewListError: false,
+  reviewPostError: false,
+  reviewPostStatus: false,
 };
 
 export const reviews = createSlice({
@@ -15,6 +17,9 @@ export const reviews = createSlice({
   reducers: {
     unmountReviews: (state) => {
       state.reviewList = [];
+    },
+    undoError: (state) => {
+      state.reviewPostError = false;
     },
   },
   extraReducers(builder) {
@@ -31,16 +36,17 @@ export const reviews = createSlice({
         state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
       })
       .addCase(postComment.pending, (state) => {
-        state.reviewListStatus = true;
+        state.reviewPostStatus = true;
       })
       .addCase(postComment.rejected, (state) => {
-        state.reviewListStatus = false;
+        state.reviewPostStatus = false;
+        state.reviewPostError = true;
       })
       .addCase(postComment.fulfilled, (state, action) => {
-        state.reviewListStatus = false;
+        state.reviewPostStatus = false;
         state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
       });
   }
 });
 
-export const { unmountReviews } = reviews.actions;
+export const { unmountReviews, undoError } = reviews.actions;

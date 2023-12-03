@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fetchCards } from '../api-actions';
 import { TMainPageSlice } from '../../types/state';
 import { SixCities, Sorting } from '../../const';
+import { TFavoriteData } from '../../types';
 
 const initialState: TMainPageSlice = {
   city: SixCities.Paris,
@@ -20,6 +21,13 @@ export const mainPage = createSlice({
     changeSorting: (state, action: PayloadAction<Sorting>) => {
       state.sorting = action.payload;
     },
+    refreshCards: (state, action: PayloadAction<TFavoriteData>) => {
+      state.cards.map((card) => {
+        if (card.id === action.payload.id) {
+          card.isFavorite = action.payload.isFavorite;
+        }
+      });
+    },
   },
   extraReducers(builder) {
     builder
@@ -36,4 +44,4 @@ export const mainPage = createSlice({
   }
 });
 
-export const { changeCity, changeSorting } = mainPage.actions;
+export const { changeCity, changeSorting, refreshCards } = mainPage.actions;
