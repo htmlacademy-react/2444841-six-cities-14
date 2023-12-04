@@ -1,7 +1,7 @@
 import { TBookmarkButton } from '../../types';
 import { memo, useMemo } from 'react';
 
-export function BookmarkButton({ status, element, bookmarkToggle }: TBookmarkButton): JSX.Element {
+export function BookmarkButton({ status, element, onToggle }: TBookmarkButton): JSX.Element {
 
   const isActive = useMemo(
     (() => {
@@ -13,7 +13,7 @@ export function BookmarkButton({ status, element, bookmarkToggle }: TBookmarkBut
     }), [status, element]);
 
   return (
-    <button onClick={bookmarkToggle} className={isActive} type="button">
+    <button onClick={onToggle} className={isActive} type="button">
       <svg className={`${element}__bookmark-icon`} width={element === 'offer' ? '31' : '18'} height={element === 'offer' ? '33' : '19'}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

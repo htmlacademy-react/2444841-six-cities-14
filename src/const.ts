@@ -14,9 +14,9 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const ConstantValues = {
-  MinCommentLength: 50,
-  MaxCommentLength: 300,
+export const CONSTANT_VALUES = {
+  MIN_COMMENT_LENGTH: 50,
+  MAX_COMMENT_LENGTH: 300,
 } as const;
 
 export enum SixCities {
@@ -43,7 +43,7 @@ export enum Sorting {
 
 export const SORTING = Object.values(Sorting);
 
-export const Stars: TRating[] = [
+export const STARS: TRating[] = [
   {
     id: 5,
     title: 'perfect'
@@ -66,7 +66,7 @@ export const Stars: TRating[] = [
   },
 ];
 
-export const City: TCity[] = [
+export const CITY: TCity[] = [
   {
     name: SixCities.Paris,
     location: {

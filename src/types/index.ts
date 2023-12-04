@@ -137,5 +137,5 @@ export type TFavoriteData = {
 export type TBookmarkButton = {
   status: boolean;
   element: 'offer' | 'place-card';
-  bookmarkToggle: () => void;
+  onToggle: () => void;
 }
