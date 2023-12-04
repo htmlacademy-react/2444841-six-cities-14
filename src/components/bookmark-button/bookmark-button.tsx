@@ -13,7 +13,7 @@ export function BookmarkButton({ status, element, bookmarkToggle }: TBookmarkBut
     }), [status, element]);
 
   return (
-    <button onClick={() => bookmarkToggle()} className={isActive} type="button">
+    <button onClick={bookmarkToggle} className={isActive} type="button">
       <svg className={`${element}__bookmark-icon`} width={element === 'offer' ? '31' : '18'} height={element === 'offer' ? '33' : '19'}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

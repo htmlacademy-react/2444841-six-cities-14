@@ -20,15 +20,15 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
   const handleToggle = useCallback((): void => {
     if (authStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.Login);
+    } else {
+      setFavoriteStatus(!favoriteStatus);
+      const data: TFavoriteData = {
+        id: offer.id,// + 's',
+        isFavorite: !favoriteStatus,
+      };
+      dispatch(addFavorite(data))
+        .then(() => dispatch(refreshCards(data)));
     }
-    setFavoriteStatus(!favoriteStatus);
-    const data: TFavoriteData = {
-      id: offer.id,// + 's',
-      isFavorite: !favoriteStatus,
-    };
-
-    dispatch(addFavorite(data));
-    dispatch(refreshCards(data));
   }, [dispatch, navigate, authStatus, favoriteStatus, offer]);
 
   return (

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { MAX_VISIBLE_REVIEWS } from '../../const';
 import { TReviewsSlice } from '../../types/state';
 import { fetchReviewList, postComment } from '../api-actions';
 
@@ -33,7 +32,7 @@ export const reviews = createSlice({
       })
       .addCase(fetchReviewList.fulfilled, (state, action) => {
         state.reviewListStatus = false;
-        state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
+        state.reviewList = action.payload.sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date)));
       })
       .addCase(postComment.pending, (state) => {
         state.reviewPostStatus = true;
@@ -44,7 +43,7 @@ export const reviews = createSlice({
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.reviewPostStatus = false;
-        state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date))).slice(0, MAX_VISIBLE_REVIEWS);
+        state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date)));
       });
   }
 });

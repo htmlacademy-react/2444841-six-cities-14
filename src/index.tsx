@@ -5,6 +5,7 @@ import { store } from './store/index.ts';
 import { login } from './store/api-actions.ts';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import React from 'react';
 
 store.dispatch(login());
 
@@ -13,8 +14,10 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <ToastContainer />
-    <App />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <ToastContainer />
+      <App />
+    </Provider>
+  </React.StrictMode>
 );
