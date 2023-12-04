@@ -7,7 +7,7 @@ import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
 import sortedOffers from '../../utils/sorted-offers.ts';
-import { City } from '../../const.ts';
+import { CITY } from '../../const.ts';
 import { TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { getCards, getCity, getLoadingStatus, getSorting } from '../../store/main-page/selectors.ts';
@@ -38,7 +38,7 @@ export default function MainPage(): JSX.Element {
     [activeCity, offersCard, sorting]
   );
   const points: TPoint[] = markerPoints(offers);
-  const cityMap = City.find((city) => city.name === activeCity);
+  const cityMap = CITY.find((city) => city.name === activeCity);
 
   const handleCardHover = useCallback((point: TPoint | null) => {
     setActiveOffer(point);

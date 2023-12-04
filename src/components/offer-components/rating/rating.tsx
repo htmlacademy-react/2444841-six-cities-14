@@ -1,6 +1,6 @@
 import { ChangeEvent, memo } from 'react';
 import { Fragment } from 'react';
-import { Stars } from '../../../const';
+import { STARS } from '../../../const';
 
 export type TStarsCount = {starsCount: (evt: ChangeEvent<HTMLInputElement>) => void;
 };
@@ -9,7 +9,7 @@ export function Rating({starsCount}: TStarsCount): JSX.Element {
 
   return (
     <div className="reviews__rating-form form__rating">
-      {Stars.map((star) => (
+      {STARS.map((star) => (
         <Fragment key={star.id}>
           <input className="form__rating-input visually-hidden" name="rating" onChange={starsCount} value={star.id} id={`${star.id}-star`} type="radio" />
           <label htmlFor={`${star.id}-star`} className="reviews__rating-label form__rating-label" title={star.title}>

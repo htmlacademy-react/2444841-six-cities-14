@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { ConstantValues } from '../../../const.ts';
+import { CONSTANT_VALUES } from '../../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../../hooks/index.tsx';
 import { postComment } from '../../../store/api-actions.ts';
 import { TReviewProps } from '../../../types/index.ts';
@@ -42,7 +42,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
     return <Spinner />;
   }
 
-  const isValid = comment.length > ConstantValues.MinCommentLength && comment.length < ConstantValues.MaxCommentLength && rating !== 0 && !isLoading && !hasError;
+  const isValid = comment.length > CONSTANT_VALUES.MIN_COMMENT_LENGTH && comment.length < CONSTANT_VALUES.MAX_COMMENT_LENGTH && rating !== 0 && !isLoading && !hasError;
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit} action="#" method="post">
@@ -51,7 +51,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
       <textarea onChange={handleChange} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{ConstantValues.MinCommentLength} characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{CONSTANT_VALUES.MIN_COMMENT_LENGTH} characters</b>.
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled={!isValid}>Submit</button>
       </div>
