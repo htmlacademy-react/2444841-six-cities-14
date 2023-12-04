@@ -1,4 +1,4 @@
-export default function dateConverter(date: string): string {
+export default function convertDate(date: string): string {
 
   const months: string[] = [
     'January',

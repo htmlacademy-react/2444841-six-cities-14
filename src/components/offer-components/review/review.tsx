@@ -1,4 +1,4 @@
-import dateConverter from '../../../utils/date-converter.ts';
+import convertDate from '../../../utils/convert-date.ts';
 import starsRender from '../../../utils/stars-render.ts';
 import { TReviewComponent } from '../../../types/index.ts';
 
@@ -24,7 +24,7 @@ export default function Review({review}: TReviewComponent): JSX.Element {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime={dateConverter(review.date)}>{dateConverter(review.date)}</time>
+        <time className="reviews__time" dateTime={convertDate(review.date)}>{convertDate(review.date)}</time>
       </div>
     </li>
   );
