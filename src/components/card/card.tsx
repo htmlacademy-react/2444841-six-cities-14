@@ -24,7 +24,7 @@ export function Card({offer, page, onCardHover}: TCardInfo): JSX.Element {
     } else {
       setFavoriteStatus(!favoriteStatus);
       const data: TFavoriteData = {
-        id: offer.id,// + 's',
+        id: offer.id,
         isFavorite: !favoriteStatus,
       };
       dispatch(addFavorite(data))

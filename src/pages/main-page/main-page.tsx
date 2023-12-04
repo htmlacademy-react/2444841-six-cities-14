@@ -6,7 +6,7 @@ import Spinner from '../../components/spinner/spinner.tsx';
 import pickOffersByCityName from '../../utils/pick-offer-by-city-name.ts';
 import pluralize from '../../utils/pluralize.ts';
 import markerPoints from '../../utils/marker-points.ts';
-import sortedOffers from '../../utils/sorted-offers.ts';
+import sortOffers from '../../utils/sort-offers.ts';
 import { CITY } from '../../const.ts';
 import { TPoint } from '../../types/index.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
@@ -33,7 +33,7 @@ export default function MainPage(): JSX.Element {
   const offers = useMemo(
     (() => {
       const activeCityOffers = pickOffersByCityName(activeCity, offersCard);
-      return sortedOffers(activeCityOffers, sorting);
+      return sortOffers(activeCityOffers, sorting);
     }),
     [activeCity, offersCard, sorting]
   );

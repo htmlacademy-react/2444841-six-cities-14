@@ -60,7 +60,6 @@ export default function OfferPage(): JSX.Element {
     );
   }
 
-
   const nearPoints: TPoint[] = markerPoints(nearPlaces);
 
   const mapCenter: TCity = {

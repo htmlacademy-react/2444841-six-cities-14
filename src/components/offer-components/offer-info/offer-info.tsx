@@ -23,7 +23,7 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
     } else {
       setFavoriteStatus(!favoriteStatus);
       const data: TFavoriteData = {
-        id: offer.id,// + 's',
+        id: offer.id,
         isFavorite: !favoriteStatus,
       };
       dispatch(addFavorite(data))
@@ -43,7 +43,7 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
         <h1 className="offer__name">
           {offer.title}
         </h1>
-        <MemoBookmarkButton status={favoriteStatus} element='offer' bookmarkToggle={handleToggle} />
+        <MemoBookmarkButton status={favoriteStatus} element='offer' onToggle={handleToggle} />
       </div>
       <div className="offer__rating rating">
         <div className="offer__stars rating__stars">
