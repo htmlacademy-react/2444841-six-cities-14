@@ -1,6 +1,6 @@
 import { store } from '../store/index.js';
 import { AuthorizationStatus, SixCities, Sorting } from '../const.js';
-import { TCard, TOffer, TReview, TUser } from './index.js';
+import { TCard, TOffer, TReview, TUserAuth } from './index.js';
 
 export type TMainPageSlice = {
   city: SixCities;
@@ -30,7 +30,7 @@ export type TReviewsSlice = {
 
 export type TLoginSlice = {
   authorizationStatus: AuthorizationStatus;
-  userData: TUser | null;
+  userData: TUserAuth | null;
 }
 
 export type TFavoritesPageSlice = {
