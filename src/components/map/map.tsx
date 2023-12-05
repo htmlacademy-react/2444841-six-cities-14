@@ -22,10 +22,6 @@ export default function Map(props: TMapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  if (page === 'offer' && activePoint !== null) {
-    points.push(activePoint);
-  }
-
   useEffect(() => {
     if (map) {
       map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
@@ -33,6 +29,11 @@ export default function Map(props: TMapProps): JSX.Element {
   }, [map, city]);
 
   useEffect(() => {
+
+    if (page === 'offer' && activePoint !== null) {
+      points.push(activePoint);
+    }
+
     if (map) {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
@@ -54,7 +55,7 @@ export default function Map(props: TMapProps): JSX.Element {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, activePoint]);
+  }, [map, points, activePoint, page]);
 
   return <section className={`${page}__map map`} style={{height: '540px'}} ref={mapRef}></section>;
 }

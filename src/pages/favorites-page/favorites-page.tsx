@@ -30,14 +30,16 @@ export default function FavoritesPage(): JSX.Element {
   }, [dispatch]);
 
   return (
-    <div className="page">
+    <div className={`page${favoriteCards.length === 0 ? ' page--favorites-empty' : ''}`}>
       <MemorizedHeader />
       <Helmet>
         <title>6 Cities: Your Favorites</title>
       </Helmet>
-      <main className="page__main page__main--favorites">
+      <main className={`page__main page__main--favorites ${favoriteCards.length === 0 ? 'page__main--favorites-empty' : ''}`}>
         {isLoading ?
-          <Spinner />
+          <div className="page__favorites-container container">
+            <Spinner />
+          </div>
           :
           <div className="page__favorites-container container">
             {favoriteCards.length !== 0 ?

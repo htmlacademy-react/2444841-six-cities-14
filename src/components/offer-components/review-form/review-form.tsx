@@ -23,7 +23,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
   const handleRating = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setRating(Number(evt.target.value));
-  }, []);
+  }, [rating]);
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -32,23 +32,20 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
     setRating(0);
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   if (hasError) {
     toast.warn('Somthing went wrong, please, try again');
     setTimeout(() => dispatch(undoError()), 2000);
     return <Spinner />;
   }
 
+  const formBlocking = isLoading && hasError;
   const isValid = comment.length > CONSTANT_VALUES.MIN_COMMENT_LENGTH && comment.length < CONSTANT_VALUES.MAX_COMMENT_LENGTH && rating !== 0 && !isLoading && !hasError;
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit} action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <MemoRating starsCount={handleRating} />
-      <textarea onChange={handleChange} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <MemoRating starsCount={handleRating} rating={rating} formBlocking={formBlocking} />
+      <textarea onChange={handleChange} disabled={formBlocking} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{CONSTANT_VALUES.MIN_COMMENT_LENGTH} characters</b>.

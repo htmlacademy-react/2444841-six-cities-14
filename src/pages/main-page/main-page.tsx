@@ -54,7 +54,7 @@ export default function MainPage(): JSX.Element {
       <Helmet>
         <title>6 Cities: {activeCity}</title>
       </Helmet>
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${offers.length === 0 ? 'page__main--index-empty' : ''}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <MemorizedLocationsHeader />

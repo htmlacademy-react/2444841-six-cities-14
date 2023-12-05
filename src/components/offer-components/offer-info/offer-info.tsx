@@ -60,7 +60,7 @@ export default function OfferInfo({ offer }: TOfferInfoProps): JSX.Element {
           {offer.bedrooms} bedroom{pluralize(offer.bedrooms)}
         </li>
         <li className="offer__feature offer__feature--adults">
-          {offer.maxAdults} Adult{pluralize(offer.maxAdults)}
+          Max {offer.maxAdults} Adult{pluralize(offer.maxAdults)}
         </li>
       </ul>
       <div className="offer__price">

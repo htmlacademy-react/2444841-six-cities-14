@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const.ts';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { fetchCards, fetchFavorites, logout } from '../../store/api-actions.ts';
@@ -11,6 +11,7 @@ export function Header(): JSX.Element {
   const favorites = useAppSelector(getFavoritesPage);
   const userData = useAppSelector(getUserData);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (authStatus === AuthorizationStatus.Auth) {
@@ -20,8 +21,9 @@ export function Header(): JSX.Element {
 
   const handleClick = useCallback((): void => {
     dispatch(logout())
-      .then(() => dispatch(fetchCards()));
-  }, [dispatch]);
+      .then(() => dispatch(fetchCards()))
+      .then(() => navigate(AppRoute.Login));
+  }, [dispatch, navigate]);
 
   return (
     <header className="header">
@@ -44,7 +46,7 @@ export function Header(): JSX.Element {
                   </Link>
                 </li>
                 <li className="header__nav-item">
-                  <Link onClick={handleClick} className="header__nav-link" to={AppRoute.Root}>
+                  <Link onClick={handleClick} className="header__nav-link" to="#">
                     <span className="header__signout">Sign out</span>
                   </Link>
                 </li>
