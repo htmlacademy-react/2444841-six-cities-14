@@ -67,7 +67,7 @@ export default function LoginPage(): JSX.Element {
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" onChange={handlePasswordChange} value={password} type="password" name="password" placeholder="Password" required />
+                <input className="login__input form__input" onChange={handlePasswordChange} value={password} type="password" pattern="(?=.*\d)(?=.*[a-zA-Z]).{2,}" title="Contains one letter and one digit" name="password" placeholder="Password" required />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>

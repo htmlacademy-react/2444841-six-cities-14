@@ -27,9 +27,11 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    dispatch(postComment({id, comment, rating}));
-    setComment('');
-    setRating(0);
+    dispatch(postComment({id, comment, rating}))
+      .then(() => {
+        setComment('');
+        setRating(0);
+      });
   };
 
   if (hasError) {
@@ -38,14 +40,13 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
     return <Spinner />;
   }
 
-  const formBlocking = isLoading && hasError;
   const isValid = comment.length > CONSTANT_VALUES.MIN_COMMENT_LENGTH && comment.length < CONSTANT_VALUES.MAX_COMMENT_LENGTH && rating !== 0 && !isLoading && !hasError;
 
   return (
     <form className="reviews__form form" onSubmit={handleSubmit} action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <MemoRating starsCount={handleRating} rating={rating} formBlocking={formBlocking} />
-      <textarea onChange={handleChange} disabled={formBlocking} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+      <MemoRating starsCount={handleRating} rating={rating} />
+      <textarea onChange={handleChange} disabled={isLoading} value={comment} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{CONSTANT_VALUES.MIN_COMMENT_LENGTH} characters</b>.
