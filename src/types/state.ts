@@ -31,6 +31,8 @@ export type TReviewsSlice = {
 export type TLoginSlice = {
   authorizationStatus: AuthorizationStatus;
   userData: TUserAuth | null;
+  postError: boolean;
+  userDataLoadingStatus: boolean;
 }
 
 export type TFavoritesPageSlice = {

@@ -11,3 +11,12 @@ export const getUserData = createSelector(
   (state: TLoginSlice) => state.userData
 );
 
+export const getUserPostError = createSelector(
+  (state: TState) => state['user'],
+  (state: TLoginSlice) => state.postError
+);
+
+export const getUserDataLoadingStatus = createSelector(
+  (state: TState) => state['user'],
+  (state: TLoginSlice) => state.userDataLoadingStatus
+);

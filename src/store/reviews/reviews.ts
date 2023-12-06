@@ -44,6 +44,7 @@ export const reviews = createSlice({
       .addCase(postComment.fulfilled, (state, action) => {
         state.reviewPostStatus = false;
         state.reviewList = [...state.reviewList, action.payload].sort((newer, older) => Number(new Date(older.date)) - Number(new Date(newer.date)));
+        state.reviewPostError = false;
       });
   }
 });

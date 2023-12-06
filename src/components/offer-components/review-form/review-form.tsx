@@ -7,7 +7,6 @@ import MemoRating from '../rating/rating.tsx';
 import { getLoadingReviewForm, getReviewFormError } from '../../../store/reviews/selectors.ts';
 import { toast } from 'react-toastify';
 import { undoError } from '../../../store/reviews/reviews.ts';
-import Spinner from '../../spinner/spinner.tsx';
 
 export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
@@ -27,17 +26,19 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     dispatch(postComment({id, comment, rating}))
       .then(() => {
-        setComment('');
-        setRating(0);
+        if(!hasError && !isLoading) {
+          setComment('');
+          setRating(0);
+        }
       });
   };
 
   if (hasError) {
     toast.warn('Somthing went wrong, please, try again');
     setTimeout(() => dispatch(undoError()), 2000);
-    return <Spinner />;
   }
 
   const isValid = comment.length > CONSTANT_VALUES.MIN_COMMENT_LENGTH && comment.length < CONSTANT_VALUES.MAX_COMMENT_LENGTH && rating !== 0 && !isLoading && !hasError;
