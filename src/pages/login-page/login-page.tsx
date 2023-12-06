@@ -40,7 +40,7 @@ export default function LoginPage(): JSX.Element {
         password: password,
       }))
         .then(() => {
-          if(!hasError && isLoading) {
+          if(!hasError && !isLoading) {
             setEmail('');
             setPassword('');
           }
