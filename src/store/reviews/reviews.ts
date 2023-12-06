@@ -38,8 +38,8 @@ export const reviews = createSlice({
         state.reviewPostStatus = true;
       })
       .addCase(postComment.rejected, (state) => {
-        state.reviewPostStatus = false;
         state.reviewPostError = true;
+        state.reviewPostStatus = false;
       })
       .addCase(postComment.fulfilled, (state, action) => {
         state.reviewPostStatus = false;

@@ -28,8 +28,8 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
     e.preventDefault();
 
     dispatch(postComment({id, comment, rating}))
-      .then(() => {
-        if(!hasError && !isLoading) {
+      .then((response) => {
+        if(response.meta.requestStatus !== 'rejected' && !isLoading) {
           setComment('');
           setRating(0);
         }
@@ -38,7 +38,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
   if (hasError) {
     toast.warn('Somthing went wrong, please, try again');
-    setTimeout(() => dispatch(undoError()), 2000);
+    dispatch(undoError());
   }
 
   const isValid = comment.length > CONSTANT_VALUES.MIN_COMMENT_LENGTH && comment.length < CONSTANT_VALUES.MAX_COMMENT_LENGTH && rating !== 0 && !isLoading && !hasError;

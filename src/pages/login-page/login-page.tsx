@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus, SixCities } from '../../const.ts';
 import { FormEvent, useEffect, useState, ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/index.tsx';
 import { loginAction } from '../../store/api-actions.ts';
-import { getAuthStatus, getUserDataLoadingStatus, getUserPostError } from '../../store/user/selectors.ts';
+import { getAuthStatus, getUserDataLoadingStatus } from '../../store/user/selectors.ts';
 
 export default function LoginPage(): JSX.Element {
 
@@ -22,7 +22,6 @@ export default function LoginPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const hasError = useAppSelector(getUserPostError);
   const isLoading = useAppSelector(getUserDataLoadingStatus);
 
   useEffect(() => {
@@ -39,8 +38,8 @@ export default function LoginPage(): JSX.Element {
         email: email,
         password: password,
       }))
-        .then(() => {
-          if(!hasError && !isLoading) {
+        .then((response) => {
+          if(response.meta.requestStatus !== 'rejected' && !isLoading) {
             setEmail('');
             setPassword('');
           }

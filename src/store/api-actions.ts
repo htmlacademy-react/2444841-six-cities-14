@@ -75,7 +75,7 @@ export const logout = createAsyncThunk<void, undefined, {extra: AxiosInstance}>
 
 export const postComment = createAsyncThunk<TReview, TCommentData, {extra: AxiosInstance}>
 (
-  'auth/postComment',
+  'offers/postComment',
   async ({id, comment, rating}, {extra: api}) => {
     const {data} = await api.post<TReview>(`/six-cities/comments/${id}`, {comment, rating});
     return data;
