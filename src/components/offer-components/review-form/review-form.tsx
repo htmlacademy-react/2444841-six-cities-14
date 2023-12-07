@@ -22,7 +22,7 @@ export default function ReviewForm({id}: TReviewProps): JSX.Element {
 
   const handleRating = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setRating(Number(evt.target.value));
-  }, [rating]);
+  }, []);
 
   const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
     e.preventDefault();
